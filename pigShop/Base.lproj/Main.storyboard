@@ -26,12 +26,13 @@
             </objects>
             <point key="canvasLocation" x="-57" y="162"/>
         </scene>
-        <!--Item-->
+        <!--Cart-->
         <scene sceneID="kbR-cb-u6m">
             <objects>
                 <navigationController id="eIj-7q-tOw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Ik1-2B-BjC"/>
+                    <tabBarItem key="tabBarItem" title="Cart" image="cart.fill" catalog="system" id="Ik1-2B-BjC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2f2-UT-jD5">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -42,11 +43,11 @@
             </objects>
             <point key="canvasLocation" x="-613" y="901"/>
         </scene>
-        <!--Item-->
+        <!--Order-->
         <scene sceneID="EXl-4d-QGb">
             <objects>
                 <navigationController id="yP1-23-hn2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ms4-oh-CHu"/>
+                    <tabBarItem key="tabBarItem" title="Order" image="list.bullet.rectangle" catalog="system" id="ms4-oh-CHu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TMX-rT-Tfp">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -59,11 +60,11 @@
             </objects>
             <point key="canvasLocation" x="194" y="901"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="3FE-GF-meu">
             <objects>
                 <navigationController id="7IA-bP-bwj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="YhS-6F-PGL"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.fill" catalog="system" id="YhS-6F-PGL"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y4r-EE-yCk">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -86,11 +87,11 @@
             </objects>
             <point key="canvasLocation" x="1020" y="1289"/>
         </scene>
-        <!--Item-->
+        <!--Main-->
         <scene sceneID="ObF-Ft-zKQ">
             <objects>
                 <navigationController id="E6Z-Rc-Esx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Eb4-ur-H2g"/>
+                    <tabBarItem key="tabBarItem" title="Main" image="house.fill" catalog="system" id="Eb4-ur-H2g"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="akC-CW-gSL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -134,4 +135,10 @@
             <point key="canvasLocation" x="193" y="1289"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
+    </resources>
 </document>
