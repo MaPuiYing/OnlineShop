@@ -13,6 +13,10 @@ extension UIColor {
         return UIColor(named: "mainOrange")!
     }
     
+    static var btnOrange: UIColor {
+        return UIColor(named: "btnOrange")!
+    }
+    
     static var tabbarBackground: UIColor {
         return UIColor(named: "tabbarBackground")!
     }

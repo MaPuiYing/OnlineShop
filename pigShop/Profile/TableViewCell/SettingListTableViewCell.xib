@@ -20,7 +20,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="17I-25-cTk">
                         <rect key="frame" x="20" y="15" width="20.5" height="19"/>
-                        <color key="tintColor" name="mainOrange"/>
+                        <color key="tintColor" name="btnOrange"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="17I-25-cTk" secondAttribute="height" multiplier="1:1" id="Kd3-Gi-9X8"/>
                             <constraint firstAttribute="width" constant="25" id="bV8-fp-rzW"/>
@@ -75,8 +75,8 @@
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
-        <namedColor name="mainOrange">
-            <color red="1" green="0.58200762614288082" blue="0.39874912490344139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="btnOrange">
+            <color red="1" green="0.47281167072307662" blue="0.2399674869258932" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

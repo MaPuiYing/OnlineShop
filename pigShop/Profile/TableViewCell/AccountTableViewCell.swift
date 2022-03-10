@@ -40,14 +40,14 @@ class AccountTableViewCell: UITableViewCell {
         lblGuestName.text = "Guest"
         
         btnRegister.tintColor = .white
-        btnRegister.setTitleColor(.mainOrange, for: .normal)
+        btnRegister.setTitleColor(.btnOrange, for: .normal)
         btnRegister.setTitle("Register", for: .normal)
         btnRegister.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         btnRegister.layer.borderWidth = 1
-        btnRegister.layer.borderColor = UIColor.mainOrange.cgColor
+        btnRegister.layer.borderColor = UIColor.btnOrange.cgColor
         btnRegister.layer.cornerRadius = 6
         
-        btnLogin.tintColor = .mainOrange
+        btnLogin.tintColor = .btnOrange
         btnLogin.setTitleColor(.white, for: .normal)
         btnLogin.setTitle("Login", for: .normal)
         btnLogin.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
