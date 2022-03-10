@@ -3,21 +3,64 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="HomeViewController" customModule="pigShop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1y-lc-CQ5">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vu0-Mq-R1z">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="mYx-yf-Bv0"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bgp-yR-qmc">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Y6W-OH-hqX" id="KNX-5O-7e6"/>
+                                            <outlet property="delegate" destination="Y6W-OH-hqX" id="5hH-OF-8iS"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Vu0-Mq-R1z" firstAttribute="top" secondItem="F1y-lc-CQ5" secondAttribute="top" id="JXt-W5-CiF"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vu0-Mq-R1z" secondAttribute="bottom" id="LAL-hN-Ad2"/>
+                                    <constraint firstItem="Vu0-Mq-R1z" firstAttribute="leading" secondItem="F1y-lc-CQ5" secondAttribute="leading" id="TBJ-Yb-nKQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vu0-Mq-R1z" secondAttribute="trailing" id="YuE-z5-1g4"/>
+                                    <constraint firstItem="Vu0-Mq-R1z" firstAttribute="width" secondItem="F1y-lc-CQ5" secondAttribute="width" id="bXE-hd-Nxx"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="tabbarBackground"/>
+                        <constraints>
+                            <constraint firstItem="F1y-lc-CQ5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="KoD-M1-hwK"/>
+                            <constraint firstItem="F1y-lc-CQ5" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="LQl-JN-Vfl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="F1y-lc-CQ5" secondAttribute="bottom" id="Q7h-iI-jbE"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="F1y-lc-CQ5" secondAttribute="trailing" id="Zpf-eP-isa"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="clvRecommend" destination="Vu0-Mq-R1z" id="sga-3j-C6h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -25,6 +68,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="tabbarBackground">
+            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
