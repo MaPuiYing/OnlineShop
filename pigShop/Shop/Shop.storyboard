@@ -38,14 +38,39 @@
                                             <outlet property="delegate" destination="Y6W-OH-hqX" id="5hH-OF-8iS"/>
                                         </connections>
                                     </collectionView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="s7S-Qc-DzN">
+                                        <rect key="frame" x="10" y="87" width="30" height="26.5"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="s7S-Qc-DzN" secondAttribute="height" multiplier="1:1" id="Fcj-NN-Jxl"/>
+                                            <constraint firstAttribute="width" constant="30" id="Ob6-8U-pDX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="u9J-Be-eZW">
+                                        <rect key="frame" x="374" y="87" width="30" height="26.5"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="kQl-be-BJY"/>
+                                        </constraints>
+                                    </imageView>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="XVh-GF-RaC">
+                                        <rect key="frame" x="149" y="164" width="116" height="26"/>
+                                    </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" name="tabbarBackground"/>
                                 <constraints>
+                                    <constraint firstItem="Vu0-Mq-R1z" firstAttribute="bottom" secondItem="XVh-GF-RaC" secondAttribute="bottom" constant="10" id="1Zl-FN-HFP"/>
                                     <constraint firstItem="Vu0-Mq-R1z" firstAttribute="top" secondItem="F1y-lc-CQ5" secondAttribute="top" id="JXt-W5-CiF"/>
                                     <constraint firstAttribute="bottom" secondItem="Vu0-Mq-R1z" secondAttribute="bottom" id="LAL-hN-Ad2"/>
                                     <constraint firstItem="Vu0-Mq-R1z" firstAttribute="leading" secondItem="F1y-lc-CQ5" secondAttribute="leading" id="TBJ-Yb-nKQ"/>
+                                    <constraint firstItem="XVh-GF-RaC" firstAttribute="centerX" secondItem="F1y-lc-CQ5" secondAttribute="centerX" id="Xoo-m8-7iq"/>
                                     <constraint firstAttribute="trailing" secondItem="Vu0-Mq-R1z" secondAttribute="trailing" id="YuE-z5-1g4"/>
+                                    <constraint firstItem="s7S-Qc-DzN" firstAttribute="centerY" secondItem="Vu0-Mq-R1z" secondAttribute="centerY" id="aA4-Qs-Jyh"/>
                                     <constraint firstItem="Vu0-Mq-R1z" firstAttribute="width" secondItem="F1y-lc-CQ5" secondAttribute="width" id="bXE-hd-Nxx"/>
+                                    <constraint firstItem="u9J-Be-eZW" firstAttribute="width" secondItem="u9J-Be-eZW" secondAttribute="height" multiplier="1:1" id="kjo-Pk-XGO"/>
+                                    <constraint firstItem="s7S-Qc-DzN" firstAttribute="leading" secondItem="F1y-lc-CQ5" secondAttribute="leading" constant="10" id="r0G-D3-zZZ"/>
+                                    <constraint firstItem="u9J-Be-eZW" firstAttribute="centerY" secondItem="Vu0-Mq-R1z" secondAttribute="centerY" id="rbg-Rv-Xfa"/>
+                                    <constraint firstAttribute="trailing" secondItem="u9J-Be-eZW" secondAttribute="trailing" constant="10" id="tu3-KV-sD0"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -60,6 +85,9 @@
                     </view>
                     <connections>
                         <outlet property="clvRecommend" destination="Vu0-Mq-R1z" id="sga-3j-C6h"/>
+                        <outlet property="imvLast" destination="s7S-Qc-DzN" id="mqw-zt-pDX"/>
+                        <outlet property="imvNext" destination="u9J-Be-eZW" id="pd5-a3-3sA"/>
+                        <outlet property="pageControl" destination="XVh-GF-RaC" id="V78-Rc-TB1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -68,6 +96,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
         <namedColor name="tabbarBackground">
             <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

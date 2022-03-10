@@ -11,6 +11,9 @@ import SDWebImage
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var clvRecommend: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var imvLast: UIImageView!
+    @IBOutlet weak var imvNext: UIImageView!
     
     var timer : Timer?
     var aryRecommendImage: [String] {
@@ -26,9 +29,25 @@ class HomeViewController: UIViewController {
 
         self.title = "PigPig Shop"
         
+        self.imvLast.isUserInteractionEnabled = true
+        self.imvNext.isUserInteractionEnabled = true
+        
+        let lastGesture = UITapGestureRecognizer(target: self, action: #selector(imvLastAction))
+        self.imvLast.addGestureRecognizer(lastGesture)
+        
+        let nextGesture = UITapGestureRecognizer(target: self, action: #selector(imvNextAction))
+        self.imvNext.addGestureRecognizer(nextGesture)
+        
         self.setupCollectionView()
+        self.setupPageControl()
+        
         self.startTimer()
         // Do any additional setup after loading the view.
+    }
+    
+    func setupPageControl() {
+        self.pageControl.numberOfPages = self.aryRecommendImage.count
+        self.pageControl.hidesForSinglePage = true
     }
     
     func setupCollectionView() {
@@ -36,23 +55,55 @@ class HomeViewController: UIViewController {
     }
     
     func startTimer () {
-        let timer = Timer.init(timeInterval: 2, target: self, selector: #selector(nextPage), userInfo: nil, repeats: true)
+        let timer = Timer.init(timeInterval: 2, target: self, selector: #selector(autoNextPage), userInfo: nil, repeats: true)
         RunLoop.main.add(timer, forMode: .common)
      
         self.timer = timer
-      }
+    }
+    
+    @objc func imvLastAction() {
+        self.timer?.invalidate()
+        self.timer = nil
+        
+        let width = self.clvRecommend.bounds.width
+        
+        if self.clvRecommend.contentOffset.x == 0 {
+            let offsetX = CGFloat(2 * self.aryRecommendImage.count - 1) * width
+            self.clvRecommend.contentOffset.x = offsetX
+            self.startTimer()
+        } else {
+            self.clvRecommend.contentOffset.x -= width
+            self.startTimer()
+        }
+    }
+    
+    @objc func imvNextAction() {
+        self.timer?.invalidate()
+        self.timer = nil
+        
+        let width = self.clvRecommend.bounds.width
+        
+        if self.clvRecommend.contentOffset.x == CGFloat(3 * self.aryRecommendImage.count - 1) * width {
+            self.clvRecommend.contentOffset.x = CGFloat(self.aryRecommendImage.count - 1) * width
+            self.startTimer()
+        } else {
+            self.clvRecommend.contentOffset.x += width
+            self.startTimer()
+        }
+    }
      
-      @objc func nextPage() {
-          let width = self.clvRecommend.bounds.width
-          
-          // if last cell
-          if self.clvRecommend.contentOffset.x == CGFloat(3 * self.aryRecommendImage.count - 1) * width {
-              self.clvRecommend.contentOffset.x = CGFloat(self.aryRecommendImage.count - 1) * width
-          }else {
-              let offsetX = self.clvRecommend.contentOffset.x + width
-              self.clvRecommend.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
-          }
-      }
+    @objc func autoNextPage() {
+        let width = self.clvRecommend.bounds.width
+        
+        // if last cell
+        if self.clvRecommend.contentOffset.x == CGFloat(3 * self.aryRecommendImage.count - 1) * width {
+            let offsetX = CGFloat(self.aryRecommendImage.count - 1) * width
+            self.clvRecommend.contentOffset.x = offsetX
+        }else {
+            let offsetX = self.clvRecommend.contentOffset.x + width
+            self.clvRecommend.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+        }
+    }
 }
 
 //MARK: - Scroll View Delegate
@@ -91,6 +142,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let i = indexPath.row % self.aryRecommendImage.count
         cell.imageView.sd_setImage(with: URL(string: self.aryRecommendImage[i]), completed: nil)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.pageControl.currentPage = indexPath.row % self.aryRecommendImage.count
     }
 }
 
