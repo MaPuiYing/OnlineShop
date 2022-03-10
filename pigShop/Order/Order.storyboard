@@ -64,9 +64,7 @@
                                     <constraint firstItem="6LB-ns-b7t" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Jlw-KN-XjD" secondAttribute="top" id="82F-3g-iwT"/>
                                     <constraint firstItem="xqf-rd-19q" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Jlw-KN-XjD" secondAttribute="top" id="Arc-Er-2c1"/>
                                     <constraint firstItem="xqf-rd-19q" firstAttribute="centerY" secondItem="Jlw-KN-XjD" secondAttribute="centerY" id="BpA-tp-kbu"/>
-                                    <constraint firstItem="6LB-ns-b7t" firstAttribute="centerX" secondItem="Jlw-KN-XjD" secondAttribute="centerX" id="Don-a3-QsD"/>
                                     <constraint firstItem="6LB-ns-b7t" firstAttribute="leading" secondItem="Jlw-KN-XjD" secondAttribute="leading" constant="20" id="EzH-CS-Ana"/>
-                                    <constraint firstItem="xqf-rd-19q" firstAttribute="centerX" secondItem="Jlw-KN-XjD" secondAttribute="centerX" id="O50-PJ-h23"/>
                                     <constraint firstAttribute="trailing" secondItem="6LB-ns-b7t" secondAttribute="trailing" constant="20" id="e8p-ym-jBe"/>
                                     <constraint firstItem="6LB-ns-b7t" firstAttribute="centerY" secondItem="Jlw-KN-XjD" secondAttribute="centerY" id="fNp-mL-lNe"/>
                                     <constraint firstAttribute="trailing" secondItem="xqf-rd-19q" secondAttribute="trailing" constant="20" id="gTB-04-vWb"/>
@@ -100,10 +98,10 @@
         <image name="cart.circle" catalog="system" width="128" height="121"/>
         <image name="noLogin" width="300" height="300"/>
         <namedColor name="mainOrange">
-            <color red="1" green="0.58200762614288082" blue="0.39874912490344139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="1" green="0.5820000171661377" blue="0.39899998903274536" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="tabbarBackground">
-            <color red="0.975720592380799" green="0.975720592380799" blue="0.975720592380799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

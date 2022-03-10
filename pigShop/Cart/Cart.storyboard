@@ -3,21 +3,64 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Cart View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="CartViewController" customModule="pigShop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0Y-49-cyL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TVP-Ui-xfO">
+                                        <rect key="frame" x="20" y="334" width="374" height="150.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart.fill.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iCX-4t-iFm">
+                                                <rect key="frame" x="127" y="0.0" width="121" height="120"/>
+                                                <color key="tintColor" systemColor="systemGray2Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="iCX-4t-iFm" secondAttribute="height" multiplier="1:1" id="Czi-xQ-PPL"/>
+                                                    <constraint firstAttribute="width" constant="120" id="Dw8-WN-eoL"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbk-US-1De">
+                                                <rect key="frame" x="166.5" y="130" width="41.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="TVP-Ui-xfO" firstAttribute="centerY" secondItem="k0Y-49-cyL" secondAttribute="centerY" id="NZw-CD-Vna"/>
+                                    <constraint firstAttribute="trailing" secondItem="TVP-Ui-xfO" secondAttribute="trailing" constant="20" id="yF1-v1-Ml2"/>
+                                    <constraint firstItem="TVP-Ui-xfO" firstAttribute="leading" secondItem="k0Y-49-cyL" secondAttribute="leading" constant="20" id="zpQ-g7-kl9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="tabbarBackground"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="k0Y-49-cyL" secondAttribute="bottom" id="FJ5-qc-Ob1"/>
+                            <constraint firstItem="k0Y-49-cyL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="icz-1b-gG7"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="k0Y-49-cyL" secondAttribute="trailing" id="rKI-qg-oHK"/>
+                            <constraint firstItem="k0Y-49-cyL" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="z6X-qY-Wp9"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lblEmpty" destination="gbk-US-1De" id="iFg-Ka-QYA"/>
+                        <outlet property="vwEmpty" destination="TVP-Ui-xfO" id="q5W-vU-tlW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -25,8 +68,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cart.fill.badge.plus" catalog="system" width="128" height="106"/>
+        <namedColor name="tabbarBackground">
+            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
