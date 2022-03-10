@@ -10,7 +10,8 @@ import UIKit
 class SettingListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imvIcon: UIImageView!
-    @IBOutlet weak var lbTitle: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var imvArrow: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,8 +26,8 @@ class SettingListTableViewCell: UITableViewCell {
     }
     
     func initSetup() {
-        lbTitle.font = UIFont.systemFont(ofSize: 15)
-        lbTitle.textColor = .textGrey
+        lblTitle.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        lblTitle.textColor = .textGrey
     }
     
 }

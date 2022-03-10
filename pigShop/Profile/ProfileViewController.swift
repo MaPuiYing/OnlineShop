@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     var tableSections: [ProfileSections] = []
+    var isLogin = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class ProfileViewController: UIViewController {
     func setupTable() {
         // Register
         table.register(UINib(nibName: "SettingListTableViewCell", bundle: nil), forCellReuseIdentifier: "listCell")
+        table.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "accountCell")
         
         // Append
         tableSections.append(ProfileSections.account)
@@ -72,16 +74,28 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         let section = tableSections[indexPath.section]
         switch section {
         case .account:
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell") as? AccountTableViewCell else {return UITableViewCell()}
             
+            if isLogin {
+                cell.vwUser.isHidden = false
+                cell.vwGuest.isHidden = true
+                
+                cell.lblUserName.text = "[User Name]"
+            } else {
+                cell.selectionStyle = .none
+                
+                cell.vwGuest.isHidden = false
+                cell.vwUser.isHidden = true
+            }
+            return cell
         case .edit(let items):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell") as? SettingListTableViewCell else {return UITableViewCell()}
             
             switch items[indexPath.row] {
             case .editAccInfo:
-                cell.lbTitle.text = "Edit Account"
+                cell.lblTitle.text = "Edit Account"
             case .forgotPassword:
-                cell.lbTitle.text = "Forgot Password"
+                cell.lblTitle.text = "Forgot Password"
             }
             return cell
             
@@ -90,14 +104,19 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             
             switch items[indexPath.row] {
             case .aboutUs:
-                cell.lbTitle.text = "About Us"
+                cell.lblTitle.text = "About Us"
             case .policy:
-                cell.lbTitle.text = "Policy"
+                cell.lblTitle.text = "Policy"
             case .logout:
-                cell.lbTitle.text = "Logout"
+                cell.lblTitle.text = "Logout"
+                cell.imvArrow.isHidden = true
             }
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        table.deselectRow(at: indexPath, animated: true)
     }
     
     //Header
@@ -109,7 +128,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         let section = tableSections[section]
         switch section {
         case .account:
-            return 0
+            return .leastNonzeroMagnitude
         case .edit:
             return 50
         case .question:
