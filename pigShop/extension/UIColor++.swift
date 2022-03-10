@@ -20,4 +20,8 @@ extension UIColor {
     static var textGrey: UIColor {
         return UIColor(named: "textGrey")!
     }
+    
+    static var textLightGrey: UIColor {
+        return UIColor(named: "textLightGrey")!
+    }
 }
