@@ -12,7 +12,12 @@ extension UIColor {
     static var mainOrange: UIColor {
         return UIColor(named: "mainOrange")!
     }
-    static var backgroundGrey: UIColor {
-        return UIColor(named: "backgroundGrey")!
+    
+    static var tabbarBackground: UIColor {
+        return UIColor(named: "tabbarBackground")!
+    }
+    
+    static var textGrey: UIColor {
+        return UIColor(named: "textGrey")!
     }
 }
