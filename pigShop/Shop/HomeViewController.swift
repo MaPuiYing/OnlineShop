@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeViewController: UIViewController {
 
@@ -13,9 +14,9 @@ class HomeViewController: UIViewController {
     
     var aryRecommendImage: [String] {
         var image: [String] = []
-        image.append("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.carousell.com.hk%2Fp%2F%25E6%25AD%25A3%25E7%2589%2588lulu%25E8%25B1%25AC-lulupig-%25E6%258B%258D%25E6%258B%258D%25E7%2587%2588-%25E5%25B0%258F%25E5%25A4%259C%25E7%2587%2588-1076319860%2F&psig=AOvVaw1LhT58zNudVe5v9NwEx94M&ust=1647008409017000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOihy8veu_YCFQAAAAAdAAAAABAN")
-        image.append("https://www.google.com/url?sa=i&url=https%3A%2F%2Fshop.price.com.hk%2Fapetoys%2Fproduct%2F192863&psig=AOvVaw1LhT58zNudVe5v9NwEx94M&ust=1647008409017000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOihy8veu_YCFQAAAAAdAAAAABAS")
-        image.append("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.aliexpress.com%2Fitem%2F4001147699810.html&psig=AOvVaw1LhT58zNudVe5v9NwEx94M&ust=1647008409017000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOihy8veu_YCFQAAAAAdAAAAABAd")
+        image.append("https://media.karousell.com/media/photos/products/2021/3/20/lulu_lulupig__1616207256_0e9b6ccb_progressive.jpg")
+        image.append("https://www.price.com.hk/space/ec_product/shop/192000/192863_kd2nuj_0.jpg")
+        image.append("https://media.karousell.com/media/photos/products/2020/9/22/lulupig_lulu____1600744315_4bd23683_progressive.jpg")
         return image
     }
     
@@ -41,6 +42,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recommendCell", for: indexPath) as? RecommendCollectionViewCell else {return UICollectionViewCell()}
+        cell.imageView.sd_setImage(with: URL(string: aryRecommendImage[indexPath.row]), completed: nil)
         return cell
     }
 }
