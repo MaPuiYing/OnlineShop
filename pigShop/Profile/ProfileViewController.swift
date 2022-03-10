@@ -8,9 +8,10 @@
 import UIKit
 
 enum ProfileSections {
-    case account
+    case user
     case edit([EditSection])
     case question([QuestionSection])
+    case logout
     
     enum EditSection: CaseIterable {
         case editAccInfo
@@ -19,7 +20,6 @@ enum ProfileSections {
     enum QuestionSection: CaseIterable {
         case policy
         case aboutUs
-        case logout
     }
 }
 
@@ -38,14 +38,18 @@ class ProfileViewController: UIViewController {
     }
     
     func setupTable() {
+        table.separatorStyle = .none
         // Register
         table.register(UINib(nibName: "SettingListTableViewCell", bundle: nil), forCellReuseIdentifier: "listCell")
         table.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "accountCell")
         
         // Append
-        tableSections.append(ProfileSections.account)
+        tableSections.append(ProfileSections.user)
         tableSections.append(ProfileSections.edit(ProfileSections.EditSection.allCases))
         tableSections.append(ProfileSections.question(ProfileSections.QuestionSection.allCases))
+        if isLogin {
+            tableSections.append(ProfileSections.logout)
+        }
         
         table.reloadData()
     }
@@ -61,19 +65,21 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = tableSections[section]
         switch section {
-        case .account:
+        case .user:
             return 1
         case .edit(let items):
             return items.count
         case .question(let items):
             return items.count
+        case .logout:
+            return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = tableSections[indexPath.section]
         switch section {
-        case .account:
+        case .user:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell") as? AccountTableViewCell else {return UITableViewCell()}
             
             if isLogin {
@@ -93,8 +99,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             
             switch items[indexPath.row] {
             case .editAccInfo:
+                cell.vwSeparator.isHidden = false
                 cell.lblTitle.text = "Edit Account"
             case .forgotPassword:
+                cell.vwSeparator.isHidden = true
                 cell.lblTitle.text = "Forgot Password"
             }
             return cell
@@ -107,10 +115,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.lblTitle.text = "About Us"
             case .policy:
                 cell.lblTitle.text = "Policy"
-            case .logout:
-                cell.lblTitle.text = "Logout"
-                cell.imvArrow.isHidden = true
             }
+            return cell
+            
+        case .logout:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell") as? SettingListTableViewCell else {return UITableViewCell()}
+            cell.imvArrow.isHidden = true
+            cell.lblTitle.text = "Logout"
             return cell
         }
     }
@@ -127,7 +138,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let section = tableSections[section]
         switch section {
-        case .account:
+        case .user, .logout:
             return .leastNonzeroMagnitude
         case .edit:
             return 50
@@ -143,8 +154,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = tableSections[section]
         switch section {
-        case .account:
-            return ""
+        case .user, .logout:
+            return nil
         case .edit:
             return "Edit"
         case .question:

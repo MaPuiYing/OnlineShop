@@ -40,15 +40,25 @@
                             <constraint firstAttribute="width" constant="18" id="G2r-Tk-QaK"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3Y-v7-oOL" userLabel="Separator">
+                        <rect key="frame" x="20" y="49.5" width="315" height="1"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="KSK-St-zqH"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tL6-3X-KtA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4QQ-Pk-e4D"/>
                     <constraint firstAttribute="bottom" secondItem="17I-25-cTk" secondAttribute="bottom" constant="15" id="57K-2r-mwF"/>
+                    <constraint firstAttribute="trailing" secondItem="v3Y-v7-oOL" secondAttribute="trailing" constant="20" id="Bvb-fg-bgA"/>
                     <constraint firstItem="17I-25-cTk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Evf-MZ-av2"/>
                     <constraint firstAttribute="trailing" secondItem="BJ8-yF-J5X" secondAttribute="trailing" constant="20" id="IQg-aJ-d6D"/>
                     <constraint firstItem="tL6-3X-KtA" firstAttribute="leading" secondItem="17I-25-cTk" secondAttribute="trailing" constant="20" id="PlL-7d-dnT"/>
+                    <constraint firstAttribute="bottom" secondItem="v3Y-v7-oOL" secondAttribute="bottom" id="Rry-gN-VIm"/>
                     <constraint firstItem="17I-25-cTk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="XY5-zQ-qeD"/>
                     <constraint firstItem="BJ8-yF-J5X" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qZS-8r-4qv"/>
+                    <constraint firstItem="v3Y-v7-oOL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="w8m-v9-whh"/>
                     <constraint firstItem="BJ8-yF-J5X" firstAttribute="leading" secondItem="tL6-3X-KtA" secondAttribute="trailing" constant="20" id="y8W-hY-Z0l"/>
                 </constraints>
             </tableViewCellContentView>
@@ -57,6 +67,7 @@
                 <outlet property="imvArrow" destination="BJ8-yF-J5X" id="Ehm-Y3-hfv"/>
                 <outlet property="imvIcon" destination="17I-25-cTk" id="UqQ-sb-0Jt"/>
                 <outlet property="lblTitle" destination="tL6-3X-KtA" id="mtt-qg-NdM"/>
+                <outlet property="vwSeparator" destination="v3Y-v7-oOL" id="eIk-et-G4I"/>
             </connections>
             <point key="canvasLocation" x="161.59420289855075" y="98.102678571428569"/>
         </tableViewCell>
@@ -69,6 +80,9 @@
         </namedColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

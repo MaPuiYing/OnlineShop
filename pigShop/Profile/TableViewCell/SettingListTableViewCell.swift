@@ -12,6 +12,7 @@ class SettingListTableViewCell: UITableViewCell {
     @IBOutlet weak var imvIcon: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var imvArrow: UIImageView!
+    @IBOutlet weak var vwSeparator: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
