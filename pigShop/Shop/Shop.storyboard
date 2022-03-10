@@ -39,7 +39,7 @@
                                         </connections>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="tabbarBackground"/>
                                 <constraints>
                                     <constraint firstItem="Vu0-Mq-R1z" firstAttribute="top" secondItem="F1y-lc-CQ5" secondAttribute="top" id="JXt-W5-CiF"/>
                                     <constraint firstAttribute="bottom" secondItem="Vu0-Mq-R1z" secondAttribute="bottom" id="LAL-hN-Ad2"/>
@@ -50,7 +50,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" name="tabbarBackground"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="F1y-lc-CQ5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="KoD-M1-hwK"/>
                             <constraint firstItem="F1y-lc-CQ5" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="LQl-JN-Vfl"/>
