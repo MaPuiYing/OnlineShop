@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="208" height="177"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ohS-jL-6Gg">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ohS-jL-6Gg">
                         <rect key="frame" x="0.0" y="0.0" width="208" height="177"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dh2-P2-rxl">
@@ -26,10 +26,10 @@
                                 <color key="backgroundColor" name="borderColor"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="DSc-ps-DR6">
-                                <rect key="frame" x="0.0" y="66.5" width="208" height="34"/>
+                                <rect key="frame" x="6" y="66.5" width="196" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="300" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="752" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mY1-ih-e1g">
-                                        <rect key="frame" x="0.0" y="0.0" width="208" height="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="196" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -40,16 +40,16 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Sc2-Rt-0cm">
-                                <rect key="frame" x="0.0" y="106.5" width="208" height="70.5"/>
+                                <rect key="frame" x="6" y="106.5" width="196" height="70.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="757" verticalCompressionResistancePriority="752" text="Original Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNz-Iy-QoF">
-                                        <rect key="frame" x="0.0" y="0.0" width="208" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="196" height="20.5"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUg-J0-x4i">
-                                        <rect key="frame" x="0.0" y="20.5" width="208" height="50"/>
+                                        <rect key="frame" x="0.0" y="20.5" width="196" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebt-oQ-Ojl">
                                                 <rect key="frame" x="0.0" y="0.0" width="39" height="50"/>
@@ -58,7 +58,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FYp-Ll-T6F">
-                                                <rect key="frame" x="187.5" y="6.5" width="20.5" height="37.5"/>
+                                                <rect key="frame" x="175.5" y="6.5" width="20.5" height="37.5"/>
                                                 <color key="tintColor" name="textLightGrey"/>
                                             </imageView>
                                         </subviews>
@@ -76,6 +76,12 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="DSc-ps-DR6" firstAttribute="leading" secondItem="ohS-jL-6Gg" secondAttribute="leading" constant="6" id="Gen-gJ-Lhv"/>
+                            <constraint firstAttribute="trailing" secondItem="DSc-ps-DR6" secondAttribute="trailing" constant="6" id="Nu5-Lc-Dlc"/>
+                            <constraint firstAttribute="trailing" secondItem="Sc2-Rt-0cm" secondAttribute="trailing" constant="6" id="Zty-Nq-VcD"/>
+                            <constraint firstItem="Sc2-Rt-0cm" firstAttribute="leading" secondItem="ohS-jL-6Gg" secondAttribute="leading" constant="6" id="sHL-IZ-mqT"/>
+                        </constraints>
                     </stackView>
                 </subviews>
             </view>
@@ -93,6 +99,7 @@
                 <outlet property="lblOldPrice" destination="XNz-Iy-QoF" id="4RK-Np-Cxm"/>
                 <outlet property="lblPrice" destination="ebt-oQ-Ojl" id="cFa-Yr-fn8"/>
                 <outlet property="lblTitle" destination="mY1-ih-e1g" id="Nhg-oY-Ouf"/>
+                <outlet property="vwContent" destination="ohS-jL-6Gg" id="Syx-Z8-VUX"/>
             </connections>
             <point key="canvasLocation" x="254" y="64"/>
         </collectionViewCell>

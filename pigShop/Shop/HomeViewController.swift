@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lcItemHeight: NSLayoutConstraint!
     
     @IBOutlet weak var lblNew: UILabel!
+    @IBOutlet weak var lblSales: UILabel!
     @IBOutlet weak var vwBorder: UIView!
         
     var aryRecommendImage: [String] {
@@ -59,11 +60,16 @@ class HomeViewController: UIViewController {
         self.lblNew.backgroundColor = .white
         self.lblNew.textColor = .textGrey
         
+        self.lblSales.font = UIFont.systemFont(ofSize: 10)
+        self.lblSales.backgroundColor = .white
+        self.lblSales.textColor = .textLightGrey
+        
         let space = "    "
         self.lblNew.text = space + "Special Items" + space
+        self.lblSales.text = space + "PLEASE TAKING THE CHANCE" + space
         
         self.vwBorder.layer.cornerRadius = 10
-        self.vwBorder.layer.borderColor = UIColor.borderColor.cgColor
+        self.vwBorder.layer.borderColor = UIColor.borderSecondary.cgColor
         self.vwBorder.layer.borderWidth = 1
     }
     
@@ -118,6 +124,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.clvCategory {
             NSLog("category select: \(indexPath.row)")
+        } else if collectionView == self.clvItem {
+            NSLog("item select: \(indexPath.row)")
         }
     }
 }
@@ -133,12 +141,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
             
             return CGSize(width: width, height: height)
         } else if collectionView == self.clvItem {
-            let width = Util.calculateItemWidth(columns: 2, columnSpace: 15, frameWidth: collectionView.frame.width)
+            let width = Util.calculateItemWidth(columns: 2, columnSpace: 10, frameWidth: collectionView.frame.width)
             let height = (width*1.2) + 34 + 35 + 6 // title 34 + price 35 + stackView spacing 6
             
             let doubleRows = Double(self.aryTitle.count) / 2
             let rows: CGFloat = CGFloat(lround(doubleRows))
-            let collectionHeight = Util.calculateCollectionHeight(height: height, rows: rows, rowSpace: 20)
+            let collectionHeight = Util.calculateCollectionHeight(height: height, rows: rows, rowSpace: 15)
             self.lcItemHeight.constant = collectionHeight
             return CGSize(width: width, height: height)
         }

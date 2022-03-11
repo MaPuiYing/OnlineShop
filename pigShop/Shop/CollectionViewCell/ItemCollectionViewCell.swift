@@ -15,6 +15,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var imvBookmarks: UIImageView!
     
+    @IBOutlet weak var vwContent: UIView!
+    
     var isBookmarks = false {
         didSet {
             if self.isBookmarks == true {
@@ -32,17 +34,26 @@ class ItemCollectionViewCell: UICollectionViewCell {
     }
     
     func initSetup() {
-        self.lblTitle.font = UIFont.systemFont(ofSize: 14)
-        
-        self.lblOldPrice.isHidden = true
-        self.lblPrice.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        self.lblPrice.textColor = .darkRed
-        
-        self.lblOldPrice.font = UIFont.systemFont(ofSize: 12)
-        self.lblOldPrice.textColor = .textLightGrey
+        self.setupView()
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.selectedBookmarks))
         self.imvBookmarks.addGestureRecognizer(gesture)
+    }
+    
+    func setupView() {
+        self.vwContent.layer.cornerRadius = 8
+        self.vwContent.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        self.vwContent.layer.borderWidth = 1
+        self.vwContent.layer.borderColor = UIColor.borderColor.cgColor
+        
+        self.lblTitle.font = UIFont.systemFont(ofSize: 14)
+        
+        self.lblOldPrice.isHidden = true
+        self.lblOldPrice.font = UIFont.systemFont(ofSize: 12)
+        self.lblOldPrice.textColor = .textLightGrey
+        
+        self.lblPrice.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        self.lblPrice.textColor = .darkRed
     }
     
     func setupOriginalPrice(_ price: String) {

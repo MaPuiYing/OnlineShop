@@ -21,6 +21,14 @@ extension UIColor {
         return UIColor(named: "borderColor")!
     }
     
+    static var borderSecondary: UIColor {
+        return UIColor(named: "borderSecondary")!
+    }
+    
+    static var tableBackground: UIColor {
+        return UIColor(named: "tableBackground")!
+    }
+    
     //Button Color
     
     static var btnOrange: UIColor {
