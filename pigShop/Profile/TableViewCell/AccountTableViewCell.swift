@@ -30,10 +30,10 @@ class AccountTableViewCell: UITableViewCell {
     
     func initSetup() {
         lblUserName.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        lblUserName.textColor = .textGrey
+        lblUserName.textColor = .textDarkGrey
         
         lblGuestName.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        lblGuestName.textColor = .textGrey
+        lblGuestName.textColor = .textDarkGrey
         lblGuestName.text = "Guest"
         
         btnRegister.tintColor = .white

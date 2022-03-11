@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 extension UIView {
-    
     @discardableResult
     func fromNib<T: UIView>() -> T? {
         guard let contentView = Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as? T else {

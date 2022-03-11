@@ -43,7 +43,7 @@ class OrderViewController: UIViewController {
         vwEmpty.isHidden = true
         
         lblLogin.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        lblLogin.textColor = .textGrey
+        lblLogin.textColor = .textDarkGrey
         lblLogin.text = "You cannot read it since you have not yet logged in your account."
     }
     

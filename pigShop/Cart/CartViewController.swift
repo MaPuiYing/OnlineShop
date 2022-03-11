@@ -32,7 +32,7 @@ class CartViewController: UIViewController {
         vwEmpty.isHidden = false
         
         lblEmpty.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        lblEmpty.textColor = .textGrey
+        lblEmpty.textColor = .textDarkGrey
         lblEmpty.text = "Welcome to add items to your cart."
     }
 }
