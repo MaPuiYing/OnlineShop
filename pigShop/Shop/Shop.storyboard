@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,14 +26,34 @@
                                             <constraint firstAttribute="height" constant="200" id="FqE-Qt-Ccy"/>
                                         </constraints>
                                     </view>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="idc-6t-gVd">
+                                        <rect key="frame" x="30" y="230" width="354" height="100"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="p5R-8t-yj8"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="30" id="lP4-JA-LE7">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Y6W-OH-hqX" id="lZy-tg-Iti"/>
+                                            <outlet property="delegate" destination="Y6W-OH-hqX" id="wZy-bs-Iqu"/>
+                                        </connections>
+                                    </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" name="tabbarBackground"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="I0r-Q5-7YH" secondAttribute="bottom" id="19u-Aw-CKe"/>
                                     <constraint firstItem="I0r-Q5-7YH" firstAttribute="top" secondItem="F1y-lc-CQ5" secondAttribute="top" id="7bb-TQ-Ahh"/>
                                     <constraint firstItem="I0r-Q5-7YH" firstAttribute="width" secondItem="F1y-lc-CQ5" secondAttribute="width" id="9Pp-27-666"/>
                                     <constraint firstAttribute="trailing" secondItem="I0r-Q5-7YH" secondAttribute="trailing" id="HUn-0D-hMP"/>
+                                    <constraint firstItem="idc-6t-gVd" firstAttribute="leading" secondItem="F1y-lc-CQ5" secondAttribute="leading" constant="30" id="Qmk-rg-hGk"/>
                                     <constraint firstItem="I0r-Q5-7YH" firstAttribute="leading" secondItem="F1y-lc-CQ5" secondAttribute="leading" id="SPv-gm-Eqn"/>
+                                    <constraint firstAttribute="trailing" secondItem="idc-6t-gVd" secondAttribute="trailing" constant="30" id="fPq-mJ-Lgt"/>
+                                    <constraint firstItem="idc-6t-gVd" firstAttribute="top" secondItem="I0r-Q5-7YH" secondAttribute="bottom" constant="30" id="lg0-8U-z7U"/>
+                                    <constraint firstAttribute="bottom" secondItem="idc-6t-gVd" secondAttribute="bottom" id="tKS-X5-dpj"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -48,6 +67,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="clvCategory" destination="idc-6t-gVd" id="0yO-oh-bMF"/>
+                        <outlet property="lcCategoryHeight" destination="p5R-8t-yj8" id="g5a-KT-aTZ"/>
                         <outlet property="vwRecommend" destination="I0r-Q5-7YH" id="JQH-oz-x18"/>
                     </connections>
                 </viewController>
@@ -57,9 +78,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="tabbarBackground">
-            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

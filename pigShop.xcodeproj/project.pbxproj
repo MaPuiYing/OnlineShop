@@ -23,6 +23,8 @@
 		8D6F72CB27DAF70F00714245 /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F72CA27DAF70F00714245 /* RecommendView.swift */; };
 		8D6F72CD27DAF72400714245 /* RecommendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D6F72CC27DAF72400714245 /* RecommendView.xib */; };
 		8D6F72CF27DAFA6900714245 /* UIView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F72CE27DAFA6900714245 /* UIView++.swift */; };
+		8D6F72D227DB06DD00714245 /* CategorySelectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F72D027DB06DD00714245 /* CategorySelectionCollectionViewCell.swift */; };
+		8D6F72D327DB06DD00714245 /* CategorySelectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D6F72D127DB06DD00714245 /* CategorySelectionCollectionViewCell.xib */; };
 		8D9BFA0427DA259500DBE962 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BFA0327DA259500DBE962 /* CartViewController.swift */; };
 		8D9BFA0627DA3A1900DBE962 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BFA0527DA3A1900DBE962 /* HomeViewController.swift */; };
 		8D9BFA0E27DA3C9C00DBE962 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9BFA0C27DA3C9C00DBE962 /* RecommendCollectionViewCell.swift */; };
@@ -75,6 +77,8 @@
 		8D6F72CA27DAF70F00714245 /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		8D6F72CC27DAF72400714245 /* RecommendView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendView.xib; sourceTree = "<group>"; };
 		8D6F72CE27DAFA6900714245 /* UIView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView++.swift"; sourceTree = "<group>"; };
+		8D6F72D027DB06DD00714245 /* CategorySelectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D6F72D127DB06DD00714245 /* CategorySelectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategorySelectionCollectionViewCell.xib; sourceTree = "<group>"; };
 		8D9BFA0327DA259500DBE962 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		8D9BFA0527DA3A1900DBE962 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8D9BFA0C27DA3C9C00DBE962 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 			children = (
 				8D9BFA0C27DA3C9C00DBE962 /* RecommendCollectionViewCell.swift */,
 				8D9BFA0D27DA3C9C00DBE962 /* RecommendCollectionViewCell.xib */,
+				8D6F72D027DB06DD00714245 /* CategorySelectionCollectionViewCell.swift */,
+				8D6F72D127DB06DD00714245 /* CategorySelectionCollectionViewCell.xib */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -364,6 +370,7 @@
 				8DDF379927D9D3D000142E4B /* SettingListTableViewCell.xib in Resources */,
 				8D4859FD27D90089007C5B55 /* Assets.xcassets in Resources */,
 				8D485A2C27D9042C007C5B55 /* Cart.storyboard in Resources */,
+				8D6F72D327DB06DD00714245 /* CategorySelectionCollectionViewCell.xib in Resources */,
 				8D6F72CD27DAF72400714245 /* RecommendView.xib in Resources */,
 				8D4859FB27D90087007C5B55 /* Main.storyboard in Resources */,
 				8D485A3027D9044B007C5B55 /* Profile.storyboard in Resources */,
@@ -393,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D4859F427D90087007C5B55 /* AppDelegate.swift in Sources */,
+				8D6F72D227DB06DD00714245 /* CategorySelectionCollectionViewCell.swift in Sources */,
 				8DDF379027D9BBEC00142E4B /* UIColor++.swift in Sources */,
 				8DDF379227D9C9A500142E4B /* ProfileViewController.swift in Sources */,
 				8D485A2427D90303007C5B55 /* TabBarViewController.swift in Sources */,

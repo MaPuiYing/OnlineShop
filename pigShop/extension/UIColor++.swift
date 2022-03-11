@@ -28,4 +28,8 @@ extension UIColor {
     static var textLightGrey: UIColor {
         return UIColor(named: "textLightGrey")!
     }
+    
+    static var btnPink: UIColor {
+        return UIColor(named: "btnPink")!
+    }
 }

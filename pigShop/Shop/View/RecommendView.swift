@@ -26,6 +26,7 @@ class RecommendView: UIView {
     
     var timer : Timer?
     var aryImage: [String] = []
+    var action: ((Int)->Void)?
     
     func setupView() {
         self.addGesture()
@@ -38,7 +39,7 @@ class RecommendView: UIView {
         self.startTimer()
     }
     
-//MARK: - Timer setup
+    //MARK: - Timer setup
     
     func startTimer() {
         let timer = Timer.init(timeInterval: 2, target: self, selector: #selector(autoNextPage), userInfo: nil, repeats: true)
@@ -65,7 +66,7 @@ class RecommendView: UIView {
         }
     }
 
-//MARK: - Button Action
+    //MARK: - Button Action
     
     func addGesture() {
         self.imvLast.isUserInteractionEnabled = true
@@ -120,7 +121,7 @@ extension RecommendView: UIScrollViewDelegate {
         if self.clvRecommend.contentOffset.x == CGFloat(3 * self.aryImage.count - 1) * width {
             self.clvRecommend.contentOffset.x = CGFloat(self.aryImage.count - 1) * width
         }
-      }
+    }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.stopTimer()
@@ -131,7 +132,7 @@ extension RecommendView: UIScrollViewDelegate {
     }
 }
 
-//MARK: - UICollectionView delegate & data source
+//MARK: - UICollectionView delegate & dataSource
 
 extension RecommendView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -143,6 +144,10 @@ extension RecommendView: UICollectionViewDelegate, UICollectionViewDataSource {
         let i = indexPath.row % self.aryImage.count
         cell.imageView.sd_setImage(with: URL(string: self.aryImage[i]), completed: nil)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.action?(indexPath.row % 3)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
