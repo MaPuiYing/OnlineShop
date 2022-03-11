@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecommendView" customModule="pigShop" customModuleProvider="target">
+            <connections>
+                <outlet property="clvRecommend" destination="3o1-fU-TcN" id="7Cj-Dt-buo"/>
+                <outlet property="imvLast" destination="BOX-bx-BC8" id="xxv-Ur-RwQ"/>
+                <outlet property="imvNext" destination="o5a-fA-ffU" id="W6o-n7-yf6"/>
+                <outlet property="pageControl" destination="o9M-Dp-xLF" id="Avg-bJ-p1o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="jQ9-eL-z9O">
+            <rect key="frame" x="0.0" y="0.0" width="451" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFS-Nz-PlL">
+                    <rect key="frame" x="0.0" y="0.0" width="451" height="200"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3o1-fU-TcN">
+                            <rect key="frame" x="0.0" y="0.0" width="451" height="200"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="l8d-NO-QPK">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <cells/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="rbJ-nP-lXD"/>
+                                <outlet property="delegate" destination="-1" id="jws-yB-8E8"/>
+                            </connections>
+                        </collectionView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BOX-bx-BC8">
+                            <rect key="frame" x="10" y="87" width="30" height="26.5"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="BOX-bx-BC8" secondAttribute="height" multiplier="1:1" id="1eZ-Rc-NWI"/>
+                                <constraint firstAttribute="width" constant="30" id="bdD-5O-Djy"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="o5a-fA-ffU">
+                            <rect key="frame" x="411" y="92" width="30" height="16.5"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="FhY-dv-c8y"/>
+                            </constraints>
+                        </imageView>
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="o9M-Dp-xLF">
+                            <rect key="frame" x="167.5" y="164" width="116" height="26"/>
+                        </pageControl>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="o9M-Dp-xLF" secondAttribute="bottom" constant="10" id="2vD-iv-jgq"/>
+                        <constraint firstItem="3o1-fU-TcN" firstAttribute="leading" secondItem="WFS-Nz-PlL" secondAttribute="leading" id="4GE-Ja-NYQ"/>
+                        <constraint firstItem="o9M-Dp-xLF" firstAttribute="centerX" secondItem="WFS-Nz-PlL" secondAttribute="centerX" id="69f-IN-s31"/>
+                        <constraint firstItem="BOX-bx-BC8" firstAttribute="centerY" secondItem="WFS-Nz-PlL" secondAttribute="centerY" id="BlW-KL-E6a"/>
+                        <constraint firstItem="BOX-bx-BC8" firstAttribute="leading" secondItem="WFS-Nz-PlL" secondAttribute="leading" constant="10" id="Cgn-A2-vqv"/>
+                        <constraint firstAttribute="trailing" secondItem="o5a-fA-ffU" secondAttribute="trailing" constant="10" id="eNc-tT-8DZ"/>
+                        <constraint firstItem="3o1-fU-TcN" firstAttribute="top" secondItem="WFS-Nz-PlL" secondAttribute="top" id="fyr-D7-Dpx"/>
+                        <constraint firstAttribute="bottom" secondItem="3o1-fU-TcN" secondAttribute="bottom" id="hlu-GZ-pK2"/>
+                        <constraint firstItem="o5a-fA-ffU" firstAttribute="centerY" secondItem="WFS-Nz-PlL" secondAttribute="centerY" id="nYC-A3-Z9C"/>
+                        <constraint firstAttribute="trailing" secondItem="3o1-fU-TcN" secondAttribute="trailing" id="zg4-wq-ciW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="hIr-TF-jwI"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="WFS-Nz-PlL" secondAttribute="bottom" id="2zL-tD-8jj"/>
+                <constraint firstItem="WFS-Nz-PlL" firstAttribute="top" secondItem="jQ9-eL-z9O" secondAttribute="top" id="Wxt-zm-8uL"/>
+                <constraint firstItem="WFS-Nz-PlL" firstAttribute="leading" secondItem="jQ9-eL-z9O" secondAttribute="leading" id="ZZw-JF-fWa"/>
+                <constraint firstAttribute="trailing" secondItem="WFS-Nz-PlL" secondAttribute="trailing" id="zs4-pm-0Wz"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="406.52173913043481" y="-174.77678571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
