@@ -9,6 +9,8 @@ import UIKit
 import SDWebImage
 
 class HomeViewController: UIViewController {
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var vwRecommend: RecommendView!
     @IBOutlet weak var clvCategory: UICollectionView!
     @IBOutlet weak var clvItem: UICollectionView!
@@ -18,7 +20,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblNew: UILabel!
     @IBOutlet weak var lblSales: UILabel!
     @IBOutlet weak var vwBorder: UIView!
-        
+    
+    var refreshControl = UIRefreshControl()
+    
     var aryRecommendImage: [String] {
         var image: [String] = []
         image.append("https://media.karousell.com/media/photos/products/2021/3/20/lulu_lulupig__1616207256_0e9b6ccb_progressive.jpg")
@@ -34,26 +38,28 @@ class HomeViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.navigationItem.title = "Pig Pig Shop"
         
         self.initSetup()
+        self.navigationBarSetup()
         self.collectionViewSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.vwRecommend.aryImage = aryRecommendImage
-        self.vwRecommend.action = { selectRow in
-            self.recommendSelectedAction(selectRow)
-        }
-        self.vwRecommend.setupView()
+        self.refreshControl.tintColor = .darkRed
+        self.scrollView.refreshControl = self.refreshControl
+        self.refreshControl.beginRefreshing()
+        
+        self.recommendViewSetup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.vwRecommend.stopTimer()
     }
+    
+    //MARK: - Init set up
     
     func initSetup() {
         self.lblNew.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
@@ -73,6 +79,18 @@ class HomeViewController: UIViewController {
         self.vwBorder.layer.borderWidth = 1
     }
     
+    func navigationBarSetup() {
+        let bookmarks = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(bookmarksBtnPressed))
+        bookmarks.tintColor = .textDarkGrey
+        bookmarks.imageInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+        
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchBtnPressed))
+        search.tintColor = .textDarkGrey
+        search.imageInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        
+        self.navigationItem.rightBarButtonItems = [bookmarks, search]
+    }
+    
     func collectionViewSetup() {
         self.clvCategory.register(UINib(nibName: "CategorySelectionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "categoryCell")
         self.clvItem.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "itemCell")
@@ -80,10 +98,51 @@ class HomeViewController: UIViewController {
         self.clvItem.reloadData()
     }
     
+    func recommendViewSetup() {
+        self.vwRecommend.aryImage = self.aryRecommendImage
+        self.vwRecommend.action = { selectRow in
+            self.recommendSelectedAction(selectRow)
+        }
+        self.vwRecommend.setupView()
+        self.refreshControl.endRefreshing()
+    }
+    
+    //MARK: - Method
+    
+    @objc func didPullRefresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let mySelf = self else {return}
+            mySelf.recommendViewSetup()
+        }
+    }
+    
     //MARK: - Button Action
+    
+    @objc func bookmarksBtnPressed() {
+        
+    }
+    
+    @objc func searchBtnPressed() {
+        
+    }
     
     func recommendSelectedAction(_ selectRow: Int) {
         NSLog("recommend select: \(selectRow)")
+    }
+}
+
+//MARK: - ScrollView delegate
+
+extension HomeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.refreshControl.isRefreshing {
+            self.vwRecommend.stopTimer()
+        }
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.refreshControl.isRefreshing {
+            self.didPullRefresh()
+        }
     }
 }
 

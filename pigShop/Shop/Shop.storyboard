@@ -112,11 +112,14 @@
                                     <constraint firstAttribute="trailing" secondItem="8Al-dM-bHz" secondAttribute="trailing" constant="10" id="Kvc-1e-Ypx"/>
                                     <constraint firstItem="I0r-Q5-7YH" firstAttribute="leading" secondItem="F1y-lc-CQ5" secondAttribute="leading" id="SPv-gm-Eqn"/>
                                     <constraint firstItem="8Al-dM-bHz" firstAttribute="top" secondItem="IPj-Sl-X80" secondAttribute="top" constant="12" id="SlJ-w1-Hyf"/>
-                                    <constraint firstAttribute="bottom" secondItem="BeK-Qv-2xX" secondAttribute="bottom" constant="15" id="Stc-bA-9Wt"/>
+                                    <constraint firstAttribute="bottom" secondItem="BeK-Qv-2xX" secondAttribute="bottom" constant="20" id="Stc-bA-9Wt"/>
                                     <constraint firstAttribute="trailing" secondItem="qwm-6g-Pgs" secondAttribute="trailing" id="krc-ok-YWi"/>
                                     <constraint firstItem="BeK-Qv-2xX" firstAttribute="centerX" secondItem="F1y-lc-CQ5" secondAttribute="centerX" id="l0d-xV-Zf6"/>
                                     <constraint firstItem="8Al-dM-bHz" firstAttribute="leading" secondItem="F1y-lc-CQ5" secondAttribute="leading" constant="10" id="mNX-0m-VQh"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="EgE-O7-9TE"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -135,6 +138,7 @@
                         <outlet property="lblSales" destination="BeK-Qv-2xX" id="F2i-5V-Er5"/>
                         <outlet property="lcCategoryHeight" destination="p5R-8t-yj8" id="g5a-KT-aTZ"/>
                         <outlet property="lcItemHeight" destination="oBH-O0-bvZ" id="0WQ-Lu-pFs"/>
+                        <outlet property="scrollView" destination="F1y-lc-CQ5" id="K1f-BE-QjQ"/>
                         <outlet property="vwBorder" destination="8Al-dM-bHz" id="bHF-YJ-l99"/>
                         <outlet property="vwRecommend" destination="I0r-Q5-7YH" id="JQH-oz-x18"/>
                     </connections>
@@ -146,7 +150,7 @@
     </scenes>
     <resources>
         <namedColor name="tableBackground">
-            <color red="0.95636210675092093" green="0.95636210675092093" blue="0.95636210675092093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.95599997043609619" green="0.95599997043609619" blue="0.95599997043609619" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

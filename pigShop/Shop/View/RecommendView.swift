@@ -29,13 +29,16 @@ class RecommendView: UIView {
     var action: ((Int)->Void)?
     
     func setupView() {
+        self.stopTimer()
+        
         self.addGesture()
         
         self.clvRecommend.register(UINib(nibName: "RecommendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "recommendCell")
+        self.clvRecommend.contentOffset.x = CGFloat(self.aryImage.count) * self.clvRecommend.bounds.width
+        self.clvRecommend.reloadData()
         self.pageControl.numberOfPages = self.aryImage.count
         self.pageControl.hidesForSinglePage = true
         
-        self.clvRecommend.reloadData()
         self.startTimer()
     }
     
