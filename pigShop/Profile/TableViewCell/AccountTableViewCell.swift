@@ -22,21 +22,18 @@ class AccountTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         initSetup()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func initSetup() {
         lblUserName.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        lblUserName.textColor = .textGrey
+        lblUserName.textColor = .textDarkGrey
         
         lblGuestName.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        lblGuestName.textColor = .textGrey
+        lblGuestName.textColor = .textDarkGrey
         lblGuestName.text = "Guest"
         
         btnRegister.tintColor = .white

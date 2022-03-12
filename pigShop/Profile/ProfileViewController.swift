@@ -26,6 +26,7 @@ enum ProfileSections {
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
+    
     var tableSections: [ProfileSections] = []
     var isLogin = false
 
@@ -130,7 +131,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         table.deselectRow(at: indexPath, animated: true)
     }
     
-    //Header
+    //MARK: - Header
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         (view as! UITableViewHeaderFooterView).contentView.backgroundColor = .tabbarBackground
     }

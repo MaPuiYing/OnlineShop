@@ -43,7 +43,7 @@ class OrderViewController: UIViewController {
         vwEmpty.isHidden = true
         
         lblLogin.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        lblLogin.textColor = .textGrey
+        lblLogin.textColor = .textDarkGrey
         lblLogin.text = "You cannot read it since you have not yet logged in your account."
     }
     
@@ -55,16 +55,4 @@ class OrderViewController: UIViewController {
         lblEmpty.textColor = .textLightGrey
         lblEmpty.text = "Your order list is empty."
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -9,8 +9,19 @@ import UIKit
 import SDWebImage
 
 class HomeViewController: UIViewController {
-
-    @IBOutlet weak var clvRecommend: UICollectionView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var vwRecommend: RecommendView!
+    @IBOutlet weak var clvCategory: UICollectionView!
+    @IBOutlet weak var clvItem: UICollectionView!
+    @IBOutlet weak var lcCategoryHeight: NSLayoutConstraint!
+    @IBOutlet weak var lcItemHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var lblNew: UILabel!
+    @IBOutlet weak var lblSales: UILabel!
+    @IBOutlet weak var vwBorder: UIView!
+    
+    var refreshControl = CustomRefreshControl()
     
     var aryRecommendImage: [String] {
         var image: [String] = []
@@ -20,36 +31,172 @@ class HomeViewController: UIViewController {
         return image
     }
     
+    var aryFilter: [String] = ["New", "Hot", "Clothes", "Dress", "Shoe", "Food", "Item", "Others"]
+    var aryTitle: [String] = ["I am the pig pig girl", "Pig is toxic", "Daily pig in a pig pig world", "Pig pig is good girl thanks", "Pig love pink", "Why am pig pig girl so pretty cant you answer me"]
+    
+    var itemSize: CGSize = .zero
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = "PigPig Shop"
+        self.navigationItem.title = "Pig Pig Shop"
         
-        setupCollectionView()
-        // Do any additional setup after loading the view.
+        self.initSetup()
+        self.navigationBarSetup()
+        self.collectionViewSetup()
     }
     
-    func setupCollectionView() {
-        clvRecommend.register(UINib(nibName: "RecommendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "recommendCell")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //Refresh Setting
+        self.refreshControl.scrollView = self.scrollView
+        self.refreshControl.pullingAction = { [weak self] in
+            self?.vwRecommend.stopTimer()
+        }
+        self.refreshControl.finishAction = { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                guard let mySelf = self else {return}
+                mySelf.recommendViewSetup()
+                mySelf.refreshControl.endRefreshing()
+            }
+        }
+        
+        //Set up
+        self.recommendViewSetup()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.vwRecommend.stopTimer()
+    }
+    
+    //MARK: - init Set up
+    
+    func initSetup() {
+        self.lblNew.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        self.lblNew.backgroundColor = .white
+        self.lblNew.textColor = .textGrey
+        
+        self.lblSales.font = UIFont.systemFont(ofSize: 10)
+        self.lblSales.backgroundColor = .white
+        self.lblSales.textColor = .textLightGrey
+        
+        let space = "    "
+        self.lblNew.text = space + "Special Items" + space
+        self.lblSales.text = space + "PLEASE TAKING THE CHANCE" + space
+        
+        self.vwBorder.layer.cornerRadius = 10
+        self.vwBorder.layer.borderColor = UIColor.borderSecondary.cgColor
+        self.vwBorder.layer.borderWidth = 1
+    }
+    
+    func navigationBarSetup() {
+        let bookmarks = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(bookmarksBtnPressed))
+        bookmarks.tintColor = .textDarkGrey
+        bookmarks.imageInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchBtnPressed))
+        search.tintColor = .textDarkGrey
+        search.imageInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+        
+        self.navigationItem.rightBarButtonItems = [search, bookmarks]
+    }
+    
+    func collectionViewSetup() {
+        self.clvCategory.register(UINib(nibName: "CategorySelectionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "categoryCell")
+        self.clvItem.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "itemCell")
+        self.clvCategory.reloadData()
+        self.clvItem.reloadData()
+    }
+    
+    func recommendViewSetup() {
+        self.vwRecommend.aryImage = self.aryRecommendImage
+        self.vwRecommend.action = { selectRow in
+            self.recommendSelectedAction(selectRow)
+        }
+        self.vwRecommend.setupView()
+    }
+    
+    //MARK: - Button Action
+    
+    @objc func bookmarksBtnPressed() {
+        
+    }
+    
+    @objc func searchBtnPressed() {
+        
+    }
+    
+    func recommendSelectedAction(_ selectRow: Int) {
+        NSLog("recommend select: \(selectRow)")
     }
 }
 
-//MARK: - UICollectionView delegate & data source
+//MARK: - UICollectionView delegate & dataSource
+
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        aryRecommendImage.count
+        if collectionView == self.clvCategory {
+            return self.aryFilter.count
+        } else if collectionView == self.clvItem {
+            return self.aryTitle.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recommendCell", for: indexPath) as? RecommendCollectionViewCell else {return UICollectionViewCell()}
-        cell.imageView.sd_setImage(with: URL(string: aryRecommendImage[indexPath.row]), completed: nil)
-        return cell
+        if collectionView == self.clvCategory {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategorySelectionCollectionViewCell else {return UICollectionViewCell()}
+            cell.setupView()
+            if indexPath.row == 0 {
+                cell.setBackground(.btnOrange)
+            } else if indexPath.row == 1 {
+                cell.setBackground(.btnPink)
+            }
+            cell.lblTitle.text = self.aryFilter[indexPath.row]
+            return cell
+        } else if collectionView == self.clvItem {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? ItemCollectionViewCell else {return UICollectionViewCell()}
+            cell.lblTitle.text = self.aryTitle[indexPath.row]
+            cell.lblPrice.text = "HKD$1000"
+            cell.imvBanner.sd_setImage(with: URL(string: "https://www.price.com.hk/space/ec_product/shop/192000/192863_kd2nuj_0.jpg"), completed: nil)
+            cell.setupOriginalPrice("HKD$1193")
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.clvCategory {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "CategoryItemViewController") as? CategoryItemViewController {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        } else if collectionView == self.clvItem {
+            NSLog("item select: \(indexPath.row)")
+        }
     }
 }
 
-//MARK: - UICollrectionView layout
+//MARK: - UICollectionView layout
+
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: clvRecommend.frame.height)
+        if collectionView == self.clvCategory {
+            let width = Util.calculateItemWidth(columns: 4, columnSpace: 25, frameWidth: collectionView.frame.width)
+            let height = width + 17 + 4 // label size 17 + stackView spacing 4
+            self.lcCategoryHeight.constant = Util.calculateCollectionHeight(height: height, rows: 2, rowSpace: 15)
+            
+            return CGSize(width: width, height: height)
+        } else if collectionView == self.clvItem {
+            let width = Util.calculateItemWidth(columns: 2, columnSpace: 10, frameWidth: collectionView.frame.width)
+            let height = (width*1.2) + 34 + 35 + 6 // title 34 + price 35 + stackView spacing 6
+            
+            let doubleRows = Double(self.aryTitle.count) / 2
+            let rows: CGFloat = CGFloat(lround(doubleRows))
+            let collectionHeight = Util.calculateCollectionHeight(height: height, rows: rows, rowSpace: 15)
+            self.lcItemHeight.constant = collectionHeight
+            return CGSize(width: width, height: height)
+        }
+        return .zero
     }
 }

@@ -28,7 +28,7 @@ class SettingListTableViewCell: UITableViewCell {
     
     func initSetup() {
         lblTitle.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        lblTitle.textColor = .textGrey
+        lblTitle.textColor = .textDarkGrey
     }
     
 }
