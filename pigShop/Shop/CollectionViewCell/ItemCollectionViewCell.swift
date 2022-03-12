@@ -46,14 +46,14 @@ class ItemCollectionViewCell: UICollectionViewCell {
         self.vwContent.layer.borderWidth = 1
         self.vwContent.layer.borderColor = UIColor.borderColor.cgColor
         
-        self.lblTitle.font = UIFont.systemFont(ofSize: 14)
+        self.lblTitle.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         
         self.lblOldPrice.isHidden = true
         self.lblOldPrice.font = UIFont.systemFont(ofSize: 12)
         self.lblOldPrice.textColor = .textLightGrey
         
-        self.lblPrice.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        self.lblPrice.textColor = .darkRed
+        self.lblPrice.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        self.lblPrice.textColor = .textRed
     }
     
     func setupOriginalPrice(_ price: String) {
@@ -64,7 +64,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func selectedBookmarks() {
-        isBookmarks = !isBookmarks
+        self.isBookmarks = !self.isBookmarks
     }
 
 }

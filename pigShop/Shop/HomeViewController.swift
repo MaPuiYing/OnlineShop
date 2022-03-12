@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
     }
     
     var aryFilter: [String] = ["New", "Hot", "Clothes", "Dress", "Shoe", "Food", "Item", "Others"]
-    var aryTitle: [String] = ["純色修身吊帶背心", "中毒褲ver.棉直筒褲 (彈力,高腰)", "日常無褶皺襯衫 (基本款,襯衫)", "寬鬆版柔軟襯衫", "HIGH&WIDE西裝長褲", "半高腰Q彈休閒褲ver.直筒 (彈力棉5%)"]
+    var aryTitle: [String] = ["I am the pig pig girl", "Pig is toxic", "Daily pig in a pig pig world", "Pig pig is good girl thanks", "Pig love pink", "Why am pig pig girl so pretty cant you answer me"]
     
     var itemSize: CGSize = .zero
         
@@ -70,7 +70,7 @@ class HomeViewController: UIViewController {
         self.vwRecommend.stopTimer()
     }
     
-    //MARK: - Init set up
+    //MARK: - init Set up
     
     func initSetup() {
         self.lblNew.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
@@ -93,13 +93,13 @@ class HomeViewController: UIViewController {
     func navigationBarSetup() {
         let bookmarks = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(bookmarksBtnPressed))
         bookmarks.tintColor = .textDarkGrey
-        bookmarks.imageInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+        bookmarks.imageInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchBtnPressed))
         search.tintColor = .textDarkGrey
-        search.imageInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        search.imageInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
         
-        self.navigationItem.rightBarButtonItems = [bookmarks, search]
+        self.navigationItem.rightBarButtonItems = [search, bookmarks]
     }
     
     func collectionViewSetup() {
@@ -168,7 +168,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.clvCategory {
-            NSLog("category select: \(indexPath.row)")
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "CategoryItemViewController") as? CategoryItemViewController {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         } else if collectionView == self.clvItem {
             NSLog("item select: \(indexPath.row)")
         }

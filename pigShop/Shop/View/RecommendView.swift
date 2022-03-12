@@ -19,7 +19,7 @@ class RecommendView: UIView {
         fromNib()
     }
     
-    @IBOutlet weak var clvRecommend: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var imvLast: UIImageView!
     @IBOutlet weak var imvNext: UIImageView!
@@ -33,9 +33,9 @@ class RecommendView: UIView {
         
         self.addGesture()
         
-        self.clvRecommend.register(UINib(nibName: "RecommendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "recommendCell")
-        self.clvRecommend.contentOffset.x = CGFloat(self.aryImage.count) * self.clvRecommend.bounds.width
-        self.clvRecommend.reloadData()
+        self.collectionView.register(UINib(nibName: "RecommendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "recommendCell")
+        self.collectionView.contentOffset.x = CGFloat(self.aryImage.count) * self.collectionView.bounds.width
+        self.collectionView.reloadData()
         self.pageControl.numberOfPages = self.aryImage.count
         self.pageControl.hidesForSinglePage = true
         
@@ -57,15 +57,15 @@ class RecommendView: UIView {
     }
     
     @objc func autoNextPage() {
-        let width = self.clvRecommend.bounds.width
+        let width = self.collectionView.bounds.width
         
         // if last cell
-        if self.clvRecommend.contentOffset.x == CGFloat(3 * self.aryImage.count - 1) * width {
+        if self.collectionView.contentOffset.x == CGFloat(3 * self.aryImage.count - 1) * width {
             let offsetX = CGFloat(self.aryImage.count - 1) * width
-            self.clvRecommend.contentOffset.x = offsetX
+            self.collectionView.contentOffset.x = offsetX
         }else {
-            let offsetX = self.clvRecommend.contentOffset.x + width
-            self.clvRecommend.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+            let offsetX = self.collectionView.contentOffset.x + width
+            self.collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
         }
     }
 
@@ -85,13 +85,13 @@ class RecommendView: UIView {
     @objc func imvLastAction() {
         self.stopTimer()
         
-        let width = self.clvRecommend.bounds.width
-        if self.clvRecommend.contentOffset.x == 0 {
+        let width = self.collectionView.bounds.width
+        if self.collectionView.contentOffset.x == 0 {
             let offsetX = CGFloat(2 * self.aryImage.count - 1) * width
-            self.clvRecommend.contentOffset.x = offsetX
+            self.collectionView.contentOffset.x = offsetX
             self.startTimer()
         } else {
-            self.clvRecommend.contentOffset.x -= width
+            self.collectionView.contentOffset.x -= width
             self.startTimer()
         }
     }
@@ -99,12 +99,12 @@ class RecommendView: UIView {
     @objc func imvNextAction() {
         self.stopTimer()
         
-        let width = self.clvRecommend.bounds.width
-        if self.clvRecommend.contentOffset.x == CGFloat(3 * self.aryImage.count - 1) * width {
-            self.clvRecommend.contentOffset.x = CGFloat(self.aryImage.count - 1) * width
+        let width = self.collectionView.bounds.width
+        if self.collectionView.contentOffset.x == CGFloat(3 * self.aryImage.count - 1) * width {
+            self.collectionView.contentOffset.x = CGFloat(self.aryImage.count - 1) * width
             self.startTimer()
         } else {
-            self.clvRecommend.contentOffset.x += width
+            self.collectionView.contentOffset.x += width
             self.startTimer()
         }
     }
@@ -114,15 +114,15 @@ class RecommendView: UIView {
 
 extension RecommendView: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let width = self.clvRecommend.bounds.width
+        let width = self.collectionView.bounds.width
         
-        if self.clvRecommend.contentOffset.x == 0 {
-            self.clvRecommend.contentOffset.x = CGFloat(2 * self.aryImage.count - 1) * width
+        if self.collectionView.contentOffset.x == 0 {
+            self.collectionView.contentOffset.x = CGFloat(2 * self.aryImage.count - 1) * width
         }
         
         // if last cell
-        if self.clvRecommend.contentOffset.x == CGFloat(3 * self.aryImage.count - 1) * width {
-            self.clvRecommend.contentOffset.x = CGFloat(self.aryImage.count - 1) * width
+        if self.collectionView.contentOffset.x == CGFloat(3 * self.aryImage.count - 1) * width {
+            self.collectionView.contentOffset.x = CGFloat(self.aryImage.count - 1) * width
         }
     }
     
@@ -162,6 +162,6 @@ extension RecommendView: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension RecommendView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: self.clvRecommend.frame.height)
+        return CGSize(width: UIScreen.main.bounds.width, height: self.collectionView.frame.height)
     }
 }

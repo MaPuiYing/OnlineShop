@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecommendView" customModule="pigShop" customModuleProvider="target">
             <connections>
-                <outlet property="clvRecommend" destination="3o1-fU-TcN" id="7Cj-Dt-buo"/>
+                <outlet property="collectionView" destination="3o1-fU-TcN" id="7Cj-Dt-buo"/>
                 <outlet property="imvLast" destination="BOX-bx-BC8" id="xxv-Ur-RwQ"/>
                 <outlet property="imvNext" destination="o5a-fA-ffU" id="W6o-n7-yf6"/>
                 <outlet property="pageControl" destination="o9M-Dp-xLF" id="Avg-bJ-p1o"/>

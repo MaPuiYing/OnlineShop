@@ -29,6 +29,10 @@ extension UIColor {
         return UIColor(named: "tableBackground")!
     }
     
+    static var darkRed: UIColor {
+        return UIColor(named: "darkRed")!
+    }
+    
     //Button Color
     
     static var btnOrange: UIColor {
@@ -53,7 +57,7 @@ extension UIColor {
         return UIColor(named: "textLightGrey")!
     }
     
-    static var darkRed: UIColor {
-        return UIColor(named: "darkRed")!
+    static var textRed: UIColor {
+        return UIColor(named: "textRed")!
     }
 }

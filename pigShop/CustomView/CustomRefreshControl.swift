@@ -25,7 +25,7 @@ class CustomRefreshControl: UIRefreshControl {
     }
 
     func initSetup() {
-        self.tintColor = .darkRed
+        self.tintColor = .textRed
     }
     
     func scrollViewSetup() {

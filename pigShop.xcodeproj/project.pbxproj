@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8D31614F27DCCDB1008A54B2 /* CustomRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31614E27DCCDB1008A54B2 /* CustomRefreshControl.swift */; };
+		8D31615227DCD484008A54B2 /* CategoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31615127DCD484008A54B2 /* CategoryItemViewController.swift */; };
+		8D31615427DCD70B008A54B2 /* UIViewController++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31615327DCD70B008A54B2 /* UIViewController++.swift */; };
 		8D4859F427D90087007C5B55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4859F327D90087007C5B55 /* AppDelegate.swift */; };
 		8D4859F627D90087007C5B55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4859F527D90087007C5B55 /* SceneDelegate.swift */; };
 		8D4859FB27D90087007C5B55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D4859F927D90087007C5B55 /* Main.storyboard */; };
@@ -63,6 +65,8 @@
 
 /* Begin PBXFileReference section */
 		8D31614E27DCCDB1008A54B2 /* CustomRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRefreshControl.swift; sourceTree = "<group>"; };
+		8D31615127DCD484008A54B2 /* CategoryItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemViewController.swift; sourceTree = "<group>"; };
+		8D31615327DCD70B008A54B2 /* UIViewController++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController++.swift"; sourceTree = "<group>"; };
 		8D4859F027D90087007C5B55 /* pigShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pigShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4859F327D90087007C5B55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D4859F527D90087007C5B55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				8D9BFA1327DA5A4700DBE962 /* View */,
 				8D9BFA0B27DA3C8100DBE962 /* CollectionViewCell */,
 				8D485A2927D9041D007C5B55 /* Shop.storyboard */,
+				8D31615127DCD484008A54B2 /* CategoryItemViewController.swift */,
 				8D9BFA0527DA3A1900DBE962 /* HomeViewController.swift */,
 			);
 			path = Shop;
@@ -261,6 +266,7 @@
 				8DDF378F27D9BBEC00142E4B /* UIColor++.swift */,
 				8D6F72CE27DAFA6900714245 /* UIView++.swift */,
 				8D6F72DC27DB9D5100714245 /* UILabel++.swift */,
+				8D31615327DCD70B008A54B2 /* UIViewController++.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 				8DDF379227D9C9A500142E4B /* ProfileViewController.swift in Sources */,
 				8D485A2427D90303007C5B55 /* TabBarViewController.swift in Sources */,
 				8DDF379C27D9E36A00142E4B /* AccountTableViewCell.swift in Sources */,
+				8D31615227DCD484008A54B2 /* CategoryItemViewController.swift in Sources */,
 				8D6F72CF27DAFA6900714245 /* UIView++.swift in Sources */,
 				8D6F72D527DB4F9400714245 /* Util.swift in Sources */,
 				8D9BFA0627DA3A1900DBE962 /* HomeViewController.swift in Sources */,
@@ -440,6 +447,7 @@
 				8D4859F627D90087007C5B55 /* SceneDelegate.swift in Sources */,
 				8D6F72DA27DB64F800714245 /* ItemCollectionViewCell.swift in Sources */,
 				8D9BFA0427DA259500DBE962 /* CartViewController.swift in Sources */,
+				8D31615427DCD70B008A54B2 /* UIViewController++.swift in Sources */,
 				8DDF379F27DA031600142E4B /* OrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
