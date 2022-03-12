@@ -11,6 +11,7 @@
 		8D31615227DCD484008A54B2 /* CategoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31615127DCD484008A54B2 /* CategoryItemViewController.swift */; };
 		8D31615427DCD70B008A54B2 /* UIViewController++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31615327DCD70B008A54B2 /* UIViewController++.swift */; };
 		8D31615E27DCF3C0008A54B2 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31615D27DCF3C0008A54B2 /* ImageButton.swift */; };
+		8D31616027DCF7A8008A54B2 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31615F27DCF7A8008A54B2 /* ButtonView.swift */; };
 		8D4859F427D90087007C5B55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4859F327D90087007C5B55 /* AppDelegate.swift */; };
 		8D4859F627D90087007C5B55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4859F527D90087007C5B55 /* SceneDelegate.swift */; };
 		8D4859FB27D90087007C5B55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D4859F927D90087007C5B55 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		8D31615127DCD484008A54B2 /* CategoryItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemViewController.swift; sourceTree = "<group>"; };
 		8D31615327DCD70B008A54B2 /* UIViewController++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController++.swift"; sourceTree = "<group>"; };
 		8D31615D27DCF3C0008A54B2 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		8D31615F27DCF7A8008A54B2 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		8D4859F027D90087007C5B55 /* pigShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pigShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4859F327D90087007C5B55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D4859F527D90087007C5B55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				8D31614E27DCCDB1008A54B2 /* CustomRefreshControl.swift */,
 				8D31615D27DCF3C0008A54B2 /* ImageButton.swift */,
+				8D31615F27DCF7A8008A54B2 /* ButtonView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				8DDF379227D9C9A500142E4B /* ProfileViewController.swift in Sources */,
 				8D31615E27DCF3C0008A54B2 /* ImageButton.swift in Sources */,
 				8D485A2427D90303007C5B55 /* TabBarViewController.swift in Sources */,
+				8D31616027DCF7A8008A54B2 /* ButtonView.swift in Sources */,
 				8DDF379C27D9E36A00142E4B /* AccountTableViewCell.swift in Sources */,
 				8D31615227DCD484008A54B2 /* CategoryItemViewController.swift in Sources */,
 				8D6F72CF27DAFA6900714245 /* UIView++.swift in Sources */,

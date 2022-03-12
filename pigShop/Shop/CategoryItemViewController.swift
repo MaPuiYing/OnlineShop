@@ -12,38 +12,51 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var lcItemHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var vwKnowMore: ButtonView!
+    @IBOutlet weak var lblKnowMore: UILabel!
 
     var refreshControl = CustomRefreshControl()
     
     var aryTitle: [String] = ["I am the pig pig girl", "Pig is toxic", "Daily pig in a pig pig world", "Pig pig is good girl thanks", "Pig love pink", "Why am pig pig girl so pretty cant you answer me", "I am the pig pig girl", "Pig is toxic", "Daily pig in a pig pig world", "Pig pig is good girl thanks", "Pig love pink", "Why am pig pig girl so pretty cant you answer me", "I am the pig pig girl", "Pig is toxic", "Daily pig in a pig pig world", "Pig pig is good girl thanks", "Pig love pink"]
+    var cellCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Category"
         self.customBackButton()
         
+        self.initSetup()
         self.navigationBarSetup()
         self.collectionViewSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         //Refresh Setting
         self.refreshControl.scrollView = self.scrollView
         self.refreshControl.finishAction = { [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-                self?.collectionView.reloadData()
+                self?.cellCount = 0
+                self?.updateCellCount()
                 self?.refreshControl.endRefreshing()
             }
         }
+        
+        self.updateCellCount()
     }
     
     //MARK: - init Set up
     
-    func collectionViewSetup() {
-        self.collectionView.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "itemCell")
-        self.collectionView.reloadData()
+    func initSetup() {
+        self.view.layoutIfNeeded()
+        self.vwKnowMore.backgroundColor = .btnOrange
+        self.vwKnowMore.layer.cornerRadius = self.vwKnowMore.bounds.height/2
+        self.vwKnowMore.method = {self.updateCellCount()}
+
+        self.lblKnowMore.textColor = .white
+        self.lblKnowMore.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        self.lblKnowMore.text = "Know More"
     }
     
     func navigationBarSetup() {
@@ -53,16 +66,27 @@ class CategoryItemViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = filter
     }
     
+    func collectionViewSetup() {
+        self.collectionView.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "itemCell")
+    }
+    
     //MARK: - Button Action
     
     @objc func filterBtnPressed() {
         NSLog("filter button pressed")
     }
+    
+    func updateCellCount() {
+        let remainCount = self.aryTitle.count - self.cellCount
+        self.cellCount += (remainCount<=10) ? remainCount : 10
+        self.vwKnowMore.isHidden = (self.cellCount == self.aryTitle.count)
+        self.collectionView.reloadData()
+    }
 }
 
 extension CategoryItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.aryTitle.count
+        return self.cellCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -83,7 +107,7 @@ extension CategoryItemViewController: UICollectionViewDelegateFlowLayout {
         let width = Util.calculateItemWidth(columns: 2, columnSpace: 10, frameWidth: collectionView.frame.width)
         let height = (width*1.2) + 34 + 35 + 6 // title 34 + price 35 + stackView spacing 6
         
-        let doubleRows = Double(self.aryTitle.count) / 2
+        let doubleRows = Double(self.cellCount) / 2
         let rows: CGFloat = CGFloat(lround(doubleRows))
         let collectionHeight = Util.calculateCollectionHeight(height: height, rows: rows, rowSpace: 15)
         self.lcItemHeight.constant = collectionHeight
