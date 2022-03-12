@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblSales: UILabel!
     @IBOutlet weak var vwBorder: UIView!
     
-    var refreshControl = UIRefreshControl()
+    var refreshControl = CustomRefreshControl()
     
     var aryRecommendImage: [String] {
         var image: [String] = []
@@ -47,10 +47,21 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.refreshControl.tintColor = .darkRed
-        self.scrollView.refreshControl = self.refreshControl
-        self.refreshControl.beginRefreshing()
         
+        //Refresh Setting
+        self.refreshControl.scrollView = self.scrollView
+        self.refreshControl.pullingAction = { [weak self] in
+            self?.vwRecommend.stopTimer()
+        }
+        self.refreshControl.finishAction = { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                guard let mySelf = self else {return}
+                mySelf.recommendViewSetup()
+                mySelf.refreshControl.endRefreshing()
+            }
+        }
+        
+        //Set up
         self.recommendViewSetup()
     }
     
@@ -104,16 +115,6 @@ class HomeViewController: UIViewController {
             self.recommendSelectedAction(selectRow)
         }
         self.vwRecommend.setupView()
-        self.refreshControl.endRefreshing()
-    }
-    
-    //MARK: - Method
-    
-    @objc func didPullRefresh() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let mySelf = self else {return}
-            mySelf.recommendViewSetup()
-        }
     }
     
     //MARK: - Button Action
@@ -128,21 +129,6 @@ class HomeViewController: UIViewController {
     
     func recommendSelectedAction(_ selectRow: Int) {
         NSLog("recommend select: \(selectRow)")
-    }
-}
-
-//MARK: - ScrollView delegate
-
-extension HomeViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if self.refreshControl.isRefreshing {
-            self.vwRecommend.stopTimer()
-        }
-    }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if self.refreshControl.isRefreshing {
-            self.didPullRefresh()
-        }
     }
 }
 

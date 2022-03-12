@@ -117,9 +117,6 @@
                                     <constraint firstItem="BeK-Qv-2xX" firstAttribute="centerX" secondItem="F1y-lc-CQ5" secondAttribute="centerX" id="l0d-xV-Zf6"/>
                                     <constraint firstItem="8Al-dM-bHz" firstAttribute="leading" secondItem="F1y-lc-CQ5" secondAttribute="leading" constant="10" id="mNX-0m-VQh"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="EgE-O7-9TE"/>
-                                </connections>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

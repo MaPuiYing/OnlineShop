@@ -48,10 +48,11 @@
                             </constraints>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="o5a-fA-ffU">
-                            <rect key="frame" x="411" y="92" width="30" height="16.5"/>
+                            <rect key="frame" x="411" y="87" width="30" height="26.5"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="FhY-dv-c8y"/>
+                                <constraint firstAttribute="width" secondItem="o5a-fA-ffU" secondAttribute="height" multiplier="1:1" id="bt3-g0-WYY"/>
                             </constraints>
                         </imageView>
                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="o9M-Dp-xLF">

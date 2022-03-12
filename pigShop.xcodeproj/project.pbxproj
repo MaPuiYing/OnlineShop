@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D31614F27DCCDB1008A54B2 /* CustomRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31614E27DCCDB1008A54B2 /* CustomRefreshControl.swift */; };
 		8D4859F427D90087007C5B55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4859F327D90087007C5B55 /* AppDelegate.swift */; };
 		8D4859F627D90087007C5B55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4859F527D90087007C5B55 /* SceneDelegate.swift */; };
 		8D4859FB27D90087007C5B55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D4859F927D90087007C5B55 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D31614E27DCCDB1008A54B2 /* CustomRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRefreshControl.swift; sourceTree = "<group>"; };
 		8D4859F027D90087007C5B55 /* pigShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pigShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4859F327D90087007C5B55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D4859F527D90087007C5B55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D31615027DCCDB9008A54B2 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				8D31614E27DCCDB1008A54B2 /* CustomRefreshControl.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		8D4859E727D90087007C5B55 = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				8D6F72D427DB4F9400714245 /* Util.swift */,
-				8DDF378E27D9BBD800142E4B /* extension */,
+				8DDF378E27D9BBD800142E4B /* Extension */,
+				8D31615027DCCDB9008A54B2 /* CustomView */,
 				8D4859F327D90087007C5B55 /* AppDelegate.swift */,
 				8D4859F527D90087007C5B55 /* SceneDelegate.swift */,
 				8D485A2327D90303007C5B55 /* TabBarViewController.swift */,
@@ -244,14 +255,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8DDF378E27D9BBD800142E4B /* extension */ = {
+		8DDF378E27D9BBD800142E4B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				8DDF378F27D9BBEC00142E4B /* UIColor++.swift */,
 				8D6F72CE27DAFA6900714245 /* UIView++.swift */,
 				8D6F72DC27DB9D5100714245 /* UILabel++.swift */,
 			);
-			path = extension;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		8DDF379327D9D25900142E4B /* TableViewCell */ = {
@@ -422,6 +433,7 @@
 				8D6F72D527DB4F9400714245 /* Util.swift in Sources */,
 				8D9BFA0627DA3A1900DBE962 /* HomeViewController.swift in Sources */,
 				8D6F72DD27DB9D5200714245 /* UILabel++.swift in Sources */,
+				8D31614F27DCCDB1008A54B2 /* CustomRefreshControl.swift in Sources */,
 				8DDF379827D9D3D000142E4B /* SettingListTableViewCell.swift in Sources */,
 				8D6F72CB27DAF70F00714245 /* RecommendView.swift in Sources */,
 				8D9BFA0E27DA3C9C00DBE962 /* RecommendCollectionViewCell.swift in Sources */,
