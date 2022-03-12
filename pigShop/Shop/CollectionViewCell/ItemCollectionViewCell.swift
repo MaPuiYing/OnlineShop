@@ -13,7 +13,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblOldPrice: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
-    @IBOutlet weak var imvBookmarks: UIImageView!
+    @IBOutlet weak var imvBookmarks: ImageButton!
     
     @IBOutlet weak var vwContent: UIView!
     
@@ -35,9 +35,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     func initSetup() {
         self.setupView()
-        
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.selectedBookmarks))
-        self.imvBookmarks.addGestureRecognizer(gesture)
+        self.imvBookmarks.method = {self.selectedBookmarks()}
     }
     
     func setupView() {
@@ -63,7 +61,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         self.lblOldPrice.attributedText = attributedString
     }
     
-    @objc func selectedBookmarks() {
+    func selectedBookmarks() {
         self.isBookmarks = !self.isBookmarks
     }
 

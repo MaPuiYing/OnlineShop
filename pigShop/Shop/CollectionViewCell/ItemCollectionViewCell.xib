@@ -57,7 +57,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FYp-Ll-T6F">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FYp-Ll-T6F" customClass="ImageButton" customModule="pigShop" customModuleProvider="target">
                                                 <rect key="frame" x="175.5" y="6.5" width="20.5" height="37.5"/>
                                                 <color key="tintColor" name="textLightGrey"/>
                                             </imageView>
@@ -107,7 +107,7 @@
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
         <namedColor name="borderColor">
-            <color red="0.92545460179908989" green="0.92545460179908989" blue="0.92545460179908989" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.92500001192092896" green="0.92500001192092896" blue="0.92500001192092896" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="textLightGrey">
             <color red="0.50400000810623169" green="0.50400000810623169" blue="0.50400000810623169" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

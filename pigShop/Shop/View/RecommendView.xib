@@ -11,8 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecommendView" customModule="pigShop" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="3o1-fU-TcN" id="7Cj-Dt-buo"/>
-                <outlet property="imvLast" destination="BOX-bx-BC8" id="xxv-Ur-RwQ"/>
-                <outlet property="imvNext" destination="o5a-fA-ffU" id="W6o-n7-yf6"/>
+                <outlet property="imvLast" destination="BOX-bx-BC8" id="l6W-vR-oTq"/>
+                <outlet property="imvNext" destination="o5a-fA-ffU" id="Xze-uR-NAy"/>
                 <outlet property="pageControl" destination="o9M-Dp-xLF" id="Avg-bJ-p1o"/>
             </connections>
         </placeholder>
@@ -39,7 +39,7 @@
                                 <outlet property="delegate" destination="-1" id="jws-yB-8E8"/>
                             </connections>
                         </collectionView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BOX-bx-BC8">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BOX-bx-BC8" customClass="ImageButton" customModule="pigShop" customModuleProvider="target">
                             <rect key="frame" x="10" y="87" width="30" height="26.5"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -47,7 +47,7 @@
                                 <constraint firstAttribute="width" constant="30" id="bdD-5O-Djy"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="o5a-fA-ffU">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="o5a-fA-ffU" customClass="ImageButton" customModule="pigShop" customModuleProvider="target">
                             <rect key="frame" x="411" y="87" width="30" height="26.5"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>

@@ -21,8 +21,8 @@ class RecommendView: UIView {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var imvLast: UIImageView!
-    @IBOutlet weak var imvNext: UIImageView!
+    @IBOutlet weak var imvLast: ImageButton!
+    @IBOutlet weak var imvNext: ImageButton!
     
     var timer : Timer?
     var aryImage: [String] = []
@@ -30,8 +30,8 @@ class RecommendView: UIView {
     
     func setupView() {
         self.stopTimer()
-        
-        self.addGesture()
+        self.imvLast.method = {self.imvLastAction()}
+        self.imvNext.method = {self.imvNextAction()}
         
         self.collectionView.register(UINib(nibName: "RecommendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "recommendCell")
         self.collectionView.contentOffset.x = CGFloat(self.aryImage.count) * self.collectionView.bounds.width
@@ -71,18 +71,7 @@ class RecommendView: UIView {
 
     //MARK: - Button Action
     
-    func addGesture() {
-        self.imvLast.isUserInteractionEnabled = true
-        self.imvNext.isUserInteractionEnabled = true
-        
-        let lastGesture = UITapGestureRecognizer(target: self, action: #selector(imvLastAction))
-        self.imvLast.addGestureRecognizer(lastGesture)
-        
-        let nextGesture = UITapGestureRecognizer(target: self, action: #selector(imvNextAction))
-        self.imvNext.addGestureRecognizer(nextGesture)
-    }
-    
-    @objc func imvLastAction() {
+    func imvLastAction() {
         self.stopTimer()
         
         let width = self.collectionView.bounds.width
@@ -96,7 +85,7 @@ class RecommendView: UIView {
         }
     }
     
-    @objc func imvNextAction() {
+    func imvNextAction() {
         self.stopTimer()
         
         let width = self.collectionView.bounds.width
