@@ -31,15 +31,20 @@ class HomeViewController: UIViewController {
         return image
     }
     
-    var aryFilter: [String] = ["New", "Hot", "Clothes", "Dress", "Shoe", "Food", "Item", "Others"]
-    var aryTitle: [String] = ["I am the pig pig girl", "Pig is toxic", "Daily pig in a pig pig world", "Pig pig is good girl thanks", "Pig love pink", "Why am pig pig girl so pretty cant you answer me"]
+    var aryFilter: [String] {
+        var aryString: [String] = []
+        for currentCase in ItemCategory.allCases {
+            aryString.append(currentCase.rawValue)
+        }
+        return aryString
+    }
+    var specialItems: [Item] = ItemModel.shared.getDiscountItem()
     
     var itemSize: CGSize = .zero
         
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Pig Pig Shop"
-        
         self.initSetup()
         self.navigationBarSetup()
         self.collectionViewSetup()
@@ -57,6 +62,8 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                 guard let mySelf = self else {return}
                 mySelf.recommendViewSetup()
+                mySelf.specialItems = ItemModel.shared.getDiscountItem()
+                mySelf.clvItem.reloadData()
                 mySelf.refreshControl.endRefreshing()
             }
         }
@@ -141,7 +148,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == self.clvCategory {
             return self.aryFilter.count
         } else if collectionView == self.clvItem {
-            return self.aryTitle.count
+            return self.specialItems.count
         }
         return 0
     }
@@ -159,10 +166,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         } else if collectionView == self.clvItem {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? ItemCollectionViewCell else {return UICollectionViewCell()}
-            cell.lblTitle.text = self.aryTitle[indexPath.row]
-            cell.lblPrice.text = "HKD$1000"
+            let model = self.specialItems[indexPath.row]
+            cell.lblTitle.text = model.title
+            cell.lblPrice.text = model.price?.stringValue
             cell.imvBanner.sd_setImage(with: URL(string: "https://www.price.com.hk/space/ec_product/shop/192000/192863_kd2nuj_0.jpg"), completed: nil)
-            cell.setupOriginalPrice("HKD$1193")
+            cell.setupOriginalPrice(model.oldPrice?.stringValue)
             return cell
         }
         return UICollectionViewCell()
@@ -171,10 +179,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.clvCategory {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "CategoryItemViewController") as? CategoryItemViewController {
+                vc.category = ItemCategory(rawValue: self.aryFilter[indexPath.row]) ?? .new
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         } else if collectionView == self.clvItem {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
+                vc.itemDetail = self.specialItems[indexPath.row]
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -195,7 +205,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
             let width = Util.calculateItemWidth(columns: 2, columnSpace: 10, frameWidth: collectionView.frame.width)
             let height = (width*1.2) + 34 + 35 + 6 // title 34 + price 35 + stackView spacing 6
             
-            let doubleRows = Double(self.aryTitle.count) / 2
+            let doubleRows = Double(self.specialItems.count) / 2
             let rows: CGFloat = CGFloat(lround(doubleRows))
             let collectionHeight = Util.calculateCollectionHeight(height: height, rows: rows, rowSpace: 15)
             self.lcItemHeight.constant = collectionHeight

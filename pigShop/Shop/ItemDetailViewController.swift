@@ -30,7 +30,8 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var btnCart: UIButton!
     @IBOutlet weak var btnBuy: UIButton!
 
-    var bannerString = "https://www.price.com.hk/space/ec_product/shop/192000/192863_kd2nuj_0.jpg"
+    var itemDetail: Item?
+    
     var isBookmarks = false {
         didSet {
             if self.isBookmarks == true {
@@ -110,18 +111,20 @@ class ItemDetailViewController: UIViewController {
     }
     
     func setupContent() {
-        self.imvBanner.sd_setImage(with: URL(string: self.bannerString), completed: nil)
-        self.lblTitle.text = "I'm a pig pig girl in a pig pig world"
-        
-        self.setupOriginalPrice("HKD$100")
-        self.lblPrice.text = "HKD$50"
-        self.lblDescription.text = "It is a very pretty pig with a suitable price. You can put it on your desk. "
+        guard let item = self.itemDetail else {return}
+        self.imvBanner.sd_setImage(with: URL(string: item.imageURL ?? ""), completed: nil)
+        self.lblTitle.text = item.title
+        if item.isDiscount == true {
+            self.setupOriginalPrice(item.oldPrice?.stringValue)
+        }
+        self.lblPrice.text = item.price?.stringValue
+        self.lblDescription.text = item.description
         self.lblCount.text = "\(self.currentCount)"
     }
     
-    func setupOriginalPrice(_ price: String) {
+    func setupOriginalPrice(_ price: String?) {
         self.lblOldPrice.isHidden = false
-        let attributedString = NSMutableAttributedString(string: price)
+        let attributedString = NSMutableAttributedString(string: price ?? "")
         attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
         self.lblOldPrice.attributedText = attributedString
     }

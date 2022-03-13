@@ -17,18 +17,21 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var lblKnowMore: UILabel!
 
     var refreshControl = CustomRefreshControl()
-    
-    var aryTitle: [String] = ["I am the pig pig girl", "Pig is toxic", "Daily pig in a pig pig world", "Pig pig is good girl thanks", "Pig love pink", "Why am pig pig girl so pretty cant you answer me", "I am the pig pig girl", "Pig is toxic", "Daily pig in a pig pig world", "Pig pig is good girl thanks", "Pig love pink", "Why am pig pig girl so pretty cant you answer me", "I am the pig pig girl", "Pig is toxic", "Daily pig in a pig pig world", "Pig pig is good girl thanks", "Pig love pink"]
     var cellCount = 0
+    var category: ItemCategory = .new
+    var items: [Item] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Category"
+        self.title = self.category.rawValue
         self.customBackButton()
         
         self.initSetup()
         self.navigationBarSetup()
         self.collectionViewSetup()
+        
+        self.items = ItemModel.shared.getCategoryItem(category)
+        self.collectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,9 +40,13 @@ class CategoryItemViewController: UIViewController {
         self.refreshControl.scrollView = self.scrollView
         self.refreshControl.finishAction = { [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-                self?.cellCount = 0
-                self?.updateCellCount()
-                self?.refreshControl.endRefreshing()
+                guard let mySelf = self else {return}
+                mySelf.items = ItemModel.shared.getCategoryItem(mySelf.category)
+                mySelf.collectionView.reloadData()
+                
+                mySelf.cellCount = 0
+                mySelf.updateCellCount()
+                mySelf.refreshControl.endRefreshing()
             }
         }
         
@@ -78,9 +85,9 @@ class CategoryItemViewController: UIViewController {
     }
     
     func updateCellCount() {
-        let remainCount = self.aryTitle.count - self.cellCount
+        let remainCount = self.items.count - self.cellCount
         self.cellCount += (remainCount<=10) ? remainCount : 10
-        self.vwKnowMore.isHidden = (self.cellCount == self.aryTitle.count)
+        self.vwKnowMore.isHidden = (self.cellCount == self.items.count)
         self.collectionView.reloadData()
     }
 }
@@ -92,14 +99,19 @@ extension CategoryItemViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? ItemCollectionViewCell else {return UICollectionViewCell()}
-        cell.lblTitle.text = self.aryTitle[indexPath.row]
-        cell.lblPrice.text = "HKD$560"
-        cell.imvBanner.sd_setImage(with: URL(string: "https://media.karousell.com/media/photos/products/2020/9/22/lulupig_lulu____1600744315_4bd23683_progressive.jpg"), completed: nil)
+        let model = self.items[indexPath.row]
+        cell.lblTitle.text = model.title
+        cell.lblPrice.text = model.price?.stringValue
+        if model.isDiscount == true {
+            cell.setupOriginalPrice(model.oldPrice?.stringValue)
+        }
+        cell.imvBanner.sd_setImage(with: URL(string: model.imageURL ?? ""), completed: nil)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
+            vc.itemDetail = self.items[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
