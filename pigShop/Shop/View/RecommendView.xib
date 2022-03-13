@@ -55,7 +55,7 @@
                                 <constraint firstAttribute="width" secondItem="o5a-fA-ffU" secondAttribute="height" multiplier="1:1" id="bt3-g0-WYY"/>
                             </constraints>
                         </imageView>
-                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="o9M-Dp-xLF">
+                        <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="o9M-Dp-xLF">
                             <rect key="frame" x="167.5" y="164" width="116" height="26"/>
                         </pageControl>
                     </subviews>

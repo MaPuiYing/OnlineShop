@@ -161,6 +161,9 @@
                                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <offsetWrapper key="searchTextPositionAdjustment" horizontal="5" vertical="0.0"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="yj1-SN-mi0" id="Zbf-oV-gB9"/>
+                                        </connections>
                                     </searchBar>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-MH-JBN">
                                         <rect key="frame" x="10" y="57" width="394" height="158"/>
@@ -220,27 +223,68 @@
                                     <constraint firstAttribute="bottom" secondItem="gwa-MH-JBN" secondAttribute="bottom" constant="20" id="nRy-nw-GXC"/>
                                 </constraints>
                             </scrollView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdV-ul-HZb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ia6-9y-sqB">
+                                        <rect key="frame" x="30" y="314" width="354" height="190.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyPig" translatesAutoresizingMaskIntoConstraints="NO" id="SN8-Sw-yjg">
+                                                <rect key="frame" x="77" y="0.0" width="200" height="150"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="SN8-Sw-yjg" secondAttribute="height" multiplier="4:3" id="OJZ-9g-L3f"/>
+                                                    <constraint firstAttribute="height" constant="150" id="Rnt-oa-LQ8"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yng-KA-rSK">
+                                                <rect key="frame" x="0.0" y="170" width="354" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="yng-KA-rSK" firstAttribute="leading" secondItem="ia6-9y-sqB" secondAttribute="leading" id="bbm-MY-Ycg"/>
+                                            <constraint firstAttribute="trailing" secondItem="yng-KA-rSK" secondAttribute="trailing" id="gg3-xv-4sA"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="tableBackground"/>
+                                <constraints>
+                                    <constraint firstItem="ia6-9y-sqB" firstAttribute="leading" secondItem="GdV-ul-HZb" secondAttribute="leading" constant="30" id="LN0-Jp-UyY"/>
+                                    <constraint firstItem="ia6-9y-sqB" firstAttribute="centerY" secondItem="GdV-ul-HZb" secondAttribute="centerY" id="ZNE-xe-jbm"/>
+                                    <constraint firstAttribute="trailing" secondItem="ia6-9y-sqB" secondAttribute="trailing" constant="30" id="bYU-zP-4qT"/>
+                                    <constraint firstItem="ia6-9y-sqB" firstAttribute="centerX" secondItem="GdV-ul-HZb" secondAttribute="centerX" id="jre-ZE-oaH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iDQ-l8-gc3"/>
                         <color key="backgroundColor" name="tabbarBackground"/>
                         <constraints>
+                            <constraint firstItem="GdV-ul-HZb" firstAttribute="leading" secondItem="iDQ-l8-gc3" secondAttribute="leading" id="HLT-oW-c9o"/>
+                            <constraint firstItem="iDQ-l8-gc3" firstAttribute="bottom" secondItem="GdV-ul-HZb" secondAttribute="bottom" id="KiD-WP-Fcd"/>
                             <constraint firstItem="l7u-x4-RlR" firstAttribute="leading" secondItem="iDQ-l8-gc3" secondAttribute="leading" id="LPh-2b-S3a"/>
                             <constraint firstItem="l7u-x4-RlR" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="W5C-3f-QD8"/>
                             <constraint firstItem="iDQ-l8-gc3" firstAttribute="bottom" secondItem="l7u-x4-RlR" secondAttribute="bottom" id="dMH-Ic-EvY"/>
                             <constraint firstItem="iDQ-l8-gc3" firstAttribute="trailing" secondItem="l7u-x4-RlR" secondAttribute="trailing" id="dt8-ie-23w"/>
+                            <constraint firstItem="iDQ-l8-gc3" firstAttribute="trailing" secondItem="GdV-ul-HZb" secondAttribute="trailing" id="hPZ-Ro-Ub0"/>
+                            <constraint firstItem="GdV-ul-HZb" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="zkr-4V-o9d"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="JNt-Im-vTX" id="KZa-MN-1m4"/>
+                        <outlet property="lblEmpty" destination="yng-KA-rSK" id="VIe-ss-2Wr"/>
                         <outlet property="lblKnowMore" destination="a2S-Lw-4Hs" id="C6a-si-4aX"/>
                         <outlet property="lcItemHeight" destination="MoM-Qp-INf" id="Wi9-gz-zNG"/>
                         <outlet property="scrollView" destination="l7u-x4-RlR" id="A8V-bf-8xI"/>
+                        <outlet property="searchBar" destination="nYt-5u-vhd" id="aaw-K3-pRO"/>
+                        <outlet property="vwEmpty" destination="GdV-ul-HZb" id="mZR-S3-RAr"/>
                         <outlet property="vwKnowMore" destination="Hth-Zr-mDE" id="B6k-7U-Zva"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlP-Ed-zcX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="709" y="61"/>
+            <point key="canvasLocation" x="708.69565217391312" y="60.9375"/>
         </scene>
         <!--Item Detail View Controller-->
         <scene sceneID="Xbx-ly-VJo">
@@ -496,6 +540,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="emptyPig" width="200" height="200"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>

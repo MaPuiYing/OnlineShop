@@ -13,13 +13,18 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var lcItemHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var vwKnowMore: ViewButton!
     @IBOutlet weak var lblKnowMore: UILabel!
+    
+    @IBOutlet weak var vwEmpty: UIView!
+    @IBOutlet weak var lblEmpty: UILabel!
 
     var refreshControl = CustomRefreshControl()
     var cellCount = 0
     var category: ItemCategory = .new
     var items: [Item] = []
+    var filteredItems: [Item] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +32,9 @@ class CategoryItemViewController: UIViewController {
         self.customBackButton()
         
         self.initSetup()
-        self.navigationBarSetup()
         self.collectionViewSetup()
         
-        self.items = ItemModel.shared.getCategoryItem(category)
-        self.collectionView.reloadData()
+        self.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,8 +44,7 @@ class CategoryItemViewController: UIViewController {
         self.refreshControl.finishAction = { [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
                 guard let mySelf = self else {return}
-                mySelf.items = ItemModel.shared.getCategoryItem(mySelf.category)
-                mySelf.collectionView.reloadData()
+                mySelf.setupData()
                 
                 mySelf.cellCount = 0
                 mySelf.updateCellCount()
@@ -65,9 +67,23 @@ class CategoryItemViewController: UIViewController {
         self.lblKnowMore.textColor = .white
         self.lblKnowMore.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         self.lblKnowMore.text = "Know More"
+        
+        self.lblEmpty.textColor = .textLightGrey
+        self.lblEmpty.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        self.lblEmpty.text = "Sorry, it is empty."
+    }
+    
+    func setupData() {
+        self.items = ItemModel.shared.getCategoryItem(category)
+        self.filteredItems = self.items
+        self.collectionView.reloadData()
+        self.vwEmpty.isHidden = (self.items.count > 0)
+        self.navigationBarSetup()
     }
     
     func navigationBarSetup() {
+        guard self.items.count > 0 else {return}
+        
         let filter = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"),style: .plain, target: self, action: #selector(filterBtnPressed))
         filter.tintColor = .textDarkGrey
         
@@ -85,12 +101,46 @@ class CategoryItemViewController: UIViewController {
     }
     
     func updateCellCount() {
-        let remainCount = self.items.count - self.cellCount
+        let remainCount = self.filteredItems.count - self.cellCount
         self.cellCount += (remainCount<=10) ? remainCount : 10
-        self.vwKnowMore.isHidden = (self.cellCount == self.items.count)
+        self.vwKnowMore.isHidden = (self.cellCount == self.filteredItems.count)
         self.collectionView.reloadData()
     }
 }
+
+//MARK: - UISearchBar Delegate
+
+extension CategoryItemViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            self.filteredItems = self.items
+        } else {
+            self.filteredItems = self.items.filter({
+                $0.title?.localizedCaseInsensitiveContains(searchText) == true
+            })
+        }
+        
+        self.updateCellCount()
+        self.collectionView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let searchText = searchBar.text ?? ""
+        
+        if searchText == "" {
+            self.filteredItems = self.items
+        } else {
+            self.filteredItems = self.items.filter({
+                $0.title?.localizedCaseInsensitiveContains(searchText) == true
+            })
+        }
+        
+        self.updateCellCount()
+        self.collectionView.reloadData()
+    }
+}
+
+//MARK: - UICollectionView Delegate
 
 extension CategoryItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -99,7 +149,7 @@ extension CategoryItemViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? ItemCollectionViewCell else {return UICollectionViewCell()}
-        let model = self.items[indexPath.row]
+        let model = self.filteredItems[indexPath.row]
         cell.lblTitle.text = model.title
         cell.lblPrice.text = model.price?.stringValue
         if model.isDiscount == true {
@@ -111,7 +161,7 @@ extension CategoryItemViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
-            vc.itemDetail = self.items[indexPath.row]
+            vc.itemDetail = self.filteredItems[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
