@@ -323,7 +323,7 @@
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QhD-e3-C1H" customClass="ImageButton" customModule="pigShop" customModuleProvider="target">
                                                         <rect key="frame" x="349" y="1.5" width="25" height="22.5"/>
-                                                        <color key="tintColor" name="mainOrange"/>
+                                                        <color key="tintColor" name="textRed"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="QhD-e3-C1H" secondAttribute="height" multiplier="1:1" id="SUN-Bj-hBy"/>
                                                             <constraint firstAttribute="height" constant="25" id="gN5-Or-CUT"/>
@@ -553,9 +553,6 @@
         <namedColor name="darkRed">
             <color red="0.5" green="0.048999998718500137" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <namedColor name="mainOrange">
-            <color red="1" green="0.5820000171661377" blue="0.39899998903274536" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
         <namedColor name="tabbarBackground">
             <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
@@ -564,6 +561,9 @@
         </namedColor>
         <namedColor name="textLightGrey">
             <color red="0.50400000810623169" green="0.50400000810623169" blue="0.50400000810623169" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="textRed">
+            <color red="0.69300001859664917" green="0.068000003695487976" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

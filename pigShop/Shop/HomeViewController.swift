@@ -21,6 +21,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblSales: UILabel!
     @IBOutlet weak var vwBorder: UIView!
     
+    var itemModel = ItemModel.shared
+    var specialItems: [Item] = []
+    
     var refreshControl = CustomRefreshControl()
     
     var aryRecommendImage: [String] {
@@ -38,13 +41,13 @@ class HomeViewController: UIViewController {
         }
         return aryString
     }
-    var specialItems: [Item] = ItemModel.shared.getDiscountItem()
     
     var itemSize: CGSize = .zero
         
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Pig Pig Shop"
+        
         self.initSetup()
         self.navigationBarSetup()
         self.collectionViewSetup()
@@ -60,16 +63,12 @@ class HomeViewController: UIViewController {
         }
         self.refreshControl.finishAction = { [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                guard let mySelf = self else {return}
-                mySelf.recommendViewSetup()
-                mySelf.specialItems = ItemModel.shared.getDiscountItem()
-                mySelf.clvItem.reloadData()
-                mySelf.refreshControl.endRefreshing()
+                self?.refreshPage()
             }
         }
         
         //Set up
-        self.recommendViewSetup()
+        self.refreshPage()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,6 +77,13 @@ class HomeViewController: UIViewController {
     }
     
     //MARK: - init Set up
+    
+    func refreshPage() {
+        self.recommendViewSetup()
+        self.specialItems = self.itemModel.getDiscountItem()
+        self.clvItem.reloadData()
+        self.refreshControl.endRefreshing()
+    }
     
     func initSetup() {
         self.lblNew.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
@@ -171,6 +177,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.lblPrice.text = model.price?.stringValue
             cell.imvBanner.sd_setImage(with: URL(string: "https://www.price.com.hk/space/ec_product/shop/192000/192863_kd2nuj_0.jpg"), completed: nil)
             cell.setupOriginalPrice(model.oldPrice?.stringValue)
+            
+            cell.isBookmarks = itemModel.getFaviorite(model.id)
+            cell.imvBookmarks.method = {[weak self] in
+                cell.isBookmarks = !cell.isBookmarks
+                self?.itemModel.setFaviorite(model.id, value: cell.isBookmarks)
+            }
             return cell
         }
         return UICollectionViewCell()

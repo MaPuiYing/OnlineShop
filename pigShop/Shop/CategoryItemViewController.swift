@@ -19,22 +19,22 @@ class CategoryItemViewController: UIViewController {
     
     @IBOutlet weak var vwEmpty: UIView!
     @IBOutlet weak var lblEmpty: UILabel!
+    
+    var itemModel = ItemModel.shared
 
     var refreshControl = CustomRefreshControl()
     var cellCount = 0
-    var category: ItemCategory = .new
+    var category: ItemCategory?
     var items: [Item] = []
     var filteredItems: [Item] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = self.category.rawValue
+        self.title = self.category?.rawValue ?? "Bookmark"
         self.customBackButton()
         
         self.initSetup()
         self.collectionViewSetup()
-        
-        self.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,17 +43,11 @@ class CategoryItemViewController: UIViewController {
         self.refreshControl.scrollView = self.scrollView
         self.refreshControl.finishAction = { [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-                guard let mySelf = self else {return}
-                mySelf.setupData()
-                
-                mySelf.cellCount = 0
-                mySelf.updateCellCount()
-                mySelf.refreshControl.endRefreshing()
+                self?.refreshPage()
+                self?.refreshControl.endRefreshing()
             }
         }
-        
-        self.cellCount = 0
-        self.updateCellCount()
+        self.refreshPage()
     }
     
     //MARK: - init Set up
@@ -73,8 +67,19 @@ class CategoryItemViewController: UIViewController {
         self.lblEmpty.text = "Sorry, it is empty."
     }
     
+    func refreshPage() {
+        self.setupData()
+        self.cellCount = 0
+        self.updateCellCount()
+    }
+    
     func setupData() {
-        self.items = ItemModel.shared.getCategoryItem(category)
+        if category != nil {
+            self.items = itemModel.getCategoryItem(category)
+        } else {
+            self.items = itemModel.getFavioriteItem()
+        }
+        
         self.filteredItems = self.items
         self.collectionView.reloadData()
         self.vwEmpty.isHidden = (self.items.count > 0)
@@ -150,12 +155,18 @@ extension CategoryItemViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? ItemCollectionViewCell else {return UICollectionViewCell()}
         let model = self.filteredItems[indexPath.row]
+        cell.imvBanner.sd_setImage(with: URL(string: model.imageURL ?? ""), completed: nil)
         cell.lblTitle.text = model.title
         cell.lblPrice.text = model.price?.stringValue
         if model.isDiscount == true {
             cell.setupOriginalPrice(model.oldPrice?.stringValue)
         }
-        cell.imvBanner.sd_setImage(with: URL(string: model.imageURL ?? ""), completed: nil)
+        
+        cell.isBookmarks = itemModel.getFaviorite(model.id)
+        cell.imvBookmarks.method = {[weak self] in
+            cell.isBookmarks = !cell.isBookmarks
+            self?.itemModel.setFaviorite(model.id, value: cell.isBookmarks)
+        }
         return cell
     }
     

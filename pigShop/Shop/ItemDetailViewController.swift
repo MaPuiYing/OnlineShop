@@ -16,7 +16,6 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var lblColumnPrice: UILabel!
     @IBOutlet weak var lblColumnDescription: UILabel!
     @IBOutlet weak var lblColumnCount: UILabel!
-
     
     @IBOutlet weak var lblOldPrice: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
@@ -31,6 +30,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var btnBuy: UIButton!
 
     var itemDetail: Item?
+    var itemModel = ItemModel.shared
     
     var isBookmarks = false {
         didSet {
@@ -60,6 +60,8 @@ class ItemDetailViewController: UIViewController {
     
     func initSetup() {
         self.imvBookmarks.method = {self.selectedBookmarks()}
+        self.isBookmarks = itemModel.getFaviorite(self.itemDetail?.id)
+        
         self.vwPlus.method = {self.plusBtnPressed()}
         self.vwMinus.method = {self.minusBtnPressed()}
         
@@ -144,6 +146,7 @@ class ItemDetailViewController: UIViewController {
     
     func selectedBookmarks() {
         self.isBookmarks = !self.isBookmarks
+        self.itemModel.setFaviorite(self.itemDetail?.id, value: self.isBookmarks)
     }
 
 }

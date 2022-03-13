@@ -40,7 +40,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     func initSetup() {
         self.setupView()
-        self.imvBookmarks.method = {self.selectedBookmarks()}
     }
     
     func setupView() {
@@ -63,10 +62,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
         let attributedString = NSMutableAttributedString(string: price ?? "")
         attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
         self.lblOldPrice.attributedText = attributedString
-    }
-    
-    func selectedBookmarks() {
-        self.isBookmarks = !self.isBookmarks
     }
 
 }

@@ -27,19 +27,32 @@ struct Item: Decodable {
     let oldPrice: Double?
     let category: ItemCategory?
     let isDiscount: Bool?
+    let isFavorite: Bool?
 }
 
 struct ItemJson: Decodable {
     let item: [Item]?
 }
 
+struct FavoriteModel {
+    var id: Int?
+    var isFavorite: Bool?
+}
+
 class ItemModel {
     static let shared = ItemModel()
+    
     var aryItem: [Item] = []
+    var aryFavorite: [FavoriteModel] = []
     
     init() {
         self.aryItem = self.getAllItem()
+        for item in self.aryItem {
+            self.aryFavorite.append(FavoriteModel(id: item.id ?? 0, isFavorite: false))
+        }
     }
+    
+    //MARK: - Get Item
     
     func getAllItem() -> [Item] {
         if let path = Bundle.main.path(forResource: "item", ofType: "json") {
@@ -62,10 +75,39 @@ class ItemModel {
         return item
     }
     
-    func getCategoryItem(_ category: ItemCategory) -> [Item] {
+    //MARK: - Get Object
+    
+    func getFavioriteItem() -> [Item] {
+        let favoriteItems = self.aryFavorite.filter({$0.isFavorite == true})
+        let item = self.aryItem.filter({
+            for favoriteItem in favoriteItems {
+                if $0.id == favoriteItem.id {return true}
+            }
+            return false
+        })
+        
+        return item
+    }
+    
+    func getCategoryItem(_ category: ItemCategory?) -> [Item] {
         let item = self.aryItem.filter({
             $0.category == category
         })
         return item
+    }
+    
+    func getFaviorite(_ id: Int?) -> Bool {
+        if let index = self.aryFavorite.firstIndex(where: {$0.id == id}) {
+            return self.aryFavorite[index].isFavorite ?? false
+        }
+        return false
+    }
+    
+    //MARK: - Set Object
+    
+    func setFaviorite(_ id: Int?, value: Bool) {
+        if let index = self.aryFavorite.firstIndex(where: {$0.id == id}) {
+            self.aryFavorite[index].isFavorite = value
+        }
     }
 }
