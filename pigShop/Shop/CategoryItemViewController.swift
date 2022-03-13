@@ -13,7 +13,7 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var lcItemHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var vwKnowMore: ButtonView!
+    @IBOutlet weak var vwKnowMore: ViewButton!
     @IBOutlet weak var lblKnowMore: UILabel!
 
     var refreshControl = CustomRefreshControl()
@@ -43,6 +43,7 @@ class CategoryItemViewController: UIViewController {
             }
         }
         
+        self.cellCount = 0
         self.updateCellCount()
     }
     
@@ -98,7 +99,9 @@ extension CategoryItemViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NSLog("item select: \(indexPath.row)")
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

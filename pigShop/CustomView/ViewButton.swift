@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ButtonView: UIView {
+class ViewButton: UIView {
     var method: (()->Void)? {
         didSet {
             self.initSetup()

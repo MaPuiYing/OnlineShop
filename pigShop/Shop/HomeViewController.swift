@@ -120,11 +120,13 @@ class HomeViewController: UIViewController {
     //MARK: - Button Action
     
     @objc func bookmarksBtnPressed() {
-        
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "CategoryItemViewController") as? CategoryItemViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func searchBtnPressed() {
-        
+        NSLog("search btn pressed")
     }
     
     func recommendSelectedAction(_ selectRow: Int) {
@@ -172,7 +174,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         } else if collectionView == self.clvItem {
-            NSLog("item select: \(indexPath.row)")
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 }
