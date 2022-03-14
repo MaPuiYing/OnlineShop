@@ -31,6 +31,7 @@ class ItemDetailViewController: UIViewController {
 
     var itemDetail: Item?
     let itemModel = ItemModel.shared
+    let cartModel = CartModel.shared
     
     var isBookmarks = false {
         didSet {
@@ -152,6 +153,7 @@ class ItemDetailViewController: UIViewController {
     
     @IBAction func addToCartBtnPressed() {
         self.showAlert(title: "Add the item successfully.", okAction: {
+            self.cartModel.addCart(item: self.itemDetail, count: self.currentCount)
             self.navigationController?.popViewController(animated: true)
         })
     }

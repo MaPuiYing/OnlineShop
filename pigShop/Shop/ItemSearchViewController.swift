@@ -74,6 +74,8 @@ class ItemSearchViewController: UIViewController {
     
     func refreshPage() {
         self.items = itemModel.getAllItem()
+        self.table.reloadData()
+        
         self.navigationBarSetup()
         
         let searchText = searchBar.text ?? ""
@@ -84,7 +86,6 @@ class ItemSearchViewController: UIViewController {
                 $0.title?.localizedCaseInsensitiveContains(searchText) == true
             })
         }
-        self.table.reloadData()
         self.vwEmpty.isHidden = (self.items.count > 0)
     }
     
@@ -139,7 +140,7 @@ extension ItemSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as? ItemSearchTableViewCell else {return UITableViewCell()}
         let model = self.filteredItems[indexPath.row]
-        cell.vwBanner.sd_setImage(with: URL(string: model.imageURL ?? ""), completed: nil)
+        cell.imvBanner.sd_setImage(with: URL(string: model.imageURL ?? ""), completed: nil)
         cell.lblTitle.text = model.title
         cell.lblPrice.text = model.price?.stringValue
         if model.isDiscount == true {
