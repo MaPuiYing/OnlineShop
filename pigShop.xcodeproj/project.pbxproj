@@ -277,7 +277,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		8D7E862727DDCFFA00118874 /* View Extension */ = {
+		8D7E862727DDCFFA00118874 /* ViewExtension */ = {
 			isa = PBXGroup;
 			children = (
 				8DDF378F27D9BBEC00142E4B /* UIColor++.swift */,
@@ -285,7 +285,7 @@
 				8D6F72DC27DB9D5100714245 /* UILabel++.swift */,
 				8D31615327DCD70B008A54B2 /* UIViewController++.swift */,
 			);
-			path = "View Extension";
+			path = ViewExtension;
 			sourceTree = "<group>";
 		};
 		8D980A5327DE445A00718E50 /* TableViewCell */ = {
@@ -323,7 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				8D7E862527DDCFED00118874 /* Double++.swift */,
-				8D7E862727DDCFFA00118874 /* View Extension */,
+				8D7E862727DDCFFA00118874 /* ViewExtension */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
