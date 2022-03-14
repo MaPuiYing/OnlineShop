@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblSales: UILabel!
     @IBOutlet weak var vwBorder: UIView!
     
-    var itemModel = ItemModel.shared
+    let itemModel = ItemModel.shared
     var specialItems: [Item] = []
     
     var refreshControl = CustomRefreshControl()
@@ -139,7 +139,9 @@ class HomeViewController: UIViewController {
     }
     
     @objc func searchBtnPressed() {
-        NSLog("search btn pressed")
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemSearchViewController") as? ItemSearchViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func recommendSelectedAction(_ selectRow: Int) {

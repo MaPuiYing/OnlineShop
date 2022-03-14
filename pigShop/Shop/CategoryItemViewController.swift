@@ -20,7 +20,7 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var vwEmpty: UIView!
     @IBOutlet weak var lblEmpty: UILabel!
     
-    var itemModel = ItemModel.shared
+    let itemModel = ItemModel.shared
 
     var refreshControl = CustomRefreshControl()
     var cellCount = 0
@@ -80,7 +80,15 @@ class CategoryItemViewController: UIViewController {
             self.items = itemModel.getFavioriteItem()
         }
         
-        self.filteredItems = self.items
+        let searchText = self.searchBar.text ?? ""
+        if searchText.isEmpty {
+            self.filteredItems = self.items
+        } else {
+            self.filteredItems = self.items.filter({
+                $0.title?.localizedCaseInsensitiveContains(searchText) == true
+            })
+        }
+        
         self.collectionView.reloadData()
         self.vwEmpty.isHidden = (self.items.count > 0)
         self.navigationBarSetup()
@@ -117,7 +125,7 @@ class CategoryItemViewController: UIViewController {
 
 extension CategoryItemViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
+        if searchText.isEmpty {
             self.filteredItems = self.items
         } else {
             self.filteredItems = self.items.filter({
@@ -132,7 +140,7 @@ extension CategoryItemViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let searchText = searchBar.text ?? ""
         
-        if searchText == "" {
+        if searchText.isEmpty {
             self.filteredItems = self.items
         } else {
             self.filteredItems = self.items.filter({

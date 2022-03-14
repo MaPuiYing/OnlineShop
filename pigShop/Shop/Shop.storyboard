@@ -538,6 +538,96 @@
             </objects>
             <point key="canvasLocation" x="1399" y="61"/>
         </scene>
+        <!--Item Search View Controller-->
+        <scene sceneID="U82-Fo-cJ5">
+            <objects>
+                <viewController storyboardIdentifier="ItemSearchViewController" id="OBW-3c-ZTL" customClass="ItemSearchViewController" customModule="pigShop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sFZ-03-h8t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lbw-xZ-m75">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search the item name" translatesAutoresizingMaskIntoConstraints="NO" id="wWP-dl-9j0">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                        <color key="tintColor" name="darkRed"/>
+                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <offsetWrapper key="searchTextPositionAdjustment" horizontal="5" vertical="0.0"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="OBW-3c-ZTL" id="4b6-E0-otb"/>
+                                        </connections>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-ZT-64Q">
+                                        <rect key="frame" x="0.0" y="51" width="414" height="767"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="OBW-3c-ZTL" id="5YM-pQ-Ofz"/>
+                                            <outlet property="delegate" destination="OBW-3c-ZTL" id="bXj-Pg-kV0"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nft-50-B75">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IwI-dW-7fe">
+                                        <rect key="frame" x="30" y="314" width="354" height="190.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyPig" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-T9-m7w">
+                                                <rect key="frame" x="77" y="0.0" width="200" height="150"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="MlW-T9-m7w" secondAttribute="height" multiplier="4:3" id="Fks-OM-Alb"/>
+                                                    <constraint firstAttribute="height" constant="150" id="LjU-PJ-n4T"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqY-xy-pwH">
+                                                <rect key="frame" x="0.0" y="170" width="354" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="VqY-xy-pwH" secondAttribute="trailing" id="Dyd-6Q-OHn"/>
+                                            <constraint firstItem="VqY-xy-pwH" firstAttribute="leading" secondItem="IwI-dW-7fe" secondAttribute="leading" id="Vu1-1o-gDy"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="tableBackground"/>
+                                <constraints>
+                                    <constraint firstItem="IwI-dW-7fe" firstAttribute="centerX" secondItem="Nft-50-B75" secondAttribute="centerX" id="MhC-Za-oA5"/>
+                                    <constraint firstItem="IwI-dW-7fe" firstAttribute="centerY" secondItem="Nft-50-B75" secondAttribute="centerY" id="Taj-qh-ykc"/>
+                                    <constraint firstItem="IwI-dW-7fe" firstAttribute="leading" secondItem="Nft-50-B75" secondAttribute="leading" constant="30" id="Zai-6o-QIW"/>
+                                    <constraint firstAttribute="trailing" secondItem="IwI-dW-7fe" secondAttribute="trailing" constant="30" id="h4Q-7S-8An"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="R1u-zb-Mxe"/>
+                        <color key="backgroundColor" name="tabbarBackground"/>
+                        <constraints>
+                            <constraint firstItem="Nft-50-B75" firstAttribute="trailing" secondItem="R1u-zb-Mxe" secondAttribute="trailing" id="05c-jM-LaL"/>
+                            <constraint firstItem="lbw-xZ-m75" firstAttribute="trailing" secondItem="R1u-zb-Mxe" secondAttribute="trailing" id="7hZ-z9-JNJ"/>
+                            <constraint firstItem="Nft-50-B75" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="OsF-0g-zV3"/>
+                            <constraint firstItem="Nft-50-B75" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="PPZ-F4-m90"/>
+                            <constraint firstItem="lbw-xZ-m75" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="ShG-TG-gsO"/>
+                            <constraint firstItem="R1u-zb-Mxe" firstAttribute="bottom" secondItem="Nft-50-B75" secondAttribute="bottom" id="e3k-ja-oUF"/>
+                            <constraint firstItem="R1u-zb-Mxe" firstAttribute="bottom" secondItem="lbw-xZ-m75" secondAttribute="bottom" id="ePi-Qj-V6o"/>
+                            <constraint firstItem="lbw-xZ-m75" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="vG0-RL-idp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lblEmpty" destination="VqY-xy-pwH" id="Hf3-Ql-MM8"/>
+                        <outlet property="searchBar" destination="wWP-dl-9j0" id="NDi-8V-uKV"/>
+                        <outlet property="table" destination="wM2-ZT-64Q" id="wjF-mJ-nya"/>
+                        <outlet property="vwEmpty" destination="Nft-50-B75" id="KZr-0i-Q1y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HWC-Rc-d3r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2110" y="72"/>
+        </scene>
     </scenes>
     <resources>
         <image name="emptyPig" width="200" height="200"/>

@@ -30,7 +30,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var btnBuy: UIButton!
 
     var itemDetail: Item?
-    var itemModel = ItemModel.shared
+    let itemModel = ItemModel.shared
     
     var isBookmarks = false {
         didSet {

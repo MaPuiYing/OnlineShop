@@ -75,8 +75,6 @@ class ItemModel {
         return item
     }
     
-    //MARK: - Get Object
-    
     func getFavioriteItem() -> [Item] {
         let favoriteItems = self.aryFavorite.filter({$0.isFavorite == true})
         let item = self.aryItem.filter({
@@ -95,6 +93,8 @@ class ItemModel {
         })
         return item
     }
+    
+    //MARK: - Get Object
     
     func getFaviorite(_ id: Int?) -> Bool {
         if let index = self.aryFavorite.firstIndex(where: {$0.id == id}) {
