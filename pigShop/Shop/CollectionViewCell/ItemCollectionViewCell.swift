@@ -13,7 +13,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblOldPrice: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
-    @IBOutlet weak var imvBookmarks: UIImageView!
+    @IBOutlet weak var imvBookmarks: ImageButton!
     
     @IBOutlet weak var vwContent: UIView!
     
@@ -33,11 +33,13 @@ class ItemCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.lblOldPrice.isHidden = true
+    }
+    
     func initSetup() {
         self.setupView()
-        
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.selectedBookmarks))
-        self.imvBookmarks.addGestureRecognizer(gesture)
     }
     
     func setupView() {
@@ -47,24 +49,19 @@ class ItemCollectionViewCell: UICollectionViewCell {
         self.vwContent.layer.borderColor = UIColor.borderColor.cgColor
         
         self.lblTitle.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        
+
         self.lblOldPrice.isHidden = true
         self.lblOldPrice.font = UIFont.systemFont(ofSize: 12)
         self.lblOldPrice.textColor = .textLightGrey
-        
         self.lblPrice.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         self.lblPrice.textColor = .textRed
     }
     
-    func setupOriginalPrice(_ price: String) {
+    func setupOriginalPrice(_ price: String?) {
         self.lblOldPrice.isHidden = false
-        let attributedString = NSMutableAttributedString(string: price)
+        let attributedString = NSMutableAttributedString(string: price ?? "")
         attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
         self.lblOldPrice.attributedText = attributedString
-    }
-    
-    @objc func selectedBookmarks() {
-        self.isBookmarks = !self.isBookmarks
     }
 
 }
