@@ -108,7 +108,7 @@ class ItemDetailViewController: UIViewController {
         
         self.btnBuy.tintColor = .btnOrange
         self.btnBuy.setTitleColor(.white, for: .normal)
-        self.btnBuy.setTitle("Buy for it", for: .normal)
+        self.btnBuy.setTitle("Buy it now", for: .normal)
         self.btnBuy.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
     }
     
@@ -132,6 +132,7 @@ class ItemDetailViewController: UIViewController {
     }
     
     //MARK: - Button Action
+    
     func plusBtnPressed() {
         if self.currentCount != 10 {
             self.currentCount += 1
@@ -147,6 +148,16 @@ class ItemDetailViewController: UIViewController {
     func selectedBookmarks() {
         self.isBookmarks = !self.isBookmarks
         self.itemModel.setFaviorite(self.itemDetail?.id, value: self.isBookmarks)
+    }
+    
+    @IBAction func addToCartBtnPressed() {
+        self.showAlert(title: "Add the item successfully.", okAction: {
+            self.navigationController?.popViewController(animated: true)
+        })
+    }
+    
+    @IBAction func buyItNowBtnPressed() {
+        NSLog("buy it now")
     }
 
 }

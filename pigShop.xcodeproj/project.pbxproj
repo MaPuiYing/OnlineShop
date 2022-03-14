@@ -35,6 +35,8 @@
 		8D6F72DA27DB64F800714245 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F72D827DB64F800714245 /* ItemCollectionViewCell.swift */; };
 		8D6F72DB27DB64F800714245 /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D6F72D927DB64F800714245 /* ItemCollectionViewCell.xib */; };
 		8D6F72DD27DB9D5200714245 /* UILabel++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F72DC27DB9D5100714245 /* UILabel++.swift */; };
+		8D70A67C27DF271500A176C0 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70A67A27DF271500A176C0 /* AlertViewController.swift */; };
+		8D70A67D27DF271500A176C0 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D70A67B27DF271500A176C0 /* AlertViewController.xib */; };
 		8D7E862227DDAE7C00118874 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E862127DDAE7C00118874 /* ItemModel.swift */; };
 		8D7E862427DDC19200118874 /* item.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E862327DDC19200118874 /* item.json */; };
 		8D7E862627DDCFED00118874 /* Double++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E862527DDCFED00118874 /* Double++.swift */; };
@@ -105,6 +107,8 @@
 		8D6F72D827DB64F800714245 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D6F72D927DB64F800714245 /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		8D6F72DC27DB9D5100714245 /* UILabel++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel++.swift"; sourceTree = "<group>"; };
+		8D70A67A27DF271500A176C0 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		8D70A67B27DF271500A176C0 /* AlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
 		8D7E862127DDAE7C00118874 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		8D7E862327DDC19200118874 /* item.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = item.json; path = ../../../../Downloads/item.json; sourceTree = "<group>"; };
 		8D7E862527DDCFED00118874 /* Double++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Double++.swift"; path = "pigShop/extension/Double++.swift"; sourceTree = SOURCE_ROOT; };
@@ -153,6 +157,8 @@
 		8D31615027DCCDB9008A54B2 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				8D70A67A27DF271500A176C0 /* AlertViewController.swift */,
+				8D70A67B27DF271500A176C0 /* AlertViewController.xib */,
 				8D31614E27DCCDB1008A54B2 /* CustomRefreshControl.swift */,
 				8D31615D27DCF3C0008A54B2 /* ImageButton.swift */,
 				8D31615F27DCF7A8008A54B2 /* ViewButton.swift */,
@@ -458,6 +464,7 @@
 				8D4859FB27D90087007C5B55 /* Main.storyboard in Resources */,
 				8D485A3027D9044B007C5B55 /* Profile.storyboard in Resources */,
 				8D485A2E27D90441007C5B55 /* Order.storyboard in Resources */,
+				8D70A67D27DF271500A176C0 /* AlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +504,7 @@
 				8D6F72D527DB4F9400714245 /* Util.swift in Sources */,
 				8D9BFA0627DA3A1900DBE962 /* HomeViewController.swift in Sources */,
 				8D31616227DD0C05008A54B2 /* ItemDetailViewController.swift in Sources */,
+				8D70A67C27DF271500A176C0 /* AlertViewController.swift in Sources */,
 				8D6F72DD27DB9D5200714245 /* UILabel++.swift in Sources */,
 				8D7E862627DDCFED00118874 /* Double++.swift in Sources */,
 				8D31614F27DCCDB1008A54B2 /* CustomRefreshControl.swift in Sources */,

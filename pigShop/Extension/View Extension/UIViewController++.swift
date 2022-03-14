@@ -20,4 +20,16 @@ extension UIViewController {
     @objc func back() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func showAlert(title: String, okAction: @escaping (()->Void)) {
+        let alertView = AlertViewController(nibName: "AlertViewController", bundle: nil)
+        alertView.titleString = title
+        alertView.okAction = okAction
+        alertView.providesPresentationContextTransitionStyle = true
+        alertView.definesPresentationContext = true
+        alertView.modalPresentationStyle = .overCurrentContext
+        alertView.modalTransitionStyle = .crossDissolve
+        
+        self.tabBarController?.present(alertView, animated: true, completion: nil)
+    }
 }

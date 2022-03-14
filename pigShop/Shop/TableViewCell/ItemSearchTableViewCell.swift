@@ -54,7 +54,7 @@ class ItemSearchTableViewCell: UITableViewCell {
         self.lblOldPrice.font = UIFont.systemFont(ofSize: 12)
         self.lblOldPrice.textColor = .textLightGrey
         self.lblPrice.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        self.lblPrice.textColor = .textRed
+        self.lblPrice.textColor = .textRed        
     }
     
     func setupOriginalPrice(_ price: String?) {

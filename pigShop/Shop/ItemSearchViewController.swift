@@ -9,7 +9,6 @@ import UIKit
 
 class ItemSearchViewController: UIViewController {
     
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var vwEmpty: UIView!
     @IBOutlet weak var lblEmpty: UILabel!
@@ -19,6 +18,7 @@ class ItemSearchViewController: UIViewController {
     var filteredItems: [Item] = []
     
     var refreshControl = CustomRefreshControl()
+    let searchBar = UISearchBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +52,15 @@ class ItemSearchViewController: UIViewController {
     
     func tableViewSetup() {
         self.table.register(UINib(nibName: "ItemSearchTableViewCell", bundle: nil), forCellReuseIdentifier: "searchCell")
+        
+        self.searchBar.frame = CGRect(x: 0, y: 0, width: self.table.frame.width, height: 70)
+        self.searchBar.delegate = self
+        self.searchBar.searchBarStyle = .minimal
+        self.searchBar.tintColor = .darkRed
+        self.searchBar.placeholder = "Search the item name"
+        self.searchBar.sizeToFit()
+        self.searchBar.searchTextPositionAdjustment = UIOffset(horizontal: 5, vertical: 0)
+        self.table.tableHeaderView = self.searchBar
     }
     
     func navigationBarSetup() {
@@ -67,7 +76,7 @@ class ItemSearchViewController: UIViewController {
         self.items = itemModel.getAllItem()
         self.navigationBarSetup()
         
-        let searchText = self.searchBar.text ?? ""
+        let searchText = searchBar.text ?? ""
         if searchText.isEmpty {
             self.filteredItems = self.items
         } else {
