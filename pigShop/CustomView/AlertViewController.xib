@@ -31,8 +31,8 @@
                                 <constraint firstAttribute="width" secondItem="X2i-gx-MJ8" secondAttribute="height" multiplier="1:1" id="LJc-Xq-sae"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfj-vW-UvL">
-                            <rect key="frame" x="30" y="150" width="284" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfj-vW-UvL">
+                            <rect key="frame" x="20" y="150" width="304" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="Vfj-vW-UvL" firstAttribute="leading" secondItem="rGS-0x-tfa" secondAttribute="leading" constant="30" id="6RF-Dw-chZ"/>
+                        <constraint firstItem="Vfj-vW-UvL" firstAttribute="leading" secondItem="rGS-0x-tfa" secondAttribute="leading" constant="20" id="6RF-Dw-chZ"/>
                         <constraint firstItem="o4g-d2-XF0" firstAttribute="top" secondItem="Vfj-vW-UvL" secondAttribute="bottom" constant="50" id="8mM-8C-HbE"/>
                         <constraint firstItem="Vfj-vW-UvL" firstAttribute="top" secondItem="X2i-gx-MJ8" secondAttribute="bottom" constant="20" id="D2T-NL-PhC"/>
                         <constraint firstItem="X2i-gx-MJ8" firstAttribute="top" secondItem="rGS-0x-tfa" secondAttribute="top" constant="10" id="JZT-Vq-kpw"/>
@@ -60,7 +60,7 @@
                         <constraint firstItem="o4g-d2-XF0" firstAttribute="leading" secondItem="rGS-0x-tfa" secondAttribute="leading" constant="20" id="a05-2v-YTY"/>
                         <constraint firstItem="X2i-gx-MJ8" firstAttribute="centerX" secondItem="rGS-0x-tfa" secondAttribute="centerX" id="hoW-q0-WJ2"/>
                         <constraint firstItem="X2i-gx-MJ8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rGS-0x-tfa" secondAttribute="leading" constant="30" id="hxj-CM-fe3"/>
-                        <constraint firstAttribute="trailing" secondItem="Vfj-vW-UvL" secondAttribute="trailing" constant="30" id="kuz-pD-5K5"/>
+                        <constraint firstAttribute="trailing" secondItem="Vfj-vW-UvL" secondAttribute="trailing" constant="20" id="kuz-pD-5K5"/>
                         <constraint firstAttribute="trailing" secondItem="o4g-d2-XF0" secondAttribute="trailing" constant="20" id="x3V-o7-0af"/>
                     </constraints>
                 </view>

@@ -9,6 +9,8 @@ import UIKit
 
 class CartItemTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var vwCell: UIView!
+    
     @IBOutlet weak var imvCheckBox: ImageButton!
     @IBOutlet weak var imvBanner: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
@@ -54,6 +56,7 @@ class CartItemTableViewCell: UITableViewCell {
     }
     
     func initSetup() {
+        self.vwCell.layer.cornerRadius = 10
         self.imvBanner.layer.cornerRadius = 10
         self.lblTitle.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         

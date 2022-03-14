@@ -12,23 +12,46 @@ class CartViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var vwEmpty: UIView!
     @IBOutlet weak var lblEmpty: UILabel!
+    
+    @IBOutlet weak var lblColumnTotal: UILabel!
+    @IBOutlet weak var lblTotal: UILabel!
+    @IBOutlet weak var btnCheckout: UIButton!
 
     let cartModel = CartModel.shared
     var aryCart: [Cart] = []
+    var totalPrice: Double = 0 {
+        didSet {
+            self.lblTotal.text = self.totalPrice.stringValue
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Cart"
+        self.initSetup()
         self.tableViewSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.aryCart = cartModel.aryCart
+        self.updateTotalPrice()
         self.emptySetup()
     }
     
     //MARK: - Init set up
+    
+    func initSetup() {
+        self.lblColumnTotal.font = UIFont.systemFont(ofSize: 13)
+        self.lblColumnTotal.text = "Total"
+        self.lblColumnTotal.textColor = .textLightGrey
+        self.lblTotal.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        
+        self.btnCheckout.setTitle("Checkout", for: .normal)
+        self.btnCheckout.tintColor = .btnOrange
+        self.btnCheckout.layer.masksToBounds = true
+        self.btnCheckout.layer.cornerRadius = self.btnCheckout.bounds.height/2
+    }
     
     func tableViewSetup() {
         self.table.register(UINib(nibName: "CartItemTableViewCell", bundle: nil), forCellReuseIdentifier: "cartCell")
@@ -45,6 +68,19 @@ class CartViewController: UIViewController {
             self.vwEmpty.isHidden = true
             self.table.reloadData()
         }
+    }
+    
+    //MARK: - Method
+    
+    func updateTotalPrice() {
+        self.aryCart = self.cartModel.getCart()
+        
+        var total: Double = 0
+        for cart in self.aryCart {
+            total += (cart.item?.price ?? 0) * Double(cart.count ?? 1)
+        }
+        
+        self.totalPrice = total
     }
 }
 
@@ -67,16 +103,19 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
             cell.setupOriginalPrice(item?.oldPrice?.stringValue)
         }
         cell.currentCount = model.count ?? 1
+        
         cell.vwMinus.method = {
             if cell.currentCount != 1 {
                 cell.currentCount -= 1
                 self.cartModel.updateCount(id: model.id ?? 0, count: cell.currentCount)
+                self.updateTotalPrice()
             }
         }
         cell.vwPlus.method = {
-            if cell.currentCount != 10 {
+            if cell.currentCount != 9 {
                 cell.currentCount += 1
                 self.cartModel.updateCount(id: model.id ?? 0, count: cell.currentCount)
+                self.updateTotalPrice()
             }
         }
         return cell
@@ -85,7 +124,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.cartModel.deleteCart(id: self.aryCart[indexPath.row].id ?? indexPath.row)
-            self.aryCart.remove(at: indexPath.row)
+            self.updateTotalPrice()
             self.emptySetup()
         }
     }

@@ -553,7 +553,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-ZT-64Q">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="OBW-3c-ZTL" id="5YM-pQ-Ofz"/>
@@ -605,7 +605,7 @@
                             <constraint firstItem="Nft-50-B75" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="OsF-0g-zV3"/>
                             <constraint firstItem="Nft-50-B75" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="PPZ-F4-m90"/>
                             <constraint firstItem="R1u-zb-Mxe" firstAttribute="bottom" secondItem="Nft-50-B75" secondAttribute="bottom" id="e3k-ja-oUF"/>
-                            <constraint firstItem="wM2-ZT-64Q" firstAttribute="top" secondItem="sFZ-03-h8t" secondAttribute="top" id="j4l-rR-g1S"/>
+                            <constraint firstItem="wM2-ZT-64Q" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="j4l-rR-g1S"/>
                         </constraints>
                     </view>
                     <connections>

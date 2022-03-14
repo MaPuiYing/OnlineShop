@@ -132,6 +132,7 @@ extension ItemSearchViewController: UISearchBarDelegate {
 }
 
 //MARK: - UITableView DataSource
+
 extension ItemSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredItems.count
