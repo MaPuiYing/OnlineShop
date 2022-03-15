@@ -29,6 +29,10 @@ extension UIViewController {
         alertView.modalPresentationStyle = .overCurrentContext
         alertView.modalTransitionStyle = .crossDissolve
         
-        self.tabBarController?.present(alertView, animated: true, completion: nil)
+        if self.tabBarController == nil {
+            self.present(alertView, animated: true, completion: nil)
+        } else {
+            self.tabBarController?.present(alertView, animated: true, completion: nil)
+        }
     }
 }

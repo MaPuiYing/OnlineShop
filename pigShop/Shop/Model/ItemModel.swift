@@ -60,7 +60,6 @@ class ItemModel {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
                 let result = try JSONDecoder().decode(ItemJson.self, from: data)
                 return result.item ?? []
-
             } catch {
                 // handle error
             }

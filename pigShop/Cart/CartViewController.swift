@@ -19,6 +19,8 @@ class CartViewController: UIViewController {
     @IBOutlet weak var btnCheckout: UIButton!
 
     let cartModel = CartModel.shared
+    let userModel = UserModel.shared
+    
     var aryCart: [Cart] = []
     var totalPrice: Double = 0 {
         didSet {
@@ -76,9 +78,15 @@ class CartViewController: UIViewController {
     
     //MARK: - Button Action
     @IBAction func checkoutBtnPressed() {
-        self.showAlert(title: "Are you sure to buy the item(s)?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: { [weak self] in
-            //TODO: Add confirm action
-        })
+        if self.userModel.isLogined() == false {
+            self.showAlert(title: "Please login your account.", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "OK", rightBtnAction: { [weak self] in
+                //TODO: Turn to login page
+            })
+        } else {
+            self.showAlert(title: "Are you sure to buy the item(s)?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: { [weak self] in
+                //TODO: Add confirm action
+            })
+        }
     }
     
     //MARK: - Method

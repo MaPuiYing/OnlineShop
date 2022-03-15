@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     
     var tableSections: [ProfileSections] = []
-    var isLogin = false
+    let userModel = UserModel.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +48,25 @@ class ProfileViewController: UIViewController {
         tableSections.append(ProfileSections.user)
         tableSections.append(ProfileSections.edit(ProfileSections.EditSection.allCases))
         tableSections.append(ProfileSections.question(ProfileSections.QuestionSection.allCases))
-        if isLogin {
+        if self.userModel.isLogined() == true {
             tableSections.append(ProfileSections.logout)
         }
         
         table.reloadData()
+    }
+    
+    //MARK: - Button Action
+    @objc func registerBtnPressed() {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController {
+            vc.modalPresentationStyle = .overCurrentContext
+            self.tabBarController?.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func loginBtnPressed() {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+            self.tabBarController?.present(vc, animated: true, completion: nil)
+        }
     }
 }
 
@@ -60,11 +74,11 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return tableSections.count
+        return self.tableSections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = tableSections[section]
+        let section = self.tableSections[section]
         switch section {
         case .user:
             return 1
@@ -78,21 +92,22 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = tableSections[indexPath.section]
+        let section = self.tableSections[indexPath.section]
         switch section {
         case .user:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell") as? AccountTableViewCell else {return UITableViewCell()}
             
-            if isLogin {
+            if self.userModel.isLogined() == true {
                 cell.vwUser.isHidden = false
                 cell.vwGuest.isHidden = true
                 
                 cell.lblUserName.text = "[User Name]"
             } else {
                 cell.selectionStyle = .none
-                
                 cell.vwGuest.isHidden = false
                 cell.vwUser.isHidden = true
+                cell.btnRegister.addTarget(self, action: #selector(self.registerBtnPressed), for: .touchUpInside)
+                cell.btnLogin.addTarget(self, action: #selector(self.loginBtnPressed), for: .touchUpInside)
             }
             return cell
         case .edit(let items):
@@ -128,7 +143,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        table.deselectRow(at: indexPath, animated: true)
+        self.table.deselectRow(at: indexPath, animated: true)
     }
     
     //MARK: - Header
@@ -138,7 +153,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let section = tableSections[section]
+        let section = self.tableSections[section]
         switch section {
         case .user, .logout:
             return .leastNonzeroMagnitude
@@ -154,7 +169,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = tableSections[section]
+        let section = self.tableSections[section]
         switch section {
         case .user, .logout:
             return nil

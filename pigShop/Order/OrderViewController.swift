@@ -15,7 +15,7 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var vwEmpty: UIView!
     @IBOutlet weak var lblEmpty: UILabel!
     
-    var isLogin = true
+    let userModel = UserModel.shared
     var isEmpty = true
 
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class OrderViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if !isLogin {
+        if self.userModel.isLogined() == false {
             loginViewSetup()
         } else {
             if isEmpty {
