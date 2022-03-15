@@ -49,9 +49,7 @@ class ItemSearchTableViewCell: UITableViewCell {
         
         self.imvBanner.layer.cornerRadius = 10
         
-        self.lblTitle.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        self.lblTitle.textColor = .textDarkGrey
-        
+        self.lblTitle.font = UIFont.systemFont(ofSize: 16, weight: .semibold)        
         self.lblOldPrice.isHidden = true
         self.lblOldPrice.font = UIFont.systemFont(ofSize: 12)
         self.lblOldPrice.textColor = .textLightGrey
