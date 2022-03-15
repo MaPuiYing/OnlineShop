@@ -153,13 +153,22 @@ class ItemDetailViewController: UIViewController {
     
     @IBAction func addToCartBtnPressed() {
         if (self.cartModel.getCart().count == 10) && (self.cartModel.isDuplicate(item: self.itemDetail)) {
-            self.showAlert(title: "Failed to add the item.\nYour cart is full now.", okAction: {})
+            self.showAlert(title: "Failed to add the item.\nYour cart is full now.", hideLeftButton: true, rightTitle: "OK")
         } else {
-            self.showAlert(title: "Add the item successfully.", okAction: {
-                self.cartModel.addCart(item: self.itemDetail, count: self.currentCount)
-                self.navigationController?.popViewController(animated: true)
-            })
-        }
+            self.cartModel.addCart(item: self.itemDetail, count: self.currentCount, success: { [weak self] in
+                //Success
+                self?.showAlert(title: "Add the item successfully.", hideLeftButton: true, rightTitle: "OK", rightBtnAction: { [weak self] in
+                    guard let theSelf = self else {return}
+                    theSelf.navigationController?.popViewController(animated: true)
+                })
+            }, failure: { [weak self] in
+                //Failure
+                self?.showAlert(title: "You are limited to store 9 amount for each item. Add it successfully.", hideLeftButton: true, rightTitle: "OK", rightBtnAction: { [weak self] in
+                    guard let theSelf = self else {return}
+                    theSelf.navigationController?.popViewController(animated: true)
+                })
+            }
+        )}
     }
     
     @IBAction func buyItNowBtnPressed() {

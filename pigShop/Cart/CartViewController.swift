@@ -13,6 +13,7 @@ class CartViewController: UIViewController {
     @IBOutlet weak var vwEmpty: UIView!
     @IBOutlet weak var lblEmpty: UILabel!
     
+    @IBOutlet weak var vwBottom: UIView!
     @IBOutlet weak var lblColumnTotal: UILabel!
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var btnCheckout: UIButton!
@@ -35,13 +36,14 @@ class CartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.aryCart = cartModel.aryCart
-        self.updateTotalPrice()
+        self.updateCartContent()
         self.emptySetup()
     }
     
     //MARK: - Init set up
     
     func initSetup() {
+        self.vwBottom.addShadow(location: .top, color: .black.withAlphaComponent(0.3))
         self.lblColumnTotal.font = UIFont.systemFont(ofSize: 13)
         self.lblColumnTotal.text = "Total"
         self.lblColumnTotal.textColor = .textLightGrey
@@ -55,6 +57,8 @@ class CartViewController: UIViewController {
     
     func tableViewSetup() {
         self.table.register(UINib(nibName: "CartItemTableViewCell", bundle: nil), forCellReuseIdentifier: "cartCell")
+        self.table.contentInset.top = 6
+        self.table.contentInset.bottom = 20
     }
     
     func emptySetup() {
@@ -70,16 +74,24 @@ class CartViewController: UIViewController {
         }
     }
     
+    //MARK: - Button Action
+    @IBAction func checkoutBtnPressed() {
+        self.showAlert(title: "Are you sure to buy the item(s)?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: { [weak self] in
+            //TODO: Add confirm action
+        })
+    }
+    
     //MARK: - Method
     
-    func updateTotalPrice() {
+    func updateCartContent() {
         self.aryCart = self.cartModel.getCart()
         
         var total: Double = 0
         for cart in self.aryCart {
-            total += (cart.item?.price ?? 0) * Double(cart.count ?? 1)
+            if cart.isChecked == true {
+                total += (cart.item?.price ?? 0) * Double(cart.count ?? 1)
+            }
         }
-        
         self.totalPrice = total
     }
 }
@@ -103,19 +115,28 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
             cell.setupOriginalPrice(item?.oldPrice?.stringValue)
         }
         cell.currentCount = model.count ?? 1
+        cell.isChecked = model.isChecked ?? true
         
-        cell.vwMinus.method = {
+        //Method
+        
+        cell.imvCheckBox.method = { [weak self] in
+            cell.isChecked = !cell.isChecked
+            self?.cartModel.updateChecked(id: model.id ?? 0, isChecked: cell.isChecked)
+            self?.updateCartContent()
+            
+        }
+        cell.vwMinus.method = { [weak self] in
             if cell.currentCount != 1 {
                 cell.currentCount -= 1
-                self.cartModel.updateCount(id: model.id ?? 0, count: cell.currentCount)
-                self.updateTotalPrice()
+                self?.cartModel.updateCount(id: model.id ?? 0, count: cell.currentCount)
+                self?.updateCartContent()
             }
         }
-        cell.vwPlus.method = {
+        cell.vwPlus.method = { [weak self] in
             if cell.currentCount != 9 {
                 cell.currentCount += 1
-                self.cartModel.updateCount(id: model.id ?? 0, count: cell.currentCount)
-                self.updateTotalPrice()
+                self?.cartModel.updateCount(id: model.id ?? 0, count: cell.currentCount)
+                self?.updateCartContent()
             }
         }
         return cell
@@ -124,8 +145,15 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.cartModel.deleteCart(id: self.aryCart[indexPath.row].id ?? indexPath.row)
-            self.updateTotalPrice()
+            self.updateCartContent()
             self.emptySetup()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
+            vc.itemDetail = self.aryCart[indexPath.row].item
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

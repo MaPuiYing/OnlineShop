@@ -57,6 +57,8 @@ class CartItemTableViewCell: UITableViewCell {
     
     func initSetup() {
         self.vwCell.layer.cornerRadius = 10
+        self.vwCell.addShadow(location: .all)
+        
         self.imvBanner.layer.cornerRadius = 10
         self.lblTitle.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         
@@ -68,8 +70,6 @@ class CartItemTableViewCell: UITableViewCell {
         
         self.lblCount.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         self.lblCount.textColor = .textDarkGrey
-        
-        self.imvCheckBox.method = {self.isChecked = !self.isChecked}
     }
     
     func setupOriginalPrice(_ price: String?) {

@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+enum VerticalLocation: String {
+    case top
+    case bottom
+    case all
+}
+
 extension UIView {
     @discardableResult
     func fromNib<T: UIView>() -> T? {
@@ -27,5 +33,21 @@ extension UIView {
         ])
         
         return contentView
+    }
+    
+    func addShadow(location: VerticalLocation, color: UIColor = .black.withAlphaComponent(0.2), opacity: Float = 0.2, radius: CGFloat = 5.0) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowRadius = radius
+            
+        switch location {
+        case .top:
+            self.layer.shadowOffset = CGSize(width: 0, height: -1)
+        case .bottom:
+            self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        case .all:
+            self.layer.shadowOffset = CGSize(width: -1, height: 1)
+        }
     }
 }
