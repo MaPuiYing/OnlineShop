@@ -7,14 +7,23 @@
 
 import UIKit
 
+struct AlertContent {
+    let title: String?
+    let hideLeftButton: Bool?
+    let leftTitle: String?
+    let rightTitle: String?
+    let leftBtnAction: (()->Void)?
+    let rightBtnAction: (()->Void)?
+}
+
 class AlertViewController: UIViewController {
     
     @IBOutlet weak var vwAlert: UIView!
     @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var btnOK: UIButton!
+    @IBOutlet weak var btnLeft: UIButton!
+    @IBOutlet weak var btnRight: UIButton!
     
-    var titleString: String? = ""
-    var okAction: (()->Void)?
+    var alertContent: AlertContent?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,17 +34,30 @@ class AlertViewController: UIViewController {
     
     func initSetup() {
         self.vwAlert.layer.cornerRadius = 16
-        self.btnOK.tintColor = .btnOrange
-        self.btnOK.layer.masksToBounds = true
-        self.btnOK.layer.cornerRadius = self.btnOK.bounds.height/2
-        self.btnOK.setTitle("OK", for: .normal)
+        
+        self.btnLeft.tintColor = .lightGray
+        self.btnLeft.layer.masksToBounds = true
+        self.btnLeft.layer.cornerRadius = self.btnLeft.bounds.height/2
+        self.btnRight.tintColor = .btnOrange
+        self.btnRight.layer.masksToBounds = true
+        self.btnRight.layer.cornerRadius = self.btnLeft.bounds.height/2
         
         self.lblTitle.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        self.lblTitle.text = self.titleString
+        
+        let model = self.alertContent
+        self.lblTitle.text = model?.title
+        self.btnLeft.isHidden = model?.hideLeftButton ?? true
+        self.btnLeft.setTitle(model?.leftTitle, for: .normal)
+        self.btnRight.setTitle(model?.rightTitle, for: .normal)
     }
     
-    @IBAction func dismiss(_ sender: Any) {
+    @IBAction func leftButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        self.okAction?()
+        self.alertContent?.leftBtnAction?()
+    }
+    
+    @IBAction func rightButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        self.alertContent?.rightBtnAction?()
     }
 }

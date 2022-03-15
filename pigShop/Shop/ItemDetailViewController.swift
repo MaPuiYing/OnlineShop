@@ -31,6 +31,7 @@ class ItemDetailViewController: UIViewController {
 
     var itemDetail: Item?
     let itemModel = ItemModel.shared
+    let cartModel = CartModel.shared
     
     var isBookmarks = false {
         didSet {
@@ -134,7 +135,7 @@ class ItemDetailViewController: UIViewController {
     //MARK: - Button Action
     
     func plusBtnPressed() {
-        if self.currentCount != 10 {
+        if self.currentCount != 9 {
             self.currentCount += 1
         }
     }
@@ -151,9 +152,23 @@ class ItemDetailViewController: UIViewController {
     }
     
     @IBAction func addToCartBtnPressed() {
-        self.showAlert(title: "Add the item successfully.", okAction: {
-            self.navigationController?.popViewController(animated: true)
-        })
+        if (self.cartModel.getCart().count == 10) && (self.cartModel.isDuplicate(item: self.itemDetail)) {
+            self.showAlert(title: "Failed to add the item.\nYour cart is full now.", hideLeftButton: true, rightTitle: "OK")
+        } else {
+            self.cartModel.addCart(item: self.itemDetail, count: self.currentCount, success: { [weak self] in
+                //Success
+                self?.showAlert(title: "Add the item successfully.", hideLeftButton: true, rightTitle: "OK", rightBtnAction: { [weak self] in
+                    guard let theSelf = self else {return}
+                    theSelf.navigationController?.popViewController(animated: true)
+                })
+            }, failure: { [weak self] in
+                //Failure
+                self?.showAlert(title: "You are limited to store 9 amount for each item. Add it successfully.", hideLeftButton: true, rightTitle: "OK", rightBtnAction: { [weak self] in
+                    guard let theSelf = self else {return}
+                    theSelf.navigationController?.popViewController(animated: true)
+                })
+            }
+        )}
     }
     
     @IBAction func buyItNowBtnPressed() {

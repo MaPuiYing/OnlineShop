@@ -52,15 +52,13 @@ class ItemSearchViewController: UIViewController {
     
     func tableViewSetup() {
         self.table.register(UINib(nibName: "ItemSearchTableViewCell", bundle: nil), forCellReuseIdentifier: "searchCell")
-        
-        self.searchBar.frame = CGRect(x: 0, y: 0, width: self.table.frame.width, height: 70)
         self.searchBar.delegate = self
         self.searchBar.searchBarStyle = .minimal
         self.searchBar.tintColor = .darkRed
         self.searchBar.placeholder = "Search the item name"
         self.searchBar.sizeToFit()
         self.searchBar.searchTextPositionAdjustment = UIOffset(horizontal: 5, vertical: 0)
-        self.table.tableHeaderView = self.searchBar
+        self.navigationItem.titleView = searchBar
     }
     
     func navigationBarSetup() {
@@ -74,6 +72,8 @@ class ItemSearchViewController: UIViewController {
     
     func refreshPage() {
         self.items = itemModel.getAllItem()
+        self.table.reloadData()
+        
         self.navigationBarSetup()
         
         let searchText = searchBar.text ?? ""
@@ -84,7 +84,6 @@ class ItemSearchViewController: UIViewController {
                 $0.title?.localizedCaseInsensitiveContains(searchText) == true
             })
         }
-        self.table.reloadData()
         self.vwEmpty.isHidden = (self.items.count > 0)
     }
     
@@ -131,6 +130,7 @@ extension ItemSearchViewController: UISearchBarDelegate {
 }
 
 //MARK: - UITableView DataSource
+
 extension ItemSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredItems.count
@@ -139,7 +139,7 @@ extension ItemSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as? ItemSearchTableViewCell else {return UITableViewCell()}
         let model = self.filteredItems[indexPath.row]
-        cell.vwBanner.sd_setImage(with: URL(string: model.imageURL ?? ""), completed: nil)
+        cell.imvBanner.sd_setImage(with: URL(string: model.imageURL ?? ""), completed: nil)
         cell.lblTitle.text = model.title
         cell.lblPrice.text = model.price?.stringValue
         if model.isDiscount == true {

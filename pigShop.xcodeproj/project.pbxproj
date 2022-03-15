@@ -37,6 +37,9 @@
 		8D6F72DD27DB9D5200714245 /* UILabel++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F72DC27DB9D5100714245 /* UILabel++.swift */; };
 		8D70A67C27DF271500A176C0 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70A67A27DF271500A176C0 /* AlertViewController.swift */; };
 		8D70A67D27DF271500A176C0 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D70A67B27DF271500A176C0 /* AlertViewController.xib */; };
+		8D70A68227DF383E00A176C0 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70A68127DF383E00A176C0 /* CartModel.swift */; };
+		8D70A68627DF3CC200A176C0 /* CartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70A68427DF3CC200A176C0 /* CartItemTableViewCell.swift */; };
+		8D70A68727DF3CC200A176C0 /* CartItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D70A68527DF3CC200A176C0 /* CartItemTableViewCell.xib */; };
 		8D7E862227DDAE7C00118874 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E862127DDAE7C00118874 /* ItemModel.swift */; };
 		8D7E862427DDC19200118874 /* item.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E862327DDC19200118874 /* item.json */; };
 		8D7E862627DDCFED00118874 /* Double++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E862527DDCFED00118874 /* Double++.swift */; };
@@ -109,6 +112,9 @@
 		8D6F72DC27DB9D5100714245 /* UILabel++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel++.swift"; sourceTree = "<group>"; };
 		8D70A67A27DF271500A176C0 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		8D70A67B27DF271500A176C0 /* AlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
+		8D70A68127DF383E00A176C0 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
+		8D70A68427DF3CC200A176C0 /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemTableViewCell.swift; sourceTree = "<group>"; };
+		8D70A68527DF3CC200A176C0 /* CartItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemTableViewCell.xib; sourceTree = "<group>"; };
 		8D7E862127DDAE7C00118874 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		8D7E862327DDC19200118874 /* item.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = item.json; path = ../../../../Downloads/item.json; sourceTree = "<group>"; };
 		8D7E862527DDCFED00118874 /* Double++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Double++.swift"; path = "pigShop/extension/Double++.swift"; sourceTree = SOURCE_ROOT; };
@@ -243,6 +249,8 @@
 		8D485A2627D903FA007C5B55 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				8D70A67E27DF381700A176C0 /* Model */,
+				8D70A68327DF3CA300A176C0 /* TableViewCell */,
 				8D485A2B27D9042C007C5B55 /* Cart.storyboard */,
 				8D9BFA0327DA259500DBE962 /* CartViewController.swift */,
 			);
@@ -268,6 +276,23 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		8D70A67E27DF381700A176C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D70A68127DF383E00A176C0 /* CartModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8D70A68327DF3CA300A176C0 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				8D70A68427DF3CC200A176C0 /* CartItemTableViewCell.swift */,
+				8D70A68527DF3CC200A176C0 /* CartItemTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		8D7E861E27DDAE6100118874 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,7 +302,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		8D7E862727DDCFFA00118874 /* View Extension */ = {
+		8D7E862727DDCFFA00118874 /* ViewExtension */ = {
 			isa = PBXGroup;
 			children = (
 				8DDF378F27D9BBEC00142E4B /* UIColor++.swift */,
@@ -285,7 +310,7 @@
 				8D6F72DC27DB9D5100714245 /* UILabel++.swift */,
 				8D31615327DCD70B008A54B2 /* UIViewController++.swift */,
 			);
-			path = "View Extension";
+			path = ViewExtension;
 			sourceTree = "<group>";
 		};
 		8D980A5327DE445A00718E50 /* TableViewCell */ = {
@@ -323,7 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				8D7E862527DDCFED00118874 /* Double++.swift */,
-				8D7E862727DDCFFA00118874 /* View Extension */,
+				8D7E862727DDCFFA00118874 /* ViewExtension */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -461,6 +486,7 @@
 				8D6F72D327DB06DD00714245 /* CategorySelectionCollectionViewCell.xib in Resources */,
 				8D6F72CD27DAF72400714245 /* RecommendView.xib in Resources */,
 				8D980A5727DE447100718E50 /* ItemSearchTableViewCell.xib in Resources */,
+				8D70A68727DF3CC200A176C0 /* CartItemTableViewCell.xib in Resources */,
 				8D4859FB27D90087007C5B55 /* Main.storyboard in Resources */,
 				8D485A3027D9044B007C5B55 /* Profile.storyboard in Resources */,
 				8D485A2E27D90441007C5B55 /* Order.storyboard in Resources */,
@@ -492,6 +518,7 @@
 				8D980A5627DE447100718E50 /* ItemSearchTableViewCell.swift in Sources */,
 				8D4859F427D90087007C5B55 /* AppDelegate.swift in Sources */,
 				8D6F72D227DB06DD00714245 /* CategorySelectionCollectionViewCell.swift in Sources */,
+				8D70A68227DF383E00A176C0 /* CartModel.swift in Sources */,
 				8DDF379027D9BBEC00142E4B /* UIColor++.swift in Sources */,
 				8DDF379227D9C9A500142E4B /* ProfileViewController.swift in Sources */,
 				8D7E862227DDAE7C00118874 /* ItemModel.swift in Sources */,
@@ -502,6 +529,7 @@
 				8D31615227DCD484008A54B2 /* CategoryItemViewController.swift in Sources */,
 				8D6F72CF27DAFA6900714245 /* UIView++.swift in Sources */,
 				8D6F72D527DB4F9400714245 /* Util.swift in Sources */,
+				8D70A68627DF3CC200A176C0 /* CartItemTableViewCell.swift in Sources */,
 				8D9BFA0627DA3A1900DBE962 /* HomeViewController.swift in Sources */,
 				8D31616227DD0C05008A54B2 /* ItemDetailViewController.swift in Sources */,
 				8D70A67C27DF271500A176C0 /* AlertViewController.swift in Sources */,

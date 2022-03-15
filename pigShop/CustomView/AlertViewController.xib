@@ -10,7 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertViewController" customModule="pigShop" customModuleProvider="target">
             <connections>
-                <outlet property="btnOK" destination="o4g-d2-XF0" id="Iug-JR-Men"/>
+                <outlet property="btnLeft" destination="o4g-d2-XF0" id="jab-dW-iBm"/>
+                <outlet property="btnRight" destination="Z9U-o0-8VS" id="40y-9O-EgY"/>
                 <outlet property="lblTitle" destination="Vfj-vW-UvL" id="apL-fe-Mfz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vwAlert" destination="rGS-0x-tfa" id="FFS-lt-4uc"/>
@@ -22,55 +23,68 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rGS-0x-tfa">
-                    <rect key="frame" x="35" y="303" width="344" height="290.5"/>
+                    <rect key="frame" x="30" y="303" width="354" height="290.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyPig" translatesAutoresizingMaskIntoConstraints="NO" id="X2i-gx-MJ8">
-                            <rect key="frame" x="112" y="10" width="120" height="120"/>
+                            <rect key="frame" x="117" y="10" width="120" height="120"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="4Bp-Ds-XOB"/>
                                 <constraint firstAttribute="width" secondItem="X2i-gx-MJ8" secondAttribute="height" multiplier="1:1" id="LJc-Xq-sae"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfj-vW-UvL">
-                            <rect key="frame" x="30" y="150" width="284" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfj-vW-UvL">
+                            <rect key="frame" x="20" y="150" width="314" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4g-d2-XF0">
-                            <rect key="frame" x="20" y="220.5" width="304" height="45"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="t6w-9M-hue">
+                            <rect key="frame" x="20" y="220.5" width="314" height="45"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4g-d2-XF0">
+                                    <rect key="frame" x="0.0" y="0.0" width="151" height="45"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                    <connections>
+                                        <action selector="leftButton:" destination="-1" eventType="touchUpInside" id="5TU-7h-Yod"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9U-o0-8VS">
+                                    <rect key="frame" x="163" y="0.0" width="151" height="45"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                    <connections>
+                                        <action selector="rightButton:" destination="-1" eventType="touchUpInside" id="67t-CT-Nd9"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="45" id="l54-wn-MBR"/>
+                                <constraint firstAttribute="height" constant="45" id="GDj-0d-dEc"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                            <connections>
-                                <action selector="dismiss:" destination="-1" eventType="touchUpInside" id="nbT-lQ-JKW"/>
-                            </connections>
-                        </button>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="Vfj-vW-UvL" firstAttribute="leading" secondItem="rGS-0x-tfa" secondAttribute="leading" constant="30" id="6RF-Dw-chZ"/>
-                        <constraint firstItem="o4g-d2-XF0" firstAttribute="top" secondItem="Vfj-vW-UvL" secondAttribute="bottom" constant="50" id="8mM-8C-HbE"/>
+                        <constraint firstAttribute="trailing" secondItem="t6w-9M-hue" secondAttribute="trailing" constant="20" id="56L-C8-HZj"/>
+                        <constraint firstItem="Vfj-vW-UvL" firstAttribute="leading" secondItem="rGS-0x-tfa" secondAttribute="leading" constant="20" id="6RF-Dw-chZ"/>
+                        <constraint firstItem="t6w-9M-hue" firstAttribute="leading" secondItem="rGS-0x-tfa" secondAttribute="leading" constant="20" id="8Cl-Pm-1LU"/>
+                        <constraint firstAttribute="bottom" secondItem="t6w-9M-hue" secondAttribute="bottom" constant="25" id="AaX-oh-ZnJ"/>
                         <constraint firstItem="Vfj-vW-UvL" firstAttribute="top" secondItem="X2i-gx-MJ8" secondAttribute="bottom" constant="20" id="D2T-NL-PhC"/>
                         <constraint firstItem="X2i-gx-MJ8" firstAttribute="top" secondItem="rGS-0x-tfa" secondAttribute="top" constant="10" id="JZT-Vq-kpw"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="X2i-gx-MJ8" secondAttribute="trailing" constant="30" id="Kfl-Nm-RLy"/>
-                        <constraint firstAttribute="bottom" secondItem="o4g-d2-XF0" secondAttribute="bottom" constant="25" id="NAU-fW-pb9"/>
-                        <constraint firstItem="o4g-d2-XF0" firstAttribute="leading" secondItem="rGS-0x-tfa" secondAttribute="leading" constant="20" id="a05-2v-YTY"/>
+                        <constraint firstItem="t6w-9M-hue" firstAttribute="top" secondItem="Vfj-vW-UvL" secondAttribute="bottom" constant="50" id="X65-ry-cD1"/>
                         <constraint firstItem="X2i-gx-MJ8" firstAttribute="centerX" secondItem="rGS-0x-tfa" secondAttribute="centerX" id="hoW-q0-WJ2"/>
                         <constraint firstItem="X2i-gx-MJ8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rGS-0x-tfa" secondAttribute="leading" constant="30" id="hxj-CM-fe3"/>
-                        <constraint firstAttribute="trailing" secondItem="Vfj-vW-UvL" secondAttribute="trailing" constant="30" id="kuz-pD-5K5"/>
-                        <constraint firstAttribute="trailing" secondItem="o4g-d2-XF0" secondAttribute="trailing" constant="20" id="x3V-o7-0af"/>
+                        <constraint firstAttribute="trailing" secondItem="Vfj-vW-UvL" secondAttribute="trailing" constant="20" id="kuz-pD-5K5"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="rGS-0x-tfa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="BGt-Pl-Nez"/>
+                <constraint firstItem="rGS-0x-tfa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="BGt-Pl-Nez"/>
                 <constraint firstItem="rGS-0x-tfa" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="dTC-9w-pXc"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rGS-0x-tfa" secondAttribute="trailing" constant="35" id="yvR-dZ-hoe"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rGS-0x-tfa" secondAttribute="trailing" constant="30" id="yvR-dZ-hoe"/>
             </constraints>
             <point key="canvasLocation" x="139" y="63"/>
         </view>

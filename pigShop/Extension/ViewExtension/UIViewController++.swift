@@ -21,10 +21,9 @@ extension UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func showAlert(title: String, okAction: @escaping (()->Void)) {
+    func showAlert(title: String, hideLeftButton: Bool, leftTitle: String = "", rightTitle: String = "", leftBtnAction: @escaping (()->Void) = {}, rightBtnAction: @escaping (()->Void) = {}) {
         let alertView = AlertViewController(nibName: "AlertViewController", bundle: nil)
-        alertView.titleString = title
-        alertView.okAction = okAction
+        alertView.alertContent = AlertContent(title: title, hideLeftButton: hideLeftButton, leftTitle: leftTitle, rightTitle: rightTitle, leftBtnAction: leftBtnAction, rightBtnAction: rightBtnAction)
         alertView.providesPresentationContextTransitionStyle = true
         alertView.definesPresentationContext = true
         alertView.modalPresentationStyle = .overCurrentContext

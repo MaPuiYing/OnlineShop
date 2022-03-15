@@ -10,15 +10,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="KGk-i7-Jjw" customClass="ItemSearchTableViewCell" customModule="pigShop" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="398" height="110"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="140" id="KGk-i7-Jjw" customClass="ItemSearchTableViewCell" customModule="pigShop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="398" height="110"/>
+                <rect key="frame" x="0.0" y="0.0" width="395" height="140"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="NT9-GF-Xkq">
-                        <rect key="frame" x="0.0" y="0.0" width="382" height="110"/>
+                        <rect key="frame" x="16" y="15" width="363" height="110"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="zaM-5S-PMC">
                                 <rect key="frame" x="0.0" y="0.0" width="132" height="110"/>
@@ -28,13 +28,13 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uOg-h0-yjz">
-                                <rect key="frame" x="148" y="10" width="234" height="94"/>
+                                <rect key="frame" x="148" y="0.0" width="215" height="110"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Fop-2g-pLu">
-                                        <rect key="frame" x="0.0" y="0.0" width="234" height="39"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="215" height="39"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNo-ll-uzo">
-                                                <rect key="frame" x="0.0" y="0.0" width="234" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="215" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -42,29 +42,28 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GNo-ll-uzo" secondAttribute="bottom" id="SJh-pN-6cg"/>
-                                            <constraint firstAttribute="height" constant="39" id="eym-hd-UDd"/>
                                         </constraints>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Svb-Se-NOs">
-                                        <rect key="frame" x="0.0" y="49" width="234" height="45"/>
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Svb-Se-NOs">
+                                        <rect key="frame" x="0.0" y="49" width="215" height="61"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgF-Ra-dgZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="234" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="215" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="0Bb-bh-Kqn">
-                                                <rect key="frame" x="0.0" y="20.5" width="234" height="24.5"/>
+                                                <rect key="frame" x="0.0" y="31" width="215" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLQ-tC-4ec">
-                                                        <rect key="frame" x="0.0" y="0.0" width="39" height="24.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2xS-a4-bIv" customClass="ImageButton" customModule="pigShop" customModuleProvider="target">
-                                                        <rect key="frame" x="213.5" y="6.5" width="20.5" height="12"/>
+                                                        <rect key="frame" x="194.5" y="6.5" width="20.5" height="17.5"/>
                                                         <color key="tintColor" name="textLightGrey"/>
                                                     </imageView>
                                                 </subviews>
@@ -97,27 +96,27 @@
                         <constraints>
                             <constraint firstItem="zaM-5S-PMC" firstAttribute="top" secondItem="NT9-GF-Xkq" secondAttribute="top" id="NeF-U2-zg1"/>
                             <constraint firstAttribute="bottom" secondItem="zaM-5S-PMC" secondAttribute="bottom" id="h7F-AV-HmB"/>
-                            <constraint firstItem="uOg-h0-yjz" firstAttribute="top" secondItem="NT9-GF-Xkq" secondAttribute="top" constant="10" id="mkD-pL-doS"/>
-                            <constraint firstAttribute="bottom" secondItem="uOg-h0-yjz" secondAttribute="bottom" constant="6" id="oj6-Zo-tY9"/>
+                            <constraint firstItem="uOg-h0-yjz" firstAttribute="top" secondItem="NT9-GF-Xkq" secondAttribute="top" constant="5" id="mkD-pL-doS"/>
+                            <constraint firstAttribute="bottom" secondItem="uOg-h0-yjz" secondAttribute="bottom" id="oj6-Zo-tY9"/>
                         </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="NT9-GF-Xkq" secondAttribute="bottom" id="FvP-Uc-wlO"/>
-                    <constraint firstItem="NT9-GF-Xkq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Rdt-A2-QRz"/>
-                    <constraint firstItem="NT9-GF-Xkq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cuk-c4-MNj"/>
+                    <constraint firstAttribute="bottom" secondItem="NT9-GF-Xkq" secondAttribute="bottom" constant="15" id="FvP-Uc-wlO"/>
+                    <constraint firstItem="NT9-GF-Xkq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Rdt-A2-QRz"/>
+                    <constraint firstItem="NT9-GF-Xkq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="cuk-c4-MNj"/>
                     <constraint firstAttribute="trailing" secondItem="NT9-GF-Xkq" secondAttribute="trailing" constant="16" id="u6O-H2-GnZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="imvBanner" destination="zaM-5S-PMC" id="kOG-bg-ARc"/>
                 <outlet property="imvBookmarks" destination="2xS-a4-bIv" id="gH2-Ya-GfF"/>
                 <outlet property="lblOldPrice" destination="RgF-Ra-dgZ" id="Jkm-n6-Bhs"/>
                 <outlet property="lblPrice" destination="LLQ-tC-4ec" id="LPx-76-bzo"/>
                 <outlet property="lblTitle" destination="GNo-ll-uzo" id="B5O-u6-ecC"/>
-                <outlet property="vwBanner" destination="zaM-5S-PMC" id="kOG-bg-ARc"/>
             </connections>
-            <point key="canvasLocation" x="146.37681159420291" y="117.1875"/>
+            <point key="canvasLocation" x="144.20289855072465" y="126.5625"/>
         </tableViewCell>
     </objects>
     <resources>
