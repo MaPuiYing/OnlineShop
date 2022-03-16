@@ -39,7 +39,6 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.userModel = UserModel.shared
         self.setupTableSections()
-        self.table.reloadData()
     }
     
     func setupTable() {
@@ -59,6 +58,8 @@ class ProfileViewController: UIViewController {
         if self.userModel.isLogined() == true {
             self.tableSections.append(ProfileSections.logout)
         }
+        
+        self.table.reloadData()
     }
     
     //MARK: - Button Action
@@ -155,7 +156,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         let section = self.tableSections[indexPath.section]
         switch section {
         case .user:
-            break
+            if self.userModel.isLogined() == true {
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserViewController") as? UserViewController {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            } else {
+                break
+            }
         case .edit(let items):
             break
         case .question(let items):
@@ -163,7 +170,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case .logout:
             self.showAlert(title: "Confirm to logout?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: {[weak self] in
                 self?.userModel.logoutUser()
-                self?.table.reloadData()
+                self?.setupTableSections()
             })
         }
     }
