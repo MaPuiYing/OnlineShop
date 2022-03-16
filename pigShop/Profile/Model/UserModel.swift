@@ -32,7 +32,7 @@ class UserModel {
         return self.currentUser != nil
     }
     
-    func getCurrentUser() -> User? {
+    func getUser() -> User? {
         return self.currentUser
     }
     
@@ -40,11 +40,28 @@ class UserModel {
         return self.aryUser
     }
     
-    //MARK: - Add Item
+    //MARK: - Edit Item
     
     func addUser(username: String?, password: String?, email: String?, phoneNo: String?) {
         let newUser = User(id: self.id, username: username, password: password, email: email, phoneNo: phoneNo)
         self.aryUser.append(newUser)
         self.id += 1
     }
+    
+    func loginUser(username: String?, password: String?, success: @escaping (()->Void), failure: @escaping (()->Void)) {
+        let loginUser = self.aryUser.filter({
+            ($0.username == username) && ($0.password == password)
+        }).first
+        if loginUser != nil {
+            self.currentUser = loginUser
+            success()
+        } else {
+            failure()
+        }
+    }
+    
+    func logoutUser() {
+        self.currentUser = nil
+    }
+    
 }

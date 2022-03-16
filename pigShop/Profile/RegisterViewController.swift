@@ -25,6 +25,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPhone: UITextField!
     
+    @IBOutlet weak var vwWarning: UIView!
     @IBOutlet weak var lblWarning: UILabel!
     
     let userModel = UserModel.shared
@@ -32,14 +33,14 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+        self.btnClose.method = { self.dismiss(animated: true, completion: nil) }
         self.initSetup()
     }
     
     func initSetup() {
-        self.btnClose.method = { self.dismiss(animated: true, completion: nil) }
-        self.lblTitle.font = UIFont.systemFont(ofSize: 35, weight: .bold)
-        self.lblTitle.textColor = .white
-        self.lblTitle.text = "Register"
+        self.lblTitle.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        self.lblTitle.textColor = .black
+        self.lblTitle.text = "Create new account"
         
         self.vwUsername.layer.cornerRadius = 28
         self.vwPassword.layer.cornerRadius = 28
@@ -49,17 +50,17 @@ class RegisterViewController: UIViewController {
         self.warningShadow(userName: false, password: false, confirmPW: false, email: false, phone: false)
         
         self.btnRegister.layer.masksToBounds = true
-        self.btnRegister.layer.cornerRadius = 25
+        self.btnRegister.layer.cornerRadius = 28
         self.btnRegister.setTitle("Register", for: .normal)
         
+        self.vwWarning.isHidden = true
         self.lblWarning.font = UIFont.systemFont(ofSize: 14)
         self.lblWarning.textColor = .red
-        self.lblWarning.isHidden = true
     }
     
     //MARK: - Method
     
-    func warningShadow(userName: Bool, password: Bool, confirmPW: Bool, email: Bool, phone: Bool) {
+    func warningShadow(userName: Bool?, password: Bool?, confirmPW: Bool?, email: Bool?, phone: Bool?) {
         if userName == false {
             self.vwUsername.addShadow(location: .all)
         } else {
@@ -87,7 +88,13 @@ class RegisterViewController: UIViewController {
         }
     }
     
+    func showWarningMessage(_ message: String) {
+        self.vwWarning.isHidden = false
+        self.lblWarning.text = message
+    }
+    
     //MARK: - Validation
+    
     func checkUsernamePattern(_ text: String?) -> Bool {
         let pattern = "\\A\\w{8,20}\\z"
         return text?.range(of: pattern, options: .regularExpression) != nil
@@ -110,57 +117,56 @@ class RegisterViewController: UIViewController {
     //MARK: - Button Action
     
     @IBAction func registerBtnPressed() {
-        if self.tfEmail.text?.isEmpty == true || self.tfPassword.text?.isEmpty == true || self.tfConfirmPW.text?.isEmpty == true || self.tfEmail.text?.isEmpty == true || self.tfPhone.text?.isEmpty == true {
+        let username = self.tfUsername.text ?? ""
+        let password = self.tfPassword.text ?? ""
+        let confirmPW = self.tfConfirmPW.text ?? ""
+        let email = self.tfEmail.text ?? ""
+        let phone = self.tfPhone.text ?? ""
+        
+        if username.isEmpty == true || password.isEmpty == true || confirmPW.isEmpty == true || email.isEmpty == true || phone.isEmpty == true {
             //Empty handle
-            self.lblWarning.isHidden = false
-            self.lblWarning.text = "Please fill in all the blank."
+            self.showWarningMessage("Please fill in all the blank.")
+            self.warningShadow(userName: username.isEmpty, password: password.isEmpty, confirmPW: confirmPW.isEmpty, email: email.isEmpty == true, phone: phone.isEmpty)
             
-        } else if let usernameCount = self.tfUsername.text?.count, (usernameCount < 8) || (usernameCount > 20){
+        } else if (username.count < 8) || (username.count > 20){
             //Username count
-            self.lblWarning.isHidden = false
-            self.lblWarning.text = "Your username should be within 8 to 20 words."
+            self.showWarningMessage("Your username should be within 8 to 20 words.")
             self.warningShadow(userName: true, password: false, confirmPW: false, email: false, phone: false)
         
-        } else if self.checkUsernamePattern(self.tfUsername.text) == false {
+        } else if self.checkUsernamePattern(username) == false {
             //Wrong username pattern
-            self.lblWarning.isHidden = false
-            self.lblWarning.text = "Your username allow letters, underscores and numbers only."
+            self.showWarningMessage("Your username allow letters, underscores and numbers only.")
             self.warningShadow(userName: true, password: false, confirmPW: false, email: false, phone: false)
         
-        } else if let password = self.tfPassword.text?.count, (password < 9) || (password > 15){
+        } else if (password.count < 9) || (password.count > 15){
             //Password count
-            self.lblWarning.isHidden = false
-            self.lblWarning.text = "Your password should be within 9 to 15 words."
+            self.showWarningMessage("Your password should be within 9 to 15 words.")
             self.warningShadow(userName: false, password: true, confirmPW: true, email: false, phone: false)
         
-        } else if self.checkPasswordPattern(self.tfPassword.text) == false {
+        } else if self.checkPasswordPattern(password) == false {
             //Wrong password pattern
-            self.lblWarning.isHidden = false
-            self.lblWarning.text = "Your password allow letters and numbers only."
+            self.showWarningMessage("Your password allow letters and numbers only.")
             self.warningShadow(userName: false, password: true, confirmPW: true, email: false, phone: false)
         
-        } else if self.tfPassword.text != self.tfConfirmPW.text{
+        } else if self.tfPassword.text != confirmPW{
             //Wrong password confirm
-            self.lblWarning.isHidden = false
-            self.lblWarning.text = "Your confirm password is different with your password."
+            self.showWarningMessage("Your confirm password is different with your password.")
             self.warningShadow(userName: false, password: true, confirmPW: true, email: false, phone: false)
             
-        } else if self.checkEmailPattern(self.tfEmail.text) == false {
+        } else if self.checkEmailPattern(email) == false {
             //Wrong email pattern
-            self.lblWarning.isHidden = false
-            self.lblWarning.text = "It is not a vaild email."
+            self.showWarningMessage("It is not a vaild email.")
             self.warningShadow(userName: false, password: false, confirmPW: false, email: true, phone: false)
             
-        } else if (self.tfPhone.text?.count != 8) || (self.checkPhonePattern(self.tfPhone.text) == false) {
+        } else if (phone.count != 8) || (self.checkPhonePattern(phone) == false) {
             //Wrong phone pattern
-            self.lblWarning.isHidden = false
-            self.lblWarning.text = "Phone number allows 8 digits only."
+            self.showWarningMessage("Phone number allows 8 digits only.")
             self.warningShadow(userName: false, password: false, confirmPW: false, email: false, phone: true)
         } else {
             //Success
-            self.lblWarning.isHidden = true
-            self.warningShadow(userName: false, password: false, confirmPW: false, email: false, phone:false)
-            self.userModel.addUser(username: self.tfUsername.text, password: self.tfPassword.text, email: self.tfEmail.text, phoneNo: self.tfPhone.text)
+            self.vwWarning.isHidden = true
+            self.warningShadow(userName: false, password: false, confirmPW: false, email: false, phone: false)
+            self.userModel.addUser(username: username, password: password, email: email, phoneNo: phone)
             self.showAlert(title: "Register an account successfully.", hideLeftButton: true, rightTitle: "OK", rightBtnAction: { [weak self] in
                 self?.dismiss(animated: true, completion: nil)
             })

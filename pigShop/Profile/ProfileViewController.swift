@@ -28,43 +28,50 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     
     var tableSections: [ProfileSections] = []
-    let userModel = UserModel.shared
+    var userModel = UserModel.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Profile"
-        
-        setupTable()
-        // Do any additional setup after loading the view.
+        self.setupTable()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.userModel = UserModel.shared
+        self.setupTableSections()
+        self.table.reloadData()
     }
     
     func setupTable() {
-        table.separatorStyle = .none
+        self.table.separatorStyle = .none
         // Register
-        table.register(UINib(nibName: "SettingListTableViewCell", bundle: nil), forCellReuseIdentifier: "listCell")
-        table.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "accountCell")
+        self.table.register(UINib(nibName: "SettingListTableViewCell", bundle: nil), forCellReuseIdentifier: "listCell")
+        self.table.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "accountCell")
+    }
+    
+    func setupTableSections() {
+        self.tableSections = []
         
-        // Append
-        tableSections.append(ProfileSections.user)
-        tableSections.append(ProfileSections.edit(ProfileSections.EditSection.allCases))
-        tableSections.append(ProfileSections.question(ProfileSections.QuestionSection.allCases))
+        self.tableSections.append(ProfileSections.user)
+        self.tableSections.append(ProfileSections.edit(ProfileSections.EditSection.allCases))
+        self.tableSections.append(ProfileSections.question(ProfileSections.QuestionSection.allCases))
+        
         if self.userModel.isLogined() == true {
-            tableSections.append(ProfileSections.logout)
+            self.tableSections.append(ProfileSections.logout)
         }
-        
-        table.reloadData()
     }
     
     //MARK: - Button Action
     @objc func registerBtnPressed() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController {
-            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalPresentationStyle = .fullScreen
             self.tabBarController?.present(vc, animated: true, completion: nil)
         }
     }
     
     @objc func loginBtnPressed() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+            vc.modalPresentationStyle = .fullScreen
             self.tabBarController?.present(vc, animated: true, completion: nil)
         }
     }
@@ -101,7 +108,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.vwUser.isHidden = false
                 cell.vwGuest.isHidden = true
                 
-                cell.lblUserName.text = "[User Name]"
+                cell.lblUserName.text = userModel.getUser()?.username
             } else {
                 cell.selectionStyle = .none
                 cell.vwGuest.isHidden = false
@@ -144,6 +151,21 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.table.deselectRow(at: indexPath, animated: true)
+        
+        let section = self.tableSections[indexPath.section]
+        switch section {
+        case .user:
+            break
+        case .edit(let items):
+            break
+        case .question(let items):
+            break
+        case .logout:
+            self.showAlert(title: "Confirm to logout?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: {[weak self] in
+                self?.userModel.logoutUser()
+                self?.table.reloadData()
+            })
+        }
     }
     
     //MARK: - Header

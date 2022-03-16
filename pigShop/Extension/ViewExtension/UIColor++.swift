@@ -43,6 +43,10 @@ extension UIColor {
         return UIColor(named: "btnPink")!
     }
     
+    static var btnBrown: UIColor {
+        return UIColor(named: "btnBrown")!
+    }
+    
     //Text Color
     
     static var textGrey: UIColor {
