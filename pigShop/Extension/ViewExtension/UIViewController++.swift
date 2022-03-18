@@ -35,4 +35,25 @@ extension UIViewController {
             self.tabBarController?.present(alertView, animated: true, completion: nil)
         }
     }
+    
+    //MARK: - Validation
+        
+    func checkUsernamePattern(_ text: String?) -> Bool {
+        let pattern = "\\A\\w{8,20}\\z"
+        return text?.range(of: pattern, options: .regularExpression) != nil
+    }
+        
+    func checkPasswordPattern(_ text: String?) -> Bool {
+        return text?.range(of: "\\A\\w{9,15}\\z", options: .regularExpression) != nil
+    }
+        
+    func checkEmailPattern(_ text: String?) -> Bool {
+        let pattern = #"^\S+@\S+\.\S+$"#
+        return text?.range(of: pattern, options: .regularExpression) != nil
+    }
+        
+    func checkPhonePattern(_ text: String?) -> Bool {
+        let pattern = "[0-9]{8}"
+        return text?.range(of: pattern, options: .regularExpression) != nil
+    }
 }

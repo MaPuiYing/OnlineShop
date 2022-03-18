@@ -79,11 +79,27 @@ class UserViewController: UIViewController {
     
     @objc func saveBtnPressed() {
         if self.isEdited() {
-            self.showAlert(title: "Are you sure to save your editing?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "OK", rightBtnAction: { [weak self] in
-                self?.userModel.updateUserInfo(username: self?.tfUsername.text, email: self?.tfEmail.text, phone: self?.tfPhone.text)
-                self?.initSetup()
-                self?.closeEditAction()
-            })
+            let username = self.tfUsername.text ?? ""
+            let email = self.tfEmail.text ?? ""
+            let phone = self.tfPhone.text ?? ""
+            
+            if username.isEmpty == true || email.isEmpty == true || phone.isEmpty == true {
+                self.showAlertMessage("Please fill in all the blank.")
+            } else if (username.count < 8) || (username.count > 20) {
+                self.showAlertMessage("Your username should be within 8 to 20 words.")
+            } else if self.checkUsernamePattern(username) == false {
+                self.showAlertMessage("Your username allow letters, underscores and numbers only.")
+            } else if self.checkEmailPattern(email) == false {
+                self.showAlertMessage("It is not a vaild email.")
+            } else if (phone.count != 8) || (self.checkPhonePattern(phone) == false) {
+                self.showAlertMessage("Phone number allows 8 digits only.")
+            } else {
+                self.showAlert(title: "Are you sure to save your editing?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "OK", rightBtnAction: { [weak self] in
+                    self?.userModel.updateUserInfo(username: username, email: email, phone: phone)
+                    self?.initSetup()
+                    self?.closeEditAction()
+                })
+            }
         } else {
             self.closeEditAction()
         }
@@ -91,6 +107,7 @@ class UserViewController: UIViewController {
     }
     
     //MARK: - Method
+    
     func showEditView(_ isShow: Bool) {
         self.vwLineUsername.isHidden = !isShow
         self.vwLineEmail.isHidden = !isShow
@@ -116,6 +133,10 @@ class UserViewController: UIViewController {
         })
         self.customBackButton()
         self.navigationItem.rightBarButtonItem = self.editBtnItem
+    }
+    
+    func showAlertMessage(_ title: String) {
+        self.showAlert(title: title, hideLeftButton: true, rightTitle: "OK")
     }
 }
 

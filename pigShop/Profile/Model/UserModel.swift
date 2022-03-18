@@ -42,22 +42,32 @@ class UserModel {
     
     //MARK: - Edit Item
     
+    func getCurrentUserIndex() -> Int {
+        return self.aryUser.firstIndex(where: {
+            $0.id == self.currentUser?.id
+        }) ?? 0
+    }
+    
     func addUser(username: String?, password: String?, email: String?, phoneNo: String?) {
         let newUser = User(id: self.id, username: username, password: password, email: email, phoneNo: phoneNo)
         self.aryUser.append(newUser)
         self.id += 1
     }
     
-    func updateUserInfo(username: String?, email: String?, phone: String?) {
-        let index = self.aryUser.firstIndex(where: {
-            $0.id == self.currentUser?.id
-        }) ?? 0
-        
+    func updateUserInfo(username newUsername: String?, email newEmail: String?, phone newPhone: String?) {
+        let index = self.getCurrentUserIndex()
         let oldUser = self.aryUser[index]
-        let newUser = User(id: oldUser.id, username: username, password: oldUser.password, email: email, phoneNo: phone)
+        let newUser = User(id: oldUser.id, username: newUsername, password: oldUser.password, email: newEmail, phoneNo: newPhone)
         self.aryUser[index] = newUser
         self.currentUser = newUser
-        
+    }
+    
+    func updatePassword(_ newPassword: String?) {
+        let index = self.getCurrentUserIndex()
+        let oldUser = self.aryUser[index]
+        let newUser = User(id: oldUser.id, username: oldUser.username, password: newPassword, email: oldUser.email, phoneNo: oldUser.phoneNo)
+        self.aryUser[index] = newUser
+        self.currentUser = newUser
     }
     
     func loginUser(username: String?, password: String?, success: @escaping (()->Void), failure: @escaping (()->Void)) {

@@ -70,7 +70,9 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else {
-            
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfilePasswordViewController") as? ProfilePasswordViewController {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
     }
