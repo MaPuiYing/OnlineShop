@@ -47,6 +47,7 @@
 		8D7E862227DDAE7C00118874 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E862127DDAE7C00118874 /* ItemModel.swift */; };
 		8D7E862427DDC19200118874 /* item.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E862327DDC19200118874 /* item.json */; };
 		8D7E862627DDCFED00118874 /* Double++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E862527DDCFED00118874 /* Double++.swift */; };
+		8D7ED77F27E34E1D00714DC1 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7ED77E27E34E1D00714DC1 /* ProfileDetailViewController.swift */; };
 		8D980A5227DE42C000718E50 /* ItemSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D980A5127DE42C000718E50 /* ItemSearchViewController.swift */; };
 		8D980A5627DE447100718E50 /* ItemSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D980A5427DE447100718E50 /* ItemSearchTableViewCell.swift */; };
 		8D980A5727DE447100718E50 /* ItemSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D980A5527DE447100718E50 /* ItemSearchTableViewCell.xib */; };
@@ -126,6 +127,7 @@
 		8D7E862127DDAE7C00118874 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		8D7E862327DDC19200118874 /* item.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = item.json; path = ../../../../Downloads/item.json; sourceTree = "<group>"; };
 		8D7E862527DDCFED00118874 /* Double++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Double++.swift"; path = "pigShop/extension/Double++.swift"; sourceTree = SOURCE_ROOT; };
+		8D7ED77E27E34E1D00714DC1 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		8D980A5127DE42C000718E50 /* ItemSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearchViewController.swift; sourceTree = "<group>"; };
 		8D980A5427DE447100718E50 /* ItemSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearchTableViewCell.swift; sourceTree = "<group>"; };
 		8D980A5527DE447100718E50 /* ItemSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemSearchTableViewCell.xib; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				8DDF379327D9D25900142E4B /* TableViewCell */,
 				8D485A2F27D9044B007C5B55 /* Profile.storyboard */,
 				8DDF379127D9C9A500142E4B /* ProfileViewController.swift */,
+				8D7ED77E27E34E1D00714DC1 /* ProfileDetailViewController.swift */,
 				8D7A2F2227E1D50100F779FC /* UserViewController.swift */,
 				8D7E221927E07CF9000EA144 /* LoginViewController.swift */,
 				8D7E221727E07CC8000EA144 /* RegisterViewController.swift */,
@@ -540,6 +543,7 @@
 				8D6F72D227DB06DD00714245 /* CategorySelectionCollectionViewCell.swift in Sources */,
 				8D70A68227DF383E00A176C0 /* CartModel.swift in Sources */,
 				8DDF379027D9BBEC00142E4B /* UIColor++.swift in Sources */,
+				8D7ED77F27E34E1D00714DC1 /* ProfileDetailViewController.swift in Sources */,
 				8D7A2F2327E1D50100F779FC /* UserViewController.swift in Sources */,
 				8DDF379227D9C9A500142E4B /* ProfileViewController.swift in Sources */,
 				8D7E862227DDAE7C00118874 /* ItemModel.swift in Sources */,

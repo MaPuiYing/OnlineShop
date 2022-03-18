@@ -48,6 +48,18 @@ class UserModel {
         self.id += 1
     }
     
+    func updateUserInfo(username: String?, email: String?, phone: String?) {
+        let index = self.aryUser.firstIndex(where: {
+            $0.id == self.currentUser?.id
+        }) ?? 0
+        
+        let oldUser = self.aryUser[index]
+        let newUser = User(id: oldUser.id, username: username, password: oldUser.password, email: email, phoneNo: phone)
+        self.aryUser[index] = newUser
+        self.currentUser = newUser
+        
+    }
+    
     func loginUser(username: String?, password: String?, success: @escaping (()->Void), failure: @escaping (()->Void)) {
         let loginUser = self.aryUser.filter({
             ($0.username == username) && ($0.password == password)

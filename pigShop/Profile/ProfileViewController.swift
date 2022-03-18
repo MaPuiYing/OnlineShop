@@ -9,13 +9,13 @@ import UIKit
 
 enum ProfileSections {
     case user
-    case edit([EditSection])
+    case transaction([TransactionSection])
     case question([QuestionSection])
     case logout
     
-    enum EditSection: CaseIterable {
-        case editAccInfo
-        case forgotPassword
+    enum TransactionSection: CaseIterable {
+        case editInfo
+        case history
     }
     enum QuestionSection: CaseIterable {
         case policy
@@ -49,13 +49,18 @@ class ProfileViewController: UIViewController {
     }
     
     func setupTableSections() {
+        let isLogined = self.userModel.isLogined() ?? false
         self.tableSections = []
         
         self.tableSections.append(ProfileSections.user)
-        self.tableSections.append(ProfileSections.edit(ProfileSections.EditSection.allCases))
+        
+        if isLogined {
+            self.tableSections.append(ProfileSections.transaction(ProfileSections.TransactionSection.allCases))
+        }
+        
         self.tableSections.append(ProfileSections.question(ProfileSections.QuestionSection.allCases))
         
-        if self.userModel.isLogined() == true {
+        if isLogined {
             self.tableSections.append(ProfileSections.logout)
         }
         
@@ -90,7 +95,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .user:
             return 1
-        case .edit(let items):
+        case .transaction(let items):
             return items.count
         case .question(let items):
             return items.count
@@ -118,16 +123,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.btnLogin.addTarget(self, action: #selector(self.loginBtnPressed), for: .touchUpInside)
             }
             return cell
-        case .edit(let items):
+        case .transaction(let items):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell") as? SettingListTableViewCell else {return UITableViewCell()}
             
             switch items[indexPath.row] {
-            case .editAccInfo:
+            case .editInfo:
                 cell.vwSeparator.isHidden = false
-                cell.lblTitle.text = "Edit Account"
-            case .forgotPassword:
+                cell.lblTitle.text = "Edit Information"
+            case .history:
                 cell.vwSeparator.isHidden = true
-                cell.lblTitle.text = "Forgot Password"
+                cell.lblTitle.text = "Order History"
             }
             return cell
             
@@ -157,13 +162,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .user:
             if self.userModel.isLogined() == true {
-                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserViewController") as? UserViewController {
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailViewController") as? ProfileDetailViewController {
+                    vc.type = .user
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
-            } else {
-                break
             }
-        case .edit(let items):
+        case .transaction(let items):
             break
         case .question(let items):
             break
@@ -186,7 +190,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .user, .logout:
             return .leastNonzeroMagnitude
-        case .edit:
+        case .transaction:
             return 50
         case .question:
             return 50
@@ -202,8 +206,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .user, .logout:
             return nil
-        case .edit:
-            return "Edit"
+        case .transaction:
+            return "Transaction"
         case .question:
             return "Question"
         }

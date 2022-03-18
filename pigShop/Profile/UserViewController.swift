@@ -14,25 +14,19 @@ class UserViewController: UIViewController {
     
     @IBOutlet weak var tfUserID: UITextField!
     @IBOutlet weak var tfUsername: UITextField!
-    @IBOutlet weak var tfOldPassword: UITextField!
-    @IBOutlet weak var tfNewPassword: UITextField!
-    @IBOutlet weak var tfConfirmPassword: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPhone: UITextField!
     
-    @IBOutlet weak var vwOldPassword: UIView!
-    @IBOutlet weak var vwNewPassword: UIView!
-    
     @IBOutlet weak var vwLineUsername: UIView!
-    @IBOutlet weak var vwLineOldPassword: UIView!
-    @IBOutlet weak var vwLineNewPassword: UIView!
-    @IBOutlet weak var vwLineConfirmPassword: UIView!
     @IBOutlet weak var vwLineEmail: UIView!
     @IBOutlet weak var vwLinePhone: UIView!
     
-    let user = UserModel.shared.currentUser
+    let userModel = UserModel.shared
+    var user = UserModel.shared.currentUser
+    
     var editBtnItem = UIBarButtonItem()
     var saveBtnItem = UIBarButtonItem()
+    var cancelBtnItem = UIBarButtonItem()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +38,8 @@ class UserViewController: UIViewController {
     
     func initSetup() {
         self.showEditView(false)
+        self.user = UserModel.shared.currentUser
+
         self.tfUserID.text = "\(user?.id ?? 0)"
         self.tfUsername.text = user?.username
         self.tfEmail.text = user?.email
@@ -52,7 +48,9 @@ class UserViewController: UIViewController {
     
     func navigationBarSetup() {
         self.editBtnItem = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(self.editBtnPressed))
+        self.cancelBtnItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(self.cancelBtnPressed))
         self.saveBtnItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.saveBtnPressed))
+        self.saveBtnItem.tintColor = .btnOrange
         
         self.navigationItem.rightBarButtonItem = self.editBtnItem
     }
@@ -62,39 +60,62 @@ class UserViewController: UIViewController {
         UIView.animate(withDuration: 0.25, animations: { [weak self] in
             self?.showEditView(true)
         })
+        self.navigationItem.leftBarButtonItem = self.cancelBtnItem
         self.navigationItem.rightBarButtonItem = self.saveBtnItem
     }
     
+    @objc func cancelBtnPressed() {
+        if self.isEdited() {
+            self.showAlert(title: "Are you sure to cancel your editing?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "OK", rightBtnAction: { [weak self] in
+                self?.tfUsername.text = self?.user?.username
+                self?.tfEmail.text = self?.user?.email
+                self?.tfPhone.text = self?.user?.phoneNo
+                self?.closeEditAction()
+            })
+        } else {
+            self.closeEditAction()
+        }
+    }
+    
     @objc func saveBtnPressed() {
-        UIView.animate(withDuration: 0.25, animations: { [weak self] in
-            self?.showEditView(false)
-        })
-        self.navigationItem.rightBarButtonItem = self.editBtnItem
+        if self.isEdited() {
+            self.showAlert(title: "Are you sure to save your editing?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "OK", rightBtnAction: { [weak self] in
+                self?.userModel.updateUserInfo(username: self?.tfUsername.text, email: self?.tfEmail.text, phone: self?.tfPhone.text)
+                self?.initSetup()
+                self?.closeEditAction()
+            })
+        } else {
+            self.closeEditAction()
+        }
+        
     }
     
     //MARK: - Method
     func showEditView(_ isShow: Bool) {
-        self.vwOldPassword.isHidden = !isShow
-        self.vwNewPassword.isHidden = !isShow
-                
         self.vwLineUsername.isHidden = !isShow
-        self.vwLineOldPassword.isHidden = !isShow
-        self.vwLineNewPassword.isHidden = !isShow
-        self.vwLineConfirmPassword.isHidden = !isShow
         self.vwLineEmail.isHidden = !isShow
         self.vwLinePhone.isHidden = !isShow
         
         self.tfUserID.isEnabled = false
         self.tfUsername.isEnabled = isShow
-        self.tfOldPassword.isEnabled = isShow
-        self.tfNewPassword.isEnabled = isShow
-        self.tfConfirmPassword.isEnabled = isShow
         self.tfEmail.isEnabled = isShow
         self.tfPhone.isEnabled = isShow
         
         if isShow {
             self.tfUsername.becomeFirstResponder()
         }
+    }
+    
+    func isEdited() -> Bool {
+        return (self.tfUsername.text != self.user?.username) || (self.tfEmail.text != self.user?.email) || (self.tfPhone.text != self.user?.phoneNo)
+    }
+    
+    func closeEditAction() {
+        UIView.animate(withDuration: 0.25, animations: { [weak self] in
+            self?.showEditView(false)
+        })
+        self.customBackButton()
+        self.navigationItem.rightBarButtonItem = self.editBtnItem
     }
 }
 
@@ -103,12 +124,6 @@ extension UserViewController: UITextFieldDelegate {
         switch textField {
         case self.tfUsername:
             self.vwLineUsername.backgroundColor = .mainOrange
-        case self.tfOldPassword:
-            self.vwLineOldPassword.backgroundColor = .mainOrange
-        case self.tfNewPassword:
-            self.vwLineNewPassword.backgroundColor = .mainOrange
-        case self.tfConfirmPassword:
-            self.vwLineConfirmPassword.backgroundColor = .mainOrange
         case self.tfEmail:
             self.vwLineEmail.backgroundColor = .mainOrange
         case self.tfPhone:
@@ -122,12 +137,6 @@ extension UserViewController: UITextFieldDelegate {
         switch textField {
         case self.tfUsername:
             self.vwLineUsername.backgroundColor = .borderColor
-        case self.tfOldPassword:
-            self.vwLineOldPassword.backgroundColor = .borderColor
-        case self.tfNewPassword:
-            self.vwLineNewPassword.backgroundColor = .borderColor
-        case self.tfConfirmPassword:
-            self.vwLineConfirmPassword.backgroundColor = .borderColor
         case self.tfEmail:
             self.vwLineEmail.backgroundColor = .borderColor
         case self.tfPhone:
