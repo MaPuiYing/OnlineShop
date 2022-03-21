@@ -129,7 +129,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             switch items[indexPath.row] {
             case .editInfo:
                 cell.vwSeparator.isHidden = false
-                cell.lblTitle.text = "Edit Information"
+                cell.lblTitle.text = "Transaction Information"
             case .history:
                 cell.vwSeparator.isHidden = true
                 cell.lblTitle.text = "Order History"

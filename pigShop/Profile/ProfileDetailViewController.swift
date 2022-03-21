@@ -52,8 +52,10 @@ extension ProfileDetailViewController: UITableViewDelegate, UITableViewDataSourc
         case .user:
             if indexPath.row == 0 {
                 cell.lblTitle.text = "User Information"
+                cell.imvIcon.image = UIImage(systemName: "person.fill")
             } else {
                 cell.lblTitle.text = "Change Password"
+                cell.imvIcon.image = UIImage(systemName: "lock.fill")
             }
         }
            
