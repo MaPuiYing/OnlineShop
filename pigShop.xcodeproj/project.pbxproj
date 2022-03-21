@@ -40,6 +40,7 @@
 		8D70A68227DF383E00A176C0 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70A68127DF383E00A176C0 /* CartModel.swift */; };
 		8D70A68627DF3CC200A176C0 /* CartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70A68427DF3CC200A176C0 /* CartItemTableViewCell.swift */; };
 		8D70A68727DF3CC200A176C0 /* CartItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D70A68527DF3CC200A176C0 /* CartItemTableViewCell.xib */; };
+		8D71392B27E83D6900DBC65C /* TransactionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71392A27E83D6900DBC65C /* TransactionInfoViewController.swift */; };
 		8D71C76427E48C39001025BB /* ProfilePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71C76327E48C39001025BB /* ProfilePasswordViewController.swift */; };
 		8D7A2F2327E1D50100F779FC /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A2F2227E1D50100F779FC /* UserViewController.swift */; };
 		8D7E221627E0788C000EA144 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E221527E0788C000EA144 /* UserModel.swift */; };
@@ -121,6 +122,7 @@
 		8D70A68127DF383E00A176C0 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
 		8D70A68427DF3CC200A176C0 /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemTableViewCell.swift; sourceTree = "<group>"; };
 		8D70A68527DF3CC200A176C0 /* CartItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemTableViewCell.xib; sourceTree = "<group>"; };
+		8D71392A27E83D6900DBC65C /* TransactionInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoViewController.swift; sourceTree = "<group>"; };
 		8D71C76327E48C39001025BB /* ProfilePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePasswordViewController.swift; sourceTree = "<group>"; };
 		8D7A2F2227E1D50100F779FC /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		8D7E221527E0788C000EA144 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -286,10 +288,10 @@
 				8D485A2F27D9044B007C5B55 /* Profile.storyboard */,
 				8DDF379127D9C9A500142E4B /* ProfileViewController.swift */,
 				8D7ED77E27E34E1D00714DC1 /* ProfileDetailViewController.swift */,
-				8D7A2F2227E1D50100F779FC /* UserViewController.swift */,
-				8D71C76327E48C39001025BB /* ProfilePasswordViewController.swift */,
 				8D7E221927E07CF9000EA144 /* LoginViewController.swift */,
 				8D7E221727E07CC8000EA144 /* RegisterViewController.swift */,
+				8D71392C27E83DB900DBC65C /* User */,
+				8D71392D27E83DE200DBC65C /* Transaction */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -309,6 +311,23 @@
 				8D70A68527DF3CC200A176C0 /* CartItemTableViewCell.xib */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		8D71392C27E83DB900DBC65C /* User */ = {
+			isa = PBXGroup;
+			children = (
+				8D7A2F2227E1D50100F779FC /* UserViewController.swift */,
+				8D71C76327E48C39001025BB /* ProfilePasswordViewController.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		8D71392D27E83DE200DBC65C /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				8D71392A27E83D6900DBC65C /* TransactionInfoViewController.swift */,
+			);
+			path = Transaction;
 			sourceTree = "<group>";
 		};
 		8D7E221427E0787A000EA144 /* Model */ = {
@@ -555,6 +574,7 @@
 				8D31616027DCF7A8008A54B2 /* ViewButton.swift in Sources */,
 				8DDF379C27D9E36A00142E4B /* AccountTableViewCell.swift in Sources */,
 				8D31615227DCD484008A54B2 /* CategoryItemViewController.swift in Sources */,
+				8D71392B27E83D6900DBC65C /* TransactionInfoViewController.swift in Sources */,
 				8D6F72CF27DAFA6900714245 /* UIView++.swift in Sources */,
 				8D6F72D527DB4F9400714245 /* Util.swift in Sources */,
 				8D70A68627DF3CC200A176C0 /* CartItemTableViewCell.swift in Sources */,

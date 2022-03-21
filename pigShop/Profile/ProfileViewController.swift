@@ -168,7 +168,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         case .transaction(let items):
-            break
+            switch items[indexPath.row] {
+            case .editInfo:
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "TransactionInfoViewController") as? TransactionInfoViewController {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .history:
+                break
+            }
         case .question(let items):
             break
         case .logout:

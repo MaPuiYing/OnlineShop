@@ -9,10 +9,15 @@ import Foundation
 
 struct User {
     let id: Int?
-    let username: String?
-    let password: String?
-    let email: String?
-    let phoneNo: String?
+    var username: String?
+    var password: String?
+    var email: String?
+    var phoneNo: String?
+    var firstName: String?
+    var lastName: String?
+    var address: String?
+    var country: String?
+    var shippingMethod: String?
 }
 
 class UserModel {
@@ -42,30 +47,26 @@ class UserModel {
     
     //MARK: - Edit Item
     
-    func getCurrentUserIndex() -> Int {
-        return self.aryUser.firstIndex(where: {
-            $0.id == self.currentUser?.id
-        }) ?? 0
-    }
-    
     func addUser(username: String?, password: String?, email: String?, phoneNo: String?) {
-        let newUser = User(id: self.id, username: username, password: password, email: email, phoneNo: phoneNo)
+        let newUser = User(id: self.id, username: username, password: password, email: email, phoneNo: phoneNo, firstName: nil, lastName: nil, address: nil, country: nil, shippingMethod: nil)
         self.aryUser.append(newUser)
         self.id += 1
     }
     
     func updateUserInfo(username newUsername: String?, email newEmail: String?, phone newPhone: String?) {
         let index = self.getCurrentUserIndex()
-        let oldUser = self.aryUser[index]
-        let newUser = User(id: oldUser.id, username: newUsername, password: oldUser.password, email: newEmail, phoneNo: newPhone)
+        var newUser = self.aryUser[index]
+        newUser.username = newUsername
+        newUser.email = newEmail
+        newUser.phoneNo = newPhone
         self.aryUser[index] = newUser
         self.currentUser = newUser
     }
     
     func updatePassword(_ newPassword: String?) {
         let index = self.getCurrentUserIndex()
-        let oldUser = self.aryUser[index]
-        let newUser = User(id: oldUser.id, username: oldUser.username, password: newPassword, email: oldUser.email, phoneNo: oldUser.phoneNo)
+        var newUser = self.aryUser[index]
+        newUser.password = newPassword
         self.aryUser[index] = newUser
         self.currentUser = newUser
     }
@@ -84,6 +85,14 @@ class UserModel {
     
     func logoutUser() {
         self.currentUser = nil
+    }
+    
+    //MARK: - Get Index
+    
+    func getCurrentUserIndex() -> Int {
+        return self.aryUser.firstIndex(where: {
+            $0.id == self.currentUser?.id
+        }) ?? 0
     }
     
 }
