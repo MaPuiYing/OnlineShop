@@ -16,8 +16,7 @@ struct User {
     var firstName: String?
     var lastName: String?
     var address: String?
-    var country: String?
-    var shippingMethod: String?
+    var city: String?
 }
 
 class UserModel {
@@ -26,6 +25,8 @@ class UserModel {
     var aryUser: [User] = []
     var currentUser: User?
     var id: Int = 1
+    
+    var cityString: [String] = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Northwest Territories", "Nunavut", "Yukon"]
     
     init() {
         self.addUser(username: "admin", password: "admin", email: "admin@pigpigShop.com", phoneNo: "98761234")
@@ -48,7 +49,7 @@ class UserModel {
     //MARK: - Edit Item
     
     func addUser(username: String?, password: String?, email: String?, phoneNo: String?) {
-        let newUser = User(id: self.id, username: username, password: password, email: email, phoneNo: phoneNo, firstName: nil, lastName: nil, address: nil, country: nil, shippingMethod: nil)
+        let newUser = User(id: self.id, username: username, password: password, email: email, phoneNo: phoneNo, firstName: nil, lastName: nil, address: nil, city: nil)
         self.aryUser.append(newUser)
         self.id += 1
     }
@@ -70,6 +71,24 @@ class UserModel {
         self.aryUser[index] = newUser
         self.currentUser = newUser
     }
+    
+    func updateTransactionInfo(firstName newFirstName: String?, lastName newLastName: String?, address newAddress: String?) {
+        let index = self.getCurrentUserIndex()
+        var newUser = self.aryUser[index]
+        newUser.firstName = newFirstName
+        newUser.lastName = newLastName
+        newUser.address = newAddress
+        self.aryUser[index] = newUser
+        self.currentUser = newUser
+    }
+    
+    func updateTransactionInfo(city newCity: String?) {
+            let index = self.getCurrentUserIndex()
+            var newUser = self.aryUser[index]
+            newUser.city = newCity
+            self.aryUser[index] = newUser
+            self.currentUser = newUser
+        }
     
     func loginUser(username: String?, password: String?, success: @escaping (()->Void), failure: @escaping (()->Void)) {
         let loginUser = self.aryUser.filter({

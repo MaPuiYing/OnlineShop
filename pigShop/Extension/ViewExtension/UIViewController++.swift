@@ -56,4 +56,16 @@ extension UIViewController {
         let pattern = "[0-9]{8}"
         return text?.range(of: pattern, options: .regularExpression) != nil
     }
+    
+    func checkNamePattern(_ text:String?) -> Bool {
+        guard let textCount = text?.count, textCount > 1, textCount < 10 else { return false }
+        let pattern = "^(([^ ]?)(^[a-zA-Z].*[a-zA-Z]$)([^ ]?))$"
+        return text?.range(of: pattern, options: .regularExpression) != nil
+    }
+    
+    func checkAddressPattern(_ text: String?) -> Bool {
+        guard let addressCount = text?.count, addressCount > 10, addressCount < 70 else { return false }
+        let pattern = "^[a-zA-Z0-9,/ ]+$"
+        return text?.range(of: pattern, options: .regularExpression) != nil
+    }
 }

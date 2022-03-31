@@ -38,8 +38,12 @@ class UserViewController: UIViewController {
     
     func initSetup() {
         self.showEditView(false)
+        self.setupContent()
+    }
+    
+    func setupContent() {
         self.user = UserModel.shared.currentUser
-
+        
         self.tfUserID.text = "\(user?.id ?? 0)"
         self.tfUsername.text = user?.username
         self.tfEmail.text = user?.email
@@ -56,6 +60,7 @@ class UserViewController: UIViewController {
     }
     
     //MARK: - Button Action
+    
     @objc func editBtnPressed() {
         UIView.animate(withDuration: 0.25, animations: { [weak self] in
             self?.showEditView(true)
@@ -67,9 +72,7 @@ class UserViewController: UIViewController {
     @objc func cancelBtnPressed() {
         if self.isEdited() {
             self.showAlert(title: "Are you sure to cancel your editing?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "OK", rightBtnAction: { [weak self] in
-                self?.tfUsername.text = self?.user?.username
-                self?.tfEmail.text = self?.user?.email
-                self?.tfPhone.text = self?.user?.phoneNo
+                self?.setupContent()
                 self?.closeEditAction()
             })
         } else {

@@ -26,6 +26,7 @@
 		8D485A2C27D9042C007C5B55 /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D485A2B27D9042C007C5B55 /* Cart.storyboard */; };
 		8D485A2E27D90441007C5B55 /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D485A2D27D90441007C5B55 /* Order.storyboard */; };
 		8D485A3027D9044B007C5B55 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D485A2F27D9044B007C5B55 /* Profile.storyboard */; };
+		8D67D3E627F5C89E00B77AAE /* UITextField++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67D3E527F5C89E00B77AAE /* UITextField++.swift */; };
 		8D6F72CB27DAF70F00714245 /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F72CA27DAF70F00714245 /* RecommendView.swift */; };
 		8D6F72CD27DAF72400714245 /* RecommendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D6F72CC27DAF72400714245 /* RecommendView.xib */; };
 		8D6F72CF27DAFA6900714245 /* UIView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F72CE27DAFA6900714245 /* UIView++.swift */; };
@@ -108,6 +109,7 @@
 		8D485A2B27D9042C007C5B55 /* Cart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
 		8D485A2D27D90441007C5B55 /* Order.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Order.storyboard; sourceTree = "<group>"; };
 		8D485A2F27D9044B007C5B55 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		8D67D3E527F5C89E00B77AAE /* UITextField++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField++.swift"; sourceTree = "<group>"; };
 		8D6F72CA27DAF70F00714245 /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		8D6F72CC27DAF72400714245 /* RecommendView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendView.xib; sourceTree = "<group>"; };
 		8D6F72CE27DAFA6900714245 /* UIView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView++.swift"; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				8D6F72CE27DAFA6900714245 /* UIView++.swift */,
 				8D6F72DC27DB9D5100714245 /* UILabel++.swift */,
 				8D31615327DCD70B008A54B2 /* UIViewController++.swift */,
+				8D67D3E527F5C89E00B77AAE /* UITextField++.swift */,
 			);
 			path = ViewExtension;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				8D7E221A27E07CF9000EA144 /* LoginViewController.swift in Sources */,
 				8D31614F27DCCDB1008A54B2 /* CustomRefreshControl.swift in Sources */,
 				8D71C76427E48C39001025BB /* ProfilePasswordViewController.swift in Sources */,
+				8D67D3E627F5C89E00B77AAE /* UITextField++.swift in Sources */,
 				8D980A5227DE42C000718E50 /* ItemSearchViewController.swift in Sources */,
 				8DDF379827D9D3D000142E4B /* SettingListTableViewCell.swift in Sources */,
 				8D6F72CB27DAF70F00714245 /* RecommendView.swift in Sources */,

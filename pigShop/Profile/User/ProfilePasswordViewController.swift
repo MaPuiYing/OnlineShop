@@ -23,6 +23,8 @@ class ProfilePasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customBackButton()
+        self.title = "Change Password"
+        
         self.navigationBarSetup()
         self.initSetup()
         // Do any additional setup after loading the view.
