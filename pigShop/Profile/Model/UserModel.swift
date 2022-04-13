@@ -49,7 +49,7 @@ class UserModel {
     //MARK: - Edit Item
     
     func addUser(username: String?, password: String?, email: String?, phoneNo: String?) {
-        let newUser = User(id: self.id, username: username, password: password, email: email, phoneNo: phoneNo, firstName: nil, lastName: nil, address: nil, city: nil)
+        let newUser = User(id: self.id, username: username, password: password, email: email, phoneNo: phoneNo, firstName: nil, lastName: nil, address: nil, city: "Alberta")
         self.aryUser.append(newUser)
         self.id += 1
     }
@@ -72,7 +72,7 @@ class UserModel {
         self.currentUser = newUser
     }
     
-    func updateTransactionInfo(firstName newFirstName: String?, lastName newLastName: String?, address newAddress: String?) {
+    func updateTransactionInfo(firstName newFirstName: String?, lastName newLastName: String?, address newAddress: String?, city newCity: String?) {
         let index = self.getCurrentUserIndex()
         var newUser = self.aryUser[index]
         newUser.firstName = newFirstName
@@ -81,15 +81,7 @@ class UserModel {
         self.aryUser[index] = newUser
         self.currentUser = newUser
     }
-    
-    func updateTransactionInfo(city newCity: String?) {
-            let index = self.getCurrentUserIndex()
-            var newUser = self.aryUser[index]
-            newUser.city = newCity
-            self.aryUser[index] = newUser
-            self.currentUser = newUser
-        }
-    
+
     func loginUser(username: String?, password: String?, success: @escaping (()->Void), failure: @escaping (()->Void)) {
         let loginUser = self.aryUser.filter({
             ($0.username == username) && ($0.password == password)

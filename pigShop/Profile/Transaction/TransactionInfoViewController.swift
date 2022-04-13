@@ -55,9 +55,7 @@ class TransactionInfoViewController: UIViewController {
     func setupMenu() {
         var btnActions: [UIAction] = []
         for items in self.userModel.cityString {
-            let action = UIAction(title: items, state: (self.user?.city == items) ? .on : .off, handler: {_ in
-                self.userModel.updateTransactionInfo(city: items)
-            })
+            let action = UIAction(title: items, state: (self.user?.city == items) ? .on : .off, handler: {_ in })
             btnActions.append(action)
         }
         self.btnCity.menu = UIMenu(options: .singleSelection, children: btnActions)
@@ -107,9 +105,10 @@ class TransactionInfoViewController: UIViewController {
                 self.showAlertMessage("Invalid Address")
             } else {
                 self.showAlert(title: "Are you sure to save your editing?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "OK", rightBtnAction: { [weak self] in
-                    self?.userModel.updateTransactionInfo(firstName: firstName, lastName: lastName, address: address)
-                    self?.initSetup()
-                    self?.closeEditAction()
+                    guard let theSelf = self else {return}
+                    theSelf.userModel.updateTransactionInfo(firstName: firstName, lastName: lastName, address: address, city: theSelf.btnCity.currentTitle)
+                    theSelf.initSetup()
+                    theSelf.closeEditAction()
                 })
             }
         } else {
@@ -152,13 +151,14 @@ class TransactionInfoViewController: UIViewController {
         let firstName = self.user?.firstName ?? ""
         let lastName = self.user?.lastName ?? ""
         let address = self.user?.address ?? ""
+        let city = self.user?.city ?? ""
         
-        return (self.tfFirstName.text != firstName) || (self.tfLastName.text != lastName) || (self.tfAddress.text != address)
+        return (self.tfFirstName.text != firstName) || (self.tfLastName.text != lastName) || (self.tfAddress.text != address) || (self.btnCity.currentTitle != city)
     }
     
     func closeEditAction() {
         UIView.animate(withDuration: 0.25, animations: { [weak self] in
-                self?.showEditView(false)
+            self?.showEditView(false)
         })
         self.customBackButton()
         self.navigationItem.rightBarButtonItem = self.editBtnItem
