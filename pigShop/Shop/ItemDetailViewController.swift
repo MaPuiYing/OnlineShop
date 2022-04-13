@@ -32,6 +32,7 @@ class ItemDetailViewController: UIViewController {
     var itemDetail: Item?
     let itemModel = ItemModel.shared
     let cartModel = CartModel.shared
+    let userModel = UserModel.shared
     
     var isBookmarks = false {
         didSet {
@@ -177,7 +178,20 @@ class ItemDetailViewController: UIViewController {
     }
     
     @IBAction func buyItNowBtnPressed() {
-        NSLog("buy it now")
+        if self.userModel.isLogined() == false {
+            self.showAlert(title: "Please login your account.", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Login Now", rightBtnAction: { [weak self] in
+                if let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+                    vc.modalPresentationStyle = .fullScreen
+                    self?.tabBarController?.present(vc, animated: true, completion: nil)
+                }
+            })
+        } else {
+            self.showAlert(title: "Are you sure to buy the item?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: { [weak self] in
+                if let vc = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CheckoutViewController") as? CheckoutViewController {
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            })
+        }
     }
 
 }

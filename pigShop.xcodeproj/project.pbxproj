@@ -51,6 +51,7 @@
 		8D7E862427DDC19200118874 /* item.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E862327DDC19200118874 /* item.json */; };
 		8D7E862627DDCFED00118874 /* Double++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7E862527DDCFED00118874 /* Double++.swift */; };
 		8D7ED77F27E34E1D00714DC1 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7ED77E27E34E1D00714DC1 /* ProfileDetailViewController.swift */; };
+		8D8A6FD12806E51600746410 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8A6FD02806E51600746410 /* CheckoutViewController.swift */; };
 		8D980A5227DE42C000718E50 /* ItemSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D980A5127DE42C000718E50 /* ItemSearchViewController.swift */; };
 		8D980A5627DE447100718E50 /* ItemSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D980A5427DE447100718E50 /* ItemSearchTableViewCell.swift */; };
 		8D980A5727DE447100718E50 /* ItemSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D980A5527DE447100718E50 /* ItemSearchTableViewCell.xib */; };
@@ -134,6 +135,7 @@
 		8D7E862327DDC19200118874 /* item.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = item.json; path = ../../../../Downloads/item.json; sourceTree = "<group>"; };
 		8D7E862527DDCFED00118874 /* Double++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Double++.swift"; path = "pigShop/extension/Double++.swift"; sourceTree = SOURCE_ROOT; };
 		8D7ED77E27E34E1D00714DC1 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		8D8A6FD02806E51600746410 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		8D980A5127DE42C000718E50 /* ItemSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearchViewController.swift; sourceTree = "<group>"; };
 		8D980A5427DE447100718E50 /* ItemSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearchTableViewCell.swift; sourceTree = "<group>"; };
 		8D980A5527DE447100718E50 /* ItemSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemSearchTableViewCell.xib; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				8D70A68327DF3CA300A176C0 /* TableViewCell */,
 				8D485A2B27D9042C007C5B55 /* Cart.storyboard */,
 				8D9BFA0327DA259500DBE962 /* CartViewController.swift */,
+				8D8A6FD02806E51600746410 /* CheckoutViewController.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				8DDF379C27D9E36A00142E4B /* AccountTableViewCell.swift in Sources */,
 				8D31615227DCD484008A54B2 /* CategoryItemViewController.swift in Sources */,
 				8D71392B27E83D6900DBC65C /* TransactionInfoViewController.swift in Sources */,
+				8D8A6FD12806E51600746410 /* CheckoutViewController.swift in Sources */,
 				8D6F72CF27DAFA6900714245 /* UIView++.swift in Sources */,
 				8D6F72D527DB4F9400714245 /* Util.swift in Sources */,
 				8D70A68627DF3CC200A176C0 /* CartItemTableViewCell.swift in Sources */,
