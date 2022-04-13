@@ -9,9 +9,9 @@ import Foundation
 
 struct Cart {
     let id: Int?
-    let item: Item?
-    let count: Int?
-    let isChecked: Bool?
+    var item: Item?
+    var count: Int?
+    var isChecked: Bool?
 }
 
 class CartModel {
@@ -41,7 +41,7 @@ class CartModel {
         }).first?.id
         
         if let id = duplicateId {
-            let index = self.aryCart.firstIndex(where: {$0.id == id}) ?? 0
+            let index = self.getCartIndex(id)
             let oldCart = self.aryCart[index]
             let newCount = (oldCart.count ?? 1) + count
             if newCount < 10 {
@@ -61,21 +61,27 @@ class CartModel {
     }
     
     func deleteCart(id: Int) {
-        let index = self.aryCart.firstIndex(where: {$0.id == id}) ?? 0
+        let index = self.getCartIndex(id)
         self.aryCart.remove(at: index)
     }
     
     func updateCount(id: Int, count: Int) {
-        let index = self.aryCart.firstIndex(where: {$0.id == id}) ?? 0
-        let oldCart = self.aryCart[index]
-        let newCart = Cart(id: oldCart.id, item: oldCart.item, count: count, isChecked: oldCart.isChecked)
+        let index = self.getCartIndex(id)
+        var newCart = self.aryCart[index]
+        newCart.count = count
         self.aryCart[index] = newCart
     }
     
     func updateChecked(id: Int, isChecked: Bool) {
-        let index = self.aryCart.firstIndex(where: {$0.id == id}) ?? 0
+        let index = self.getCartIndex(id)
         let oldCart = self.aryCart[index]
         let newCart = Cart(id: oldCart.id, item: oldCart.item, count: oldCart.count, isChecked: isChecked)
         self.aryCart[index] = newCart
+    }
+    
+    //MARK: - Get Index
+    
+    func getCartIndex(_ id: Int) -> Int {
+        return self.aryCart.firstIndex(where: {$0.id == id}) ?? 0
     }
 }

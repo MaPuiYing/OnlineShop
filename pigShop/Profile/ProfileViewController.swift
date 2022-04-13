@@ -9,13 +9,13 @@ import UIKit
 
 enum ProfileSections {
     case user
-    case edit([EditSection])
+    case transaction([TransactionSection])
     case question([QuestionSection])
     case logout
     
-    enum EditSection: CaseIterable {
-        case editAccInfo
-        case forgotPassword
+    enum TransactionSection: CaseIterable {
+        case editInfo
+        case history
     }
     enum QuestionSection: CaseIterable {
         case policy
@@ -28,31 +28,58 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     
     var tableSections: [ProfileSections] = []
-    var isLogin = false
+    var userModel = UserModel.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Profile"
-        
-        setupTable()
-        // Do any additional setup after loading the view.
+        self.setupTable()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.userModel = UserModel.shared
+        self.setupTableSections()
     }
     
     func setupTable() {
-        table.separatorStyle = .none
+        self.table.separatorStyle = .none
         // Register
-        table.register(UINib(nibName: "SettingListTableViewCell", bundle: nil), forCellReuseIdentifier: "listCell")
-        table.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "accountCell")
+        self.table.register(UINib(nibName: "SettingListTableViewCell", bundle: nil), forCellReuseIdentifier: "listCell")
+        self.table.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "accountCell")
+    }
+    
+    func setupTableSections() {
+        let isLogined = self.userModel.isLogined() ?? false
+        self.tableSections = []
         
-        // Append
-        tableSections.append(ProfileSections.user)
-        tableSections.append(ProfileSections.edit(ProfileSections.EditSection.allCases))
-        tableSections.append(ProfileSections.question(ProfileSections.QuestionSection.allCases))
-        if isLogin {
-            tableSections.append(ProfileSections.logout)
+        self.tableSections.append(ProfileSections.user)
+        
+        if isLogined {
+            self.tableSections.append(ProfileSections.transaction(ProfileSections.TransactionSection.allCases))
         }
         
-        table.reloadData()
+        self.tableSections.append(ProfileSections.question(ProfileSections.QuestionSection.allCases))
+        
+        if isLogined {
+            self.tableSections.append(ProfileSections.logout)
+        }
+        
+        self.table.reloadData()
+    }
+    
+    //MARK: - Button Action
+    @objc func registerBtnPressed() {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController {
+            vc.modalPresentationStyle = .fullScreen
+            self.tabBarController?.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func loginBtnPressed() {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+            vc.modalPresentationStyle = .fullScreen
+            self.tabBarController?.present(vc, animated: true, completion: nil)
+        }
     }
 }
 
@@ -60,15 +87,15 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return tableSections.count
+        return self.tableSections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = tableSections[section]
+        let section = self.tableSections[section]
         switch section {
         case .user:
             return 1
-        case .edit(let items):
+        case .transaction(let items):
             return items.count
         case .question(let items):
             return items.count
@@ -78,33 +105,34 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = tableSections[indexPath.section]
+        let section = self.tableSections[indexPath.section]
         switch section {
         case .user:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell") as? AccountTableViewCell else {return UITableViewCell()}
             
-            if isLogin {
+            if self.userModel.isLogined() == true {
                 cell.vwUser.isHidden = false
                 cell.vwGuest.isHidden = true
                 
-                cell.lblUserName.text = "[User Name]"
+                cell.lblUserName.text = userModel.getUser()?.username
             } else {
                 cell.selectionStyle = .none
-                
                 cell.vwGuest.isHidden = false
                 cell.vwUser.isHidden = true
+                cell.btnRegister.addTarget(self, action: #selector(self.registerBtnPressed), for: .touchUpInside)
+                cell.btnLogin.addTarget(self, action: #selector(self.loginBtnPressed), for: .touchUpInside)
             }
             return cell
-        case .edit(let items):
+        case .transaction(let items):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell") as? SettingListTableViewCell else {return UITableViewCell()}
             
             switch items[indexPath.row] {
-            case .editAccInfo:
+            case .editInfo:
                 cell.vwSeparator.isHidden = false
-                cell.lblTitle.text = "Edit Account"
-            case .forgotPassword:
+                cell.lblTitle.text = "Transaction Information"
+            case .history:
                 cell.vwSeparator.isHidden = true
-                cell.lblTitle.text = "Forgot Password"
+                cell.lblTitle.text = "Order History"
             }
             return cell
             
@@ -128,7 +156,34 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        table.deselectRow(at: indexPath, animated: true)
+        self.table.deselectRow(at: indexPath, animated: true)
+        
+        let section = self.tableSections[indexPath.section]
+        switch section {
+        case .user:
+            if self.userModel.isLogined() == true {
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailViewController") as? ProfileDetailViewController {
+                    vc.type = .user
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        case .transaction(let items):
+            switch items[indexPath.row] {
+            case .editInfo:
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "TransactionInfoViewController") as? TransactionInfoViewController {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .history:
+                break
+            }
+        case .question(let items):
+            break
+        case .logout:
+            self.showAlert(title: "Confirm to logout?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: {[weak self] in
+                self?.userModel.logoutUser()
+                self?.setupTableSections()
+            })
+        }
     }
     
     //MARK: - Header
@@ -138,11 +193,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let section = tableSections[section]
+        let section = self.tableSections[section]
         switch section {
         case .user, .logout:
             return .leastNonzeroMagnitude
-        case .edit:
+        case .transaction:
             return 50
         case .question:
             return 50
@@ -154,12 +209,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = tableSections[section]
+        let section = self.tableSections[section]
         switch section {
         case .user, .logout:
             return nil
-        case .edit:
-            return "Edit"
+        case .transaction:
+            return "Transaction"
         case .question:
             return "Question"
         }

@@ -19,6 +19,8 @@ class CartViewController: UIViewController {
     @IBOutlet weak var btnCheckout: UIButton!
 
     let cartModel = CartModel.shared
+    var userModel = UserModel.shared
+    
     var aryCart: [Cart] = []
     var totalPrice: Double = 0 {
         didSet {
@@ -35,6 +37,7 @@ class CartViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.userModel = UserModel.shared
         self.aryCart = cartModel.aryCart
         self.updateCartContent()
         self.emptySetup()
@@ -76,9 +79,18 @@ class CartViewController: UIViewController {
     
     //MARK: - Button Action
     @IBAction func checkoutBtnPressed() {
-        self.showAlert(title: "Are you sure to buy the item(s)?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: { [weak self] in
-            //TODO: Add confirm action
-        })
+        if self.userModel.isLogined() == false {
+            self.showAlert(title: "Please login your account.", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Login Now", rightBtnAction: { [weak self] in
+                if let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+                    vc.modalPresentationStyle = .fullScreen
+                    self?.tabBarController?.present(vc, animated: true, completion: nil)
+                }
+            })
+        } else {
+            self.showAlert(title: "Are you sure to buy the item(s)?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: { [weak self] in
+                //TODO: Add confirm action
+            })
+        }
     }
     
     //MARK: - Method
