@@ -36,6 +36,11 @@ class UserViewController: UIViewController {
         self.initSetup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hideTabbar()
+    }
+    
     func initSetup() {
         self.showEditView(false)
         self.setupContent()

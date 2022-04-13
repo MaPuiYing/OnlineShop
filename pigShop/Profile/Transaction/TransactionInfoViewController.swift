@@ -36,6 +36,11 @@ class TransactionInfoViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hideTabbar()
+    }
+    
     func initSetup() {
         self.vwBackground.layer.cornerRadius = 10
         self.setupContent()

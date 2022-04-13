@@ -57,6 +57,11 @@ class ItemDetailViewController: UIViewController {
         self.setupContent()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hideTabbar()
+    }
+    
     //MARK: - Set up method
     
     func initSetup() {

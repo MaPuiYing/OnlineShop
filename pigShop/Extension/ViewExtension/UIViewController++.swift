@@ -11,13 +11,22 @@ import UIKit
 extension UIViewController {
     func customBackButton() {
         self.navigationItem.hidesBackButton = true
-        
+        self.hideTabbar()
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),style: .plain, target: self, action: #selector(back))
         backButton.tintColor = .black
         self.navigationItem.leftBarButtonItem = backButton
     }
     
+    func showTabbar() {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func hideTabbar() {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     @objc func back() {
+        self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
     

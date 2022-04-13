@@ -39,6 +39,8 @@ class CategoryItemViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.hideTabbar()
+        
         //Refresh Setting
         self.refreshControl.scrollView = self.scrollView
         self.refreshControl.finishAction = { [weak self] in

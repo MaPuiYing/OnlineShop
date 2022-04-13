@@ -31,6 +31,8 @@ class ItemSearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.hideTabbar()
+        
         //Refresh Setting
         self.refreshControl.scrollView = self.table
         self.refreshControl.finishAction = { [weak self] in

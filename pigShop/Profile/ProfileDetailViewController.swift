@@ -24,6 +24,11 @@ class ProfileDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hideTabbar()
+    }
+    
     func setupTable() {
         self.table.separatorStyle = .none
         self.table.register(UINib(nibName: "SettingListTableViewCell", bundle: nil), forCellReuseIdentifier: "listCell")

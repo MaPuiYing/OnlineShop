@@ -55,6 +55,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.showTabbar()
         
         //Refresh Setting
         self.refreshControl.scrollView = self.scrollView
