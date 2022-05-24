@@ -143,13 +143,13 @@ class TransactionInfoViewController: UIViewController {
         }
         
         if (self.user?.firstName ?? "").isEmpty {
-            self.tfFirstName.text = isShow ? "" : "Null"
+            self.tfFirstName.text = isShow ? "" : "[First name]"
         }
         if (self.user?.lastName ?? "").isEmpty {
-            self.tfLastName.text = isShow ? "" : "Null"
+            self.tfLastName.text = isShow ? "" : "[Last name]"
         }
         if (self.user?.address ?? "").isEmpty {
-            self.tfAddress.text = isShow ? "" : "Null"
+            self.tfAddress.text = isShow ? "" : "[Address]"
         }
     }
     
