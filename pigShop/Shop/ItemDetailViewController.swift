@@ -26,8 +26,8 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var vwMinus: ViewButton!
     @IBOutlet weak var lblCount: UILabel!
     
-    @IBOutlet weak var btnCart: UIButton!
-    @IBOutlet weak var btnBuy: UIButton!
+    @IBOutlet weak var btnCart: ShopButton!
+    @IBOutlet weak var btnBuy: ShopButton!
 
     var itemDetail: Item?
     let itemModel = ItemModel.shared
@@ -105,18 +105,8 @@ class ItemDetailViewController: UIViewController {
         self.vwStepper.layer.borderWidth = 0.5
         self.vwStepper.layer.borderColor = UIColor.borderColor.cgColor
         
-        self.btnCart.tintColor = .white
-        self.btnCart.setTitleColor(.btnOrange, for: .normal)
         self.btnCart.setTitle("Add to cart", for: .normal)
-        self.btnCart.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        self.btnCart.layer.borderWidth = 1
-        self.btnCart.layer.borderColor = UIColor.btnOrange.cgColor
-        self.btnCart.layer.cornerRadius = 6
-        
-        self.btnBuy.tintColor = .btnOrange
-        self.btnBuy.setTitleColor(.white, for: .normal)
         self.btnBuy.setTitle("Buy it now", for: .normal)
-        self.btnBuy.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
     }
     
     func setupContent() {

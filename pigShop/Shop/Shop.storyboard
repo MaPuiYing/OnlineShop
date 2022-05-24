@@ -472,20 +472,48 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mkY-wP-QfF" userLabel="Button">
                                                 <rect key="frame" x="0.0" y="210" width="374" height="45"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZe-W3-Ofy">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUD-0x-xSZ" customClass="ShopButton" customModule="pigShop" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="45"/>
+                                                        <color key="tintColor" name="btnOrange"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button">
+                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                        </buttonConfiguration>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" name="btnOrange"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="addToCartBtnPressed" destination="J9W-fR-fvE" eventType="touchUpInside" id="7vU-7w-ZjS"/>
+                                                            <action selector="addToCartBtnPressed" destination="J9W-fR-fvE" eventType="touchUpInside" id="37u-hB-NHz"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGw-ai-lBx">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFJ-Yi-kUv" customClass="ShopButton" customModule="pigShop" customModuleProvider="target">
                                                         <rect key="frame" x="197" y="0.0" width="177" height="45"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button">
+                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                        </buttonConfiguration>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                <color key="value" name="btnOrange"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="buyItNowBtnPressed" destination="J9W-fR-fvE" eventType="touchUpInside" id="9DS-nb-u2y"/>
+                                                            <action selector="buyItNowBtnPressed" destination="J9W-fR-fvE" eventType="touchUpInside" id="psZ-vv-htM"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -523,8 +551,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnBuy" destination="VGw-ai-lBx" id="lvZ-VG-0nZ"/>
-                        <outlet property="btnCart" destination="nZe-W3-Ofy" id="0S2-jQ-rG0"/>
+                        <outlet property="btnBuy" destination="yFJ-Yi-kUv" id="W3N-U8-nYx"/>
+                        <outlet property="btnCart" destination="MUD-0x-xSZ" id="ePd-du-wQB"/>
                         <outlet property="imvBanner" destination="PWM-OF-VcZ" id="P2M-Nu-Ke6"/>
                         <outlet property="imvBookmarks" destination="QhD-e3-C1H" id="vii-Sa-3yT"/>
                         <outlet property="lblColumnCount" destination="34u-1b-kRb" id="he5-fD-QtP"/>
@@ -619,6 +647,14 @@
             <point key="canvasLocation" x="2110" y="72"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="MUD-0x-xSZ">
+            <size key="intrinsicContentSize" width="72.5" height="32"/>
+        </designable>
+        <designable name="yFJ-Yi-kUv">
+            <size key="intrinsicContentSize" width="72.5" height="32"/>
+        </designable>
+    </designables>
     <resources>
         <image name="emptyPig" width="200" height="200"/>
         <image name="heart" catalog="system" width="128" height="109"/>

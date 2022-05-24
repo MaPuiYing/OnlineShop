@@ -78,6 +78,7 @@ class UserModel {
         newUser.firstName = newFirstName
         newUser.lastName = newLastName
         newUser.address = newAddress
+        newUser.city = newCity
         self.aryUser[index] = newUser
         self.currentUser = newUser
     }

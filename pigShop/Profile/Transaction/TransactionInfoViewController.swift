@@ -128,6 +128,7 @@ class TransactionInfoViewController: UIViewController {
     }
     
     func showEditView(_ isShow: Bool) {
+        self.btnCity.setImage(isShow ? UIImage(systemName: "chevron.down") : nil, for: .normal)
         self.vwLineFirstName.isHidden = !isShow
         self.vwLineLastName.isHidden = !isShow
         self.vwLineAddress.isHidden = !isShow
