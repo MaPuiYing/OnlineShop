@@ -999,7 +999,7 @@
                                                                             <outlet property="delegate" destination="XIm-zj-8V9" id="5Ls-iQ-geW"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwj-vd-xeF">
+                                                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwj-vd-xeF">
                                                                         <rect key="frame" x="0.0" y="49" width="334" height="1.5"/>
                                                                         <color key="backgroundColor" name="borderColor"/>
                                                                         <constraints>
@@ -1027,7 +1027,7 @@
                                                                             <outlet property="delegate" destination="XIm-zj-8V9" id="lTb-GX-6CG"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5FM-Qv-aSk">
+                                                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5FM-Qv-aSk">
                                                                         <rect key="frame" x="0.0" y="49" width="334" height="1.5"/>
                                                                         <color key="backgroundColor" name="borderColor"/>
                                                                         <constraints>
@@ -1102,13 +1102,13 @@
                     </view>
                     <connections>
                         <outlet property="btnCity" destination="CyB-1E-eCA" id="kBA-er-Txr"/>
-                        <outlet property="tfAddress" destination="T9H-b7-ltg" id="06Y-io-N2e"/>
-                        <outlet property="tfFirstName" destination="ecX-WH-0Re" id="R76-1r-uIr"/>
-                        <outlet property="tfLastName" destination="gCg-xF-NPW" id="8pQ-aU-teb"/>
                         <outlet property="vwBackground" destination="Kzx-Yu-WLP" id="HKH-va-Dai"/>
-                        <outlet property="vwLineAddress" destination="5FM-Qv-aSk" id="B7u-7h-9GA"/>
-                        <outlet property="vwLineFirstName" destination="vth-0Y-1MR" id="aT1-Og-6rs"/>
-                        <outlet property="vwLineLastName" destination="iwj-vd-xeF" id="Xbw-0i-Ohx"/>
+                        <outletCollection property="vwLine" destination="vth-0Y-1MR" collectionClass="NSMutableArray" id="bR4-kp-lO1"/>
+                        <outletCollection property="vwLine" destination="iwj-vd-xeF" collectionClass="NSMutableArray" id="3tC-wi-38j"/>
+                        <outletCollection property="vwLine" destination="5FM-Qv-aSk" collectionClass="NSMutableArray" id="SLy-UB-BPe"/>
+                        <outletCollection property="tfInfo" destination="ecX-WH-0Re" collectionClass="NSMutableArray" id="Cut-hz-nUe"/>
+                        <outletCollection property="tfInfo" destination="gCg-xF-NPW" collectionClass="NSMutableArray" id="dMK-NS-Fc3"/>
+                        <outletCollection property="tfInfo" destination="T9H-b7-ltg" collectionClass="NSMutableArray" id="hpp-bx-o6z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imI-CJ-IjH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

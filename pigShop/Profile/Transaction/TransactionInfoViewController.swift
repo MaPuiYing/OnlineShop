@@ -10,13 +10,8 @@ import UIKit
 class TransactionInfoViewController: UIViewController {
     
     @IBOutlet weak var vwBackground: UIView!
-    @IBOutlet weak var tfFirstName: UITextField!
-    @IBOutlet weak var tfLastName: UITextField!
-    @IBOutlet weak var tfAddress: UITextField!
-    
-    @IBOutlet weak var vwLineFirstName: UIView!
-    @IBOutlet weak var vwLineLastName: UIView!
-    @IBOutlet weak var vwLineAddress: UIView!
+    @IBOutlet var tfInfo: [UITextField]!
+    @IBOutlet var vwLine: [UIView]!
     
     @IBOutlet weak var btnCity: UIButton!
         
@@ -50,9 +45,9 @@ class TransactionInfoViewController: UIViewController {
     
     func setupContent() {
         self.user = UserModel.shared.currentUser
-        self.tfFirstName.text = user?.firstName
-        self.tfLastName.text = user?.lastName
-        self.tfAddress.text = user?.address
+        self.tfInfo[0].text = user?.firstName
+        self.tfInfo[1].text = user?.lastName
+        self.tfInfo[2].text = user?.address
         
         self.setupMenu()
     }
@@ -98,9 +93,9 @@ class TransactionInfoViewController: UIViewController {
         
     @objc func saveBtnPressed() {
         if self.isEdited() {
-            let firstName = self.tfFirstName.text
-            let lastName = self.tfLastName.text
-            let address = self.tfAddress.text
+            let firstName = self.tfInfo[0].text
+            let lastName = self.tfInfo[1].text
+            let address = self.tfInfo[2].text
 
             if firstName?.isEmpty == false && !(self.checkNamePattern(firstName)) {
                 self.showAlertMessage("Invalid First Name")
@@ -129,27 +124,22 @@ class TransactionInfoViewController: UIViewController {
     
     func showEditView(_ isShow: Bool) {
         self.btnCity.setImage(isShow ? UIImage(systemName: "chevron.down") : nil, for: .normal)
-        self.vwLineFirstName.isHidden = !isShow
-        self.vwLineLastName.isHidden = !isShow
-        self.vwLineAddress.isHidden = !isShow
-        self.tfFirstName.isEnabled = isShow
-        self.tfLastName.isEnabled = isShow
-        self.tfAddress.isEnabled = isShow
-        
+        self.vwLine.forEach({$0.isHidden = !isShow})
+        self.tfInfo.forEach({$0.isEnabled = isShow})
         self.btnCity.isEnabled = isShow
             
         if isShow {
-            self.tfFirstName.becomeFirstResponder()
+            self.tfInfo.first?.becomeFirstResponder()
         }
         
         if (self.user?.firstName ?? "").isEmpty {
-            self.tfFirstName.text = isShow ? "" : "[First name]"
+            self.tfInfo[0].text = isShow ? "" : "[First name]"
         }
         if (self.user?.lastName ?? "").isEmpty {
-            self.tfLastName.text = isShow ? "" : "[Last name]"
+            self.tfInfo[1].text = isShow ? "" : "[Last name]"
         }
         if (self.user?.address ?? "").isEmpty {
-            self.tfAddress.text = isShow ? "" : "[Address]"
+            self.tfInfo[2].text = isShow ? "" : "[Address]"
         }
     }
     
@@ -159,7 +149,7 @@ class TransactionInfoViewController: UIViewController {
         let address = self.user?.address ?? ""
         let city = self.user?.city ?? ""
         
-        return (self.tfFirstName.text != firstName) || (self.tfLastName.text != lastName) || (self.tfAddress.text != address) || (self.btnCity.currentTitle != city)
+        return (self.tfInfo[0].text != firstName) || (self.tfInfo[1].text != lastName) || (self.tfInfo[2].text != address) || (self.btnCity.currentTitle != city)
     }
     
     func closeEditAction() {
@@ -175,28 +165,18 @@ class TransactionInfoViewController: UIViewController {
 
 extension TransactionInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        switch textField {
-        case self.tfFirstName:
-            self.vwLineFirstName.backgroundColor = .mainOrange
-        case self.tfLastName:
-            self.vwLineLastName.backgroundColor = .mainOrange
-        case self.tfAddress:
-            self.vwLineAddress.backgroundColor = .mainOrange
-        default:
-            break
+        for i in 0..<self.tfInfo.count {
+            if textField == self.tfInfo[i] {
+                self.vwLine[i].backgroundColor = .mainOrange
+            }
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField {
-        case self.tfFirstName:
-            self.vwLineFirstName.backgroundColor = .borderColor
-        case self.tfLastName:
-            self.vwLineLastName.backgroundColor = .borderColor
-        case self.tfAddress:
-            self.vwLineAddress.backgroundColor = .borderColor
-        default:
-            break
+        for i in 0..<self.tfInfo.count {
+            if textField == self.tfInfo[i] {
+                self.vwLine[i].backgroundColor = .borderColor
+            }
         }
     }
 }
