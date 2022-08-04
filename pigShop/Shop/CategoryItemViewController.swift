@@ -15,10 +15,10 @@ class CategoryItemViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var vwKnowMore: ViewButton!
-    @IBOutlet weak var lblKnowMore: UILabel!
+    @IBOutlet weak var lbKnowMore: UILabel!
     
     @IBOutlet weak var vwEmpty: UIView!
-    @IBOutlet weak var lblEmpty: UILabel!
+    @IBOutlet weak var lbEmpty: UILabel!
     
     let itemModel = ItemModel.shared
 
@@ -60,13 +60,8 @@ class CategoryItemViewController: UIViewController {
         self.vwKnowMore.layer.cornerRadius = self.vwKnowMore.bounds.height/2
         self.vwKnowMore.method = {self.updateCellCount()}
 
-        self.lblKnowMore.textColor = .white
-        self.lblKnowMore.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        self.lblKnowMore.text = "Know More"
-        
-        self.lblEmpty.textColor = .textLightGrey
-        self.lblEmpty.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        self.lblEmpty.text = "Sorry, it is empty."
+        self.lbKnowMore.text = "Know More"
+        self.lbEmpty.text = "Sorry, it is empty."
     }
     
     func refreshPage() {
@@ -166,7 +161,7 @@ extension CategoryItemViewController: UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? ItemCollectionViewCell else {return UICollectionViewCell()}
         let model = self.filteredItems[indexPath.row]
         cell.imvBanner.sd_setImage(with: URL(string: model.imageURL ?? ""), completed: nil)
-        cell.lblTitle.text = model.title
+        cell.lbTitle.text = model.title
         cell.lblPrice.text = model.price?.stringValue
         if model.isDiscount == true {
             cell.setupOriginalPrice(model.oldPrice?.stringValue)

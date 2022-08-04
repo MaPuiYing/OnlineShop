@@ -10,7 +10,7 @@ import UIKit
 class ItemCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imvBanner: UIImageView!
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lblOldPrice: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var imvBookmarks: ImageButton!
@@ -48,13 +48,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         self.vwContent.layer.borderWidth = 1
         self.vwContent.layer.borderColor = UIColor.borderColor.cgColor
         
-        self.lblTitle.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-
         self.lblOldPrice.isHidden = true
-        self.lblOldPrice.font = UIFont.systemFont(ofSize: 12)
-        self.lblOldPrice.textColor = .textLightGrey
-        self.lblPrice.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        self.lblPrice.textColor = .textRed
     }
     
     func setupOriginalPrice(_ price: String?) {

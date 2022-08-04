@@ -17,8 +17,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lcCategoryHeight: NSLayoutConstraint!
     @IBOutlet weak var lcItemHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var lblNew: UILabel!
-    @IBOutlet weak var lblSales: UILabel!
+    @IBOutlet weak var lbNew: UILabel!
+    @IBOutlet weak var lbSales: UILabel!
     @IBOutlet weak var vwBorder: UIView!
     
     let itemModel = ItemModel.shared
@@ -87,17 +87,9 @@ class HomeViewController: UIViewController {
     }
     
     func initSetup() {
-        self.lblNew.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        self.lblNew.backgroundColor = .white
-        self.lblNew.textColor = .textGrey
-        
-        self.lblSales.font = UIFont.systemFont(ofSize: 10)
-        self.lblSales.backgroundColor = .white
-        self.lblSales.textColor = .textLightGrey
-        
         let space = "    "
-        self.lblNew.text = space + "Special Items" + space
-        self.lblSales.text = space + "PLEASE TAKING THE CHANCE" + space
+        self.lbNew.text = space + "Special Items" + space
+        self.lbSales.text = space + "PLEASE TAKING THE CHANCE" + space
         
         self.vwBorder.layer.cornerRadius = 10
         self.vwBorder.layer.borderColor = UIColor.borderSecondary.cgColor
@@ -176,7 +168,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else if collectionView == self.clvItem {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? ItemCollectionViewCell else {return UICollectionViewCell()}
             let model = self.specialItems[indexPath.row]
-            cell.lblTitle.text = model.title
+            cell.lbTitle.text = model.title
             cell.lblPrice.text = model.price?.stringValue
             cell.imvBanner.sd_setImage(with: URL(string: "https://www.price.com.hk/space/ec_product/shop/192000/192863_kd2nuj_0.jpg"), completed: nil)
             cell.setupOriginalPrice(model.oldPrice?.stringValue)

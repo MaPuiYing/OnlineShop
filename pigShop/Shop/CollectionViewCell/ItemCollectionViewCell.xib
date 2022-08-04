@@ -45,17 +45,17 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Original Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNz-Iy-QoF">
                                         <rect key="frame" x="0.0" y="0.0" width="201" height="98"/>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" name="textLightGrey"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUg-J0-x4i">
                                         <rect key="frame" x="0.0" y="98" width="201" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebt-oQ-Ojl">
-                                                <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" name="textRed"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FYp-Ll-T6F" customClass="ImageButton" customModule="pigShop" customModuleProvider="target">
@@ -109,9 +109,9 @@
             <connections>
                 <outlet property="imvBanner" destination="dh2-P2-rxl" id="ijm-9t-eZc"/>
                 <outlet property="imvBookmarks" destination="FYp-Ll-T6F" id="Abe-hv-6xO"/>
+                <outlet property="lbTitle" destination="mY1-ih-e1g" id="Nhg-oY-Ouf"/>
                 <outlet property="lblOldPrice" destination="XNz-Iy-QoF" id="4RK-Np-Cxm"/>
                 <outlet property="lblPrice" destination="ebt-oQ-Ojl" id="cFa-Yr-fn8"/>
-                <outlet property="lblTitle" destination="mY1-ih-e1g" id="Nhg-oY-Ouf"/>
                 <outlet property="vwContent" destination="ohS-jL-6Gg" id="Syx-Z8-VUX"/>
             </connections>
             <point key="canvasLocation" x="257.24637681159425" y="81.696428571428569"/>
@@ -124,6 +124,9 @@
         </namedColor>
         <namedColor name="textLightGrey">
             <color red="0.50400000810623169" green="0.50400000810623169" blue="0.50400000810623169" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="textRed">
+            <color red="0.69300001859664917" green="0.068000003695487976" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

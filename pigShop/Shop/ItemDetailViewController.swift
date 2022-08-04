@@ -10,7 +10,7 @@ import UIKit
 class ItemDetailViewController: UIViewController {
     
     @IBOutlet weak var imvBanner: UIImageView!
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var imvBookmarks: ImageButton!
     
     @IBOutlet weak var lblColumnPrice: UILabel!
@@ -77,15 +77,8 @@ class ItemDetailViewController: UIViewController {
     }
     
     func setupView() {
-        self.lblTitle.textColor = .black
-        self.lblTitle.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        
         self.lblOldPrice.isHidden = true
-        self.lblOldPrice.font = UIFont.systemFont(ofSize: 12)
-        self.lblOldPrice.textColor = .textLightGrey
         
-        self.lblColumnPrice.textColor = .textRed
-        self.lblColumnPrice.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         self.lblColumnPrice.text = "Price: "
         self.lblColumnDescription.textColor = .textDarkGrey
         self.lblColumnDescription.font = UIFont.systemFont(ofSize: 15, weight: .medium)
@@ -112,7 +105,7 @@ class ItemDetailViewController: UIViewController {
     func setupContent() {
         guard let item = self.itemDetail else {return}
         self.imvBanner.sd_setImage(with: URL(string: item.imageURL ?? ""), completed: nil)
-        self.lblTitle.text = item.title
+        self.lbTitle.text = item.title
         if item.isDiscount == true {
             self.setupOriginalPrice(item.oldPrice?.stringValue)
         }
