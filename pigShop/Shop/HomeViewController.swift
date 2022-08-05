@@ -170,7 +170,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let model = self.specialItems[indexPath.row]
             cell.lbTitle.text = model.title
             cell.lblPrice.text = model.price?.stringValue
-            cell.imvBanner.sd_setImage(with: URL(string: "https://www.price.com.hk/space/ec_product/shop/192000/192863_kd2nuj_0.jpg"), completed: nil)
+            cell.imvBanner.sd_setImage(with: URL(string: model.imageURL ?? ""), completed: nil)
             cell.setupOriginalPrice(model.oldPrice?.stringValue)
             
             cell.isBookmarks = itemModel.getFaviorite(model.id)

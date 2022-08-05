@@ -1,0 +1,37 @@
+{
+    "item": [
+        {
+          "id": 0,
+          "imageURL": "https://www.price.com.hk/space/ec_product/shop/192000/192863_kd2nuj_0.jpg",
+          "title": "lulupig spam",
+          "description": "it is so yummy, can take a try.",
+          "price": 300,
+          "oldPrice": 0,
+          "category": "Food",
+          "isDiscount": false,
+          "isFavorite": false
+        },
+        {
+          "id": 1,
+          "imageURL": "https://media.karousell.com/media/photos/products/2020/9/22/lulupig_lulu____1600744315_4bd23683_progressive.jpg",
+          "title": "pig toy & games",
+          "description": "play with your friends and get the fun.",
+          "price": 30,
+          "oldPrice": 48,
+          "category": "New",
+          "isDiscount": true,
+          "isFavorite": false
+        },
+        {
+          "id": 2,
+          "imageURL": "https://media.karousell.com/media/photos/products/2021/3/20/lulu_lulupig__1616207256_0e9b6ccb_progressive.jpg",
+          "title": "The light that can let you see the decent view at night",
+          "description": "You can turn on the light at night and you will find how beautiful the view is. No hesitation and buy it right now.",
+          "price": 400,
+          "oldPrice": 500,
+          "category": "Hot",
+          "isDiscount": true,
+          "isFavorite": false
+        }
+    ]
+}
