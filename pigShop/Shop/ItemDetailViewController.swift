@@ -171,6 +171,9 @@ class ItemDetailViewController: UIViewController {
         } else {
             self.showAlert(title: "Are you sure to buy the item?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: { [weak self] in
                 if let vc = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CheckoutViewController") as? CheckoutViewController {
+                    vc.aryCart = [Cart(id: nil, item: self?.itemDetail, count: self?.currentCount, isChecked: nil)]
+                    let price = Double(self?.itemDetail?.price ?? 0) * Double(self?.currentCount ?? 1)
+                    vc.totalPrice = price
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             })

@@ -60,16 +60,8 @@ class CartItemTableViewCell: UITableViewCell {
         self.vwCell.addShadow(location: .all)
         
         self.imvBanner.layer.cornerRadius = 10
-        self.lblTitle.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         
         self.lblOldPrice.isHidden = true
-        self.lblOldPrice.font = UIFont.systemFont(ofSize: 12)
-        self.lblOldPrice.textColor = .textLightGrey
-        self.lblPrice.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        self.lblPrice.textColor = .textRed
-        
-        self.lblCount.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        self.lblCount.textColor = .textDarkGrey
     }
     
     func setupOriginalPrice(_ price: String?) {

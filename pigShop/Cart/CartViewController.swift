@@ -89,6 +89,8 @@ class CartViewController: UIViewController {
         } else {
             self.showAlert(title: "Are you sure to buy the item(s)?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: { [weak self] in
                 if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as? CheckoutViewController {
+                    vc.aryCart = self?.aryCart.filter({$0.isChecked == true}) ?? []
+                    vc.totalPrice = self?.totalPrice ?? 0
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             })

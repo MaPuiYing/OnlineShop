@@ -52,16 +52,16 @@ class ProfileViewController: UIViewController {
         let isLogined = self.userModel.isLogined() ?? false
         self.tableSections = []
         
-        self.tableSections.append(ProfileSections.user)
+        self.tableSections.append(.user)
         
         if isLogined {
-            self.tableSections.append(ProfileSections.transaction(ProfileSections.TransactionSection.allCases))
+            self.tableSections.append(.transaction(ProfileSections.TransactionSection.allCases))
         }
         
-        self.tableSections.append(ProfileSections.question(ProfileSections.QuestionSection.allCases))
+        self.tableSections.append(.question(ProfileSections.QuestionSection.allCases))
         
         if isLogined {
-            self.tableSections.append(ProfileSections.logout)
+            self.tableSections.append(.logout)
         }
         
         self.table.reloadData()
