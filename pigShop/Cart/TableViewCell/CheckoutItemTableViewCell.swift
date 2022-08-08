@@ -25,5 +25,17 @@ class CheckoutItemTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.lblOldPrice.isHidden = true
+    }
+    
+    func setupOriginalPrice(_ price: String?) {
+        self.lblOldPrice.isHidden = false
+        let attributedString = NSMutableAttributedString(string: price ?? "")
+        attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
+        self.lblOldPrice.attributedText = attributedString
+    }
 
 }

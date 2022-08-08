@@ -25,7 +25,7 @@ class CheckoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Check out"
+        self.title = "Checkout"
         self.customBackButton()
         self.tableSetup()
         // Do any additional setup after loading the view.
@@ -74,7 +74,9 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
             let item = cart.item
             cell.imvBanner.sd_setImage(with: URL(string: item?.imageURL ?? ""))
             cell.lblTitle.text = item?.title
-            cell.lblOldPrice.text = item?.oldPrice?.stringValue
+            if item?.isDiscount == true {
+                cell.setupOriginalPrice(item?.oldPrice?.stringValue)
+            }
             cell.lblPrice.text = item?.price?.stringValue
             cell.lblCount.text = "x \(cart.count ?? 1)"
             return cell
