@@ -30,8 +30,8 @@ class RecommendView: UIView {
     
     func setupView() {
         self.stopTimer()
-        self.imvLast.method = {self.imvLastAction()}
-        self.imvNext.method = {self.imvNextAction()}
+        self.imvLast.method = {[weak self] in self?.imvLastAction()}
+        self.imvNext.method = {[weak self] in self?.imvNextAction()}
         
         self.collectionView.register(UINib(nibName: "RecommendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "recommendCell")
         self.collectionView.contentOffset.x = CGFloat(self.aryImage.count) * self.collectionView.bounds.width

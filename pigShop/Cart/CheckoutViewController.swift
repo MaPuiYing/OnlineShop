@@ -18,9 +18,11 @@ class CheckoutViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     var tableSection: [CheckoutSection] = []
-    
     var aryCart: [Cart] = []
     var totalPrice: Double = 0
+    
+    let userModel = UserModel.shared
+    let orderModel = OrderModel.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +39,77 @@ class CheckoutViewController: UIViewController {
         self.tableSection.append(.title("Choose Your Payment Method"))
         self.tableSection.append(.paymentMethod)
         self.tableSection.append(.title("Item Review"))
-        
         for item in aryCart {
             self.tableSection.append(.itemReview(item))
         }
-        
         self.tableSection.append(.totalPrice)
-        
         self.table.reloadData()
+    }
+    
+    func continueBtnPressed() {
+        var firstName = ""
+        var lastName = ""
+        var streetAddress = ""
+        var city = "Alberta"
+        var isNeedDefault = true
+        var paymentMethod = -1
+        
+        //Get transaction method
+        let transactionIndex = self.tableSection.firstIndex(where: {
+            if case .transactionInfo = $0 {
+                return true
+            } else {
+                return false
+            }
+        }) ?? 0
+        if let cell = self.table.cellForRow(at: IndexPath(row: transactionIndex, section: 0)) as? CheckoutTransactionTableViewCell {
+            firstName = cell.tfInfo[0].text ?? ""
+            lastName = cell.tfInfo[1].text ?? ""
+            streetAddress = cell.tfInfo[2].text ?? ""
+            city = cell.btnCity.currentTitle ?? ""
+            isNeedDefault = cell.swhDefault.isOn
+        }
+        
+        //Get Payment Method
+        let paymentIndex = self.tableSection.firstIndex(where: {
+            if case .paymentMethod = $0 {
+                return true
+            } else {
+                return false
+            }
+        }) ?? 0
+        if let cell = self.table.cellForRow(at: IndexPath(row: paymentIndex, section: 0)) as? CheckoutPaymentTableViewCell {
+            paymentMethod = cell.aryCheckmark.firstIndex {
+                $0.isHidden == false
+            } ?? -1
+        }
+        
+        if self.validateChecking(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, paymentMethod: paymentMethod) {
+            if isNeedDefault {
+                self.userModel.updateTransactionInfo(firstName: firstName, lastName: lastName, address: streetAddress, city: city)
+            }
+            self.showAlert(title: "Confirm to order?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: {[weak self] in
+                guard let theSelf = self else {return}
+                theSelf.orderModel.addOrder(userId: theSelf.userModel.getUser()?.id ?? 0, firstName: firstName, lastName: lastName, address: streetAddress, city: city, paymentMethod: paymentMethod, allItem: theSelf.aryCart, totalPrice: theSelf.totalPrice)
+                theSelf.navigationController?.popViewController(animated: true)
+            })
+        }
+    }
+    
+    func validateChecking(firstName: String, lastName: String, streetAddress: String, city: String, paymentMethod: Int) -> Bool {
+        if firstName.isEmpty == true || lastName.isEmpty == true || streetAddress.isEmpty == true {
+            self.showAlertMessage("Please fill in all the blank")
+        } else if paymentMethod == -1 {
+            self.showAlertMessage("Please select the payment method")
+        } else if !(self.checkNamePattern(firstName)) || !(self.checkNamePattern(lastName)) {
+            self.showAlertMessage("Invalid Name")
+        } else if !self.checkAddressPattern(streetAddress) {
+            self.showAlertMessage("Invalid Address")
+        } else {
+            return true
+        }
+        
+        return false
     }
 }
 
@@ -81,8 +146,11 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
             cell.lblCount.text = "x \(cart.count ?? 1)"
             return cell
         case .totalPrice:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellPrice") as? CheckoutTitleTableViewCell else {return UITableViewCell()}
-            cell.lblTitle.text = self.totalPrice.stringValue
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellPrice") as? CheckoutPriceTableViewCell else {return UITableViewCell()}
+            cell.lblPrice.text = self.totalPrice.stringValue
+            cell.continueMethod = {[weak self] in
+                self?.continueBtnPressed()
+            }
             return cell
         }
     }

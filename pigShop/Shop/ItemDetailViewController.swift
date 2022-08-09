@@ -66,11 +66,11 @@ class ItemDetailViewController: UIViewController {
     //MARK: - Set up method
     
     func initSetup() {
-        self.imvBookmarks.method = {self.selectedBookmarks()}
+        self.imvBookmarks.method = {[weak self] in self?.selectedBookmarks()}
         self.isBookmarks = itemModel.getFaviorite(self.itemDetail?.id)
         
-        self.vwPlus.method = {self.plusBtnPressed()}
-        self.vwMinus.method = {self.minusBtnPressed()}
+        self.vwPlus.method = {[weak self] in self?.plusBtnPressed()}
+        self.vwMinus.method = {[weak self] in self?.minusBtnPressed()}
         
         self.setupView()
         self.setupContent()

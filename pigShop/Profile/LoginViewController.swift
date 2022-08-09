@@ -26,8 +26,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-        self.vwRegister.method = { self.registerBtnPressed() }
-        self.btnClose.method = { self.dismiss(animated: true, completion: nil) }
+        self.vwRegister.method = {[weak self] in self?.registerBtnPressed() }
+        self.btnClose.method = {[weak self] in self?.dismiss(animated: true, completion: nil)}
         self.initSetup()
         // Do any additional setup after loading the view.
     }

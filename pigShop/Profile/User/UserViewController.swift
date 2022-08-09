@@ -142,10 +142,6 @@ class UserViewController: UIViewController {
         self.customBackButton()
         self.navigationItem.rightBarButtonItem = self.editBtnItem
     }
-    
-    func showAlertMessage(_ title: String) {
-        self.showAlert(title: title, hideLeftButton: true, rightTitle: "OK")
-    }
 }
 
 extension UserViewController: UITextFieldDelegate {

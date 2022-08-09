@@ -117,10 +117,6 @@ class TransactionInfoViewController: UIViewController {
     
     //MARK: - Method
     
-    func showAlertMessage(_ title: String) {
-        self.showAlert(title: title, hideLeftButton: true, rightTitle: "OK")
-    }
-    
     func showEditView(_ isShow: Bool) {
         self.btnCity.setImage(isShow ? UIImage(systemName: "chevron.down") : nil, for: .normal)
         self.tfInfo.forEach({$0.isEnabled = isShow})

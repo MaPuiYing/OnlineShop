@@ -30,6 +30,10 @@ extension UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    func showAlertMessage(_ title: String) {
+        self.showAlert(title: title, hideLeftButton: true, rightTitle: "OK")
+    }
+    
     func showAlert(title: String, hideLeftButton: Bool, leftTitle: String = "", rightTitle: String = "", leftBtnAction: @escaping (()->Void) = {}, rightBtnAction: @escaping (()->Void) = {}) {
         let alertView = AlertViewController(nibName: "AlertViewController", bundle: nil)
         alertView.alertContent = AlertContent(title: title, hideLeftButton: hideLeftButton, leftTitle: leftTitle, rightTitle: rightTitle, leftBtnAction: leftBtnAction, rightBtnAction: rightBtnAction)

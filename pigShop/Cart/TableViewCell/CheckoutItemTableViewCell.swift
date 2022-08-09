@@ -17,6 +17,7 @@ class CheckoutItemTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.lblOldPrice.isHidden = true
         // Initialization code
     }
 

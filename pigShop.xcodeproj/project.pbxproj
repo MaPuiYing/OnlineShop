@@ -72,6 +72,8 @@
 		DA184CDC28A0E99E008ED11D /* CheckoutTransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA184CDB28A0E99E008ED11D /* CheckoutTransactionTableViewCell.swift */; };
 		DA184CDE28A0F83F008ED11D /* CheckoutPaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA184CDD28A0F83F008ED11D /* CheckoutPaymentTableViewCell.swift */; };
 		DA184CE028A106BC008ED11D /* CheckoutItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA184CDF28A106BC008ED11D /* CheckoutItemTableViewCell.swift */; };
+		DA2C908128A2311500A53562 /* CheckoutPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2C908028A2311500A53562 /* CheckoutPriceTableViewCell.swift */; };
+		DA2C908428A28AD300A53562 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2C908328A28AD300A53562 /* OrderModel.swift */; };
 		DA503B88289CE3BA00376E78 /* item.json in Resources */ = {isa = PBXBuildFile; fileRef = DA503B87289CE3BA00376E78 /* item.json */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +163,8 @@
 		DA184CDB28A0E99E008ED11D /* CheckoutTransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutTransactionTableViewCell.swift; sourceTree = "<group>"; };
 		DA184CDD28A0F83F008ED11D /* CheckoutPaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutPaymentTableViewCell.swift; sourceTree = "<group>"; };
 		DA184CDF28A106BC008ED11D /* CheckoutItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutItemTableViewCell.swift; sourceTree = "<group>"; };
+		DA2C908028A2311500A53562 /* CheckoutPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutPriceTableViewCell.swift; sourceTree = "<group>"; };
+		DA2C908328A28AD300A53562 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		DA503B87289CE3BA00376E78 /* item.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = item.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -293,6 +297,7 @@
 		8D485A2727D90400007C5B55 /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				DA2C908228A28AC700A53562 /* Model */,
 				8D485A2D27D90441007C5B55 /* Order.storyboard */,
 				8DDF379E27DA031600142E4B /* OrderViewController.swift */,
 			);
@@ -332,6 +337,7 @@
 				DA184CD928A0E992008ED11D /* CheckoutTitleTableViewCell.swift */,
 				DA184CDB28A0E99E008ED11D /* CheckoutTransactionTableViewCell.swift */,
 				DA184CDD28A0F83F008ED11D /* CheckoutPaymentTableViewCell.swift */,
+				DA2C908028A2311500A53562 /* CheckoutPriceTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -431,6 +437,14 @@
 				8DDF379B27D9E36900142E4B /* AccountTableViewCell.xib */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		DA2C908228A28AC700A53562 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DA2C908328A28AD300A53562 /* OrderModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -607,6 +621,7 @@
 				8D70A68627DF3CC200A176C0 /* CartItemTableViewCell.swift in Sources */,
 				8D9BFA0627DA3A1900DBE962 /* HomeViewController.swift in Sources */,
 				8D31616227DD0C05008A54B2 /* ItemDetailViewController.swift in Sources */,
+				DA2C908128A2311500A53562 /* CheckoutPriceTableViewCell.swift in Sources */,
 				8D70A67C27DF271500A176C0 /* AlertViewController.swift in Sources */,
 				8D6F72DD27DB9D5200714245 /* UILabel++.swift in Sources */,
 				8D7E862627DDCFED00118874 /* Double++.swift in Sources */,
@@ -618,6 +633,7 @@
 				8D71C76427E48C39001025BB /* ProfilePasswordViewController.swift in Sources */,
 				8D67D3E627F5C89E00B77AAE /* UITextField++.swift in Sources */,
 				8D980A5227DE42C000718E50 /* ItemSearchViewController.swift in Sources */,
+				DA2C908428A28AD300A53562 /* OrderModel.swift in Sources */,
 				8DDF379827D9D3D000142E4B /* SettingListTableViewCell.swift in Sources */,
 				8D6F72CB27DAF70F00714245 /* RecommendView.swift in Sources */,
 				8D9BFA0E27DA3C9C00DBE962 /* RecommendCollectionViewCell.swift in Sources */,

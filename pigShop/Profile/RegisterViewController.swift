@@ -33,7 +33,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-        self.btnClose.method = { self.dismiss(animated: true, completion: nil) }
+        self.btnClose.method = {[weak self] in self?.dismiss(animated: true, completion: nil) }
         self.initSetup()
     }
     
