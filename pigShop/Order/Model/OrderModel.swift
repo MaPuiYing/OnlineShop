@@ -7,11 +7,17 @@
 
 import Foundation
 
-//enum PaymentMethod {
-//    case googlePay
-//    case paypal
-//    case creditCard
-//}
+enum PaymentMethod: Int {
+    case googlePay
+    case paypal
+    case creditCard
+}
+
+enum OrderStatus: Int {
+    case pendingDelivery
+    case shipped
+    case receivedConfirm
+}
 
 struct Order {
     let id: Int?
@@ -20,9 +26,10 @@ struct Order {
     var lastName: String?
     var address: String?
     var city: String?
-    var paymentMethod: Int?
+    var paymentMethod: PaymentMethod?
     var allItem: [Cart]?
     var totalPrice: Double?
+    var status: OrderStatus?
 }
 
 class OrderModel {
@@ -31,8 +38,8 @@ class OrderModel {
     
     var id: Int = 1
     
-    func addOrder(userId: Int, firstName: String, lastName: String, address: String, city: String, paymentMethod: Int, allItem: [Cart], totalPrice: Double) {
-        let newOrder = Order(id: self.id, userId: userId, firstName: firstName, lastName: lastName, address: address, city: city, paymentMethod: paymentMethod, allItem: allItem, totalPrice: totalPrice)
+    func addOrder(userId: Int, firstName: String, lastName: String, address: String, city: String, paymentMethod: PaymentMethod, allItem: [Cart], totalPrice: Double) {
+        let newOrder = Order(id: self.id, userId: userId, firstName: firstName, lastName: lastName, address: address, city: city, paymentMethod: paymentMethod, allItem: allItem, totalPrice: totalPrice, status: .pendingDelivery)
         self.aryOrder.append(newOrder)
         self.id += 1
     }
@@ -41,5 +48,11 @@ class OrderModel {
         return self.aryOrder.filter({
             $0.userId == userId
         })
+    }
+    
+    func getOrderStatus(_ orderId: Int) -> OrderStatus {
+        return OrderStatus(rawValue: (self.aryOrder.filter({
+            $0.id == orderId
+        }).first?.status)?.rawValue ?? 0) ?? .pendingDelivery
     }
 }

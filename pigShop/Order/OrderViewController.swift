@@ -15,8 +15,8 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var vwEmpty: UIView!
     @IBOutlet weak var lblEmpty: UILabel!
     
-    let userModel = UserModel.shared
-    var isEmpty = true
+    var userModel = UserModel.shared
+    var orderModel = OrderModel.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +26,17 @@ class OrderViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.userModel = UserModel.shared
+        self.orderModel = OrderModel.shared
+        
         if self.userModel.isLogined() == false {
-            loginViewSetup()
+            self.loginViewSetup()
         } else {
-            if isEmpty {
-                emptyViewSetup()
-            } else {
+            if let userId = self.userModel.getUser()?.id, let order = self.orderModel.getUserOrder(userId), order.count != 0 {
                 vwLogin.isHidden = true
                 vwEmpty.isHidden = true
+            } else {
+                self.emptyViewSetup()
             }
         }
     }

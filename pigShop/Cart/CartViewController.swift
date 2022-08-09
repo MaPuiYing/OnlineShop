@@ -91,6 +91,7 @@ class CartViewController: UIViewController {
                 if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as? CheckoutViewController {
                     vc.aryCart = self?.aryCart.filter({$0.isChecked == true}) ?? []
                     vc.totalPrice = self?.totalPrice ?? 0
+                    vc.isOrderFromCart = true
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             })

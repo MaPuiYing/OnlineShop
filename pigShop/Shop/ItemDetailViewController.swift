@@ -174,6 +174,7 @@ class ItemDetailViewController: UIViewController {
                     vc.aryCart = [Cart(id: nil, item: self?.itemDetail, count: self?.currentCount, isChecked: nil)]
                     let price = Double(self?.itemDetail?.price ?? 0) * Double(self?.currentCount ?? 1)
                     vc.totalPrice = price
+                    vc.isOrderFromCart = false
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             })

@@ -18,11 +18,13 @@ class CheckoutViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     var tableSection: [CheckoutSection] = []
+    var isOrderFromCart = false
     var aryCart: [Cart] = []
     var totalPrice: Double = 0
     
     let userModel = UserModel.shared
     let orderModel = OrderModel.shared
+    let cartModel = CartModel.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +92,15 @@ class CheckoutViewController: UIViewController {
             }
             self.showAlert(title: "Confirm to order?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: {[weak self] in
                 guard let theSelf = self else {return}
-                theSelf.orderModel.addOrder(userId: theSelf.userModel.getUser()?.id ?? 0, firstName: firstName, lastName: lastName, address: streetAddress, city: city, paymentMethod: paymentMethod, allItem: theSelf.aryCart, totalPrice: theSelf.totalPrice)
+                theSelf.orderModel.addOrder(userId: theSelf.userModel.getUser()?.id ?? 0, firstName: firstName, lastName: lastName, address: streetAddress, city: city, paymentMethod: PaymentMethod(rawValue: paymentMethod) ?? .googlePay, allItem: theSelf.aryCart, totalPrice: theSelf.totalPrice)
+                
+                if theSelf.isOrderFromCart {
+                    for cart in theSelf.aryCart {
+                        theSelf.cartModel.deleteCart(id: cart.id ?? 0)
+                    }
+                }
+                
+                theSelf.tabBarController?.tabBar.isHidden = false
                 theSelf.navigationController?.popViewController(animated: true)
             })
         }
