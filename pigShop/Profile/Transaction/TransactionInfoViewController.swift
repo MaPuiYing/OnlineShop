@@ -11,7 +11,6 @@ class TransactionInfoViewController: UIViewController {
     
     @IBOutlet weak var vwBackground: UIView!
     @IBOutlet var tfInfo: [UITextField]!
-    @IBOutlet var vwLine: [UIView]!
     
     @IBOutlet weak var btnCity: UIButton!
         
@@ -124,22 +123,11 @@ class TransactionInfoViewController: UIViewController {
     
     func showEditView(_ isShow: Bool) {
         self.btnCity.setImage(isShow ? UIImage(systemName: "chevron.down") : nil, for: .normal)
-        self.vwLine.forEach({$0.isHidden = !isShow})
         self.tfInfo.forEach({$0.isEnabled = isShow})
         self.btnCity.isEnabled = isShow
             
         if isShow {
             self.tfInfo.first?.becomeFirstResponder()
-        }
-        
-        if (self.user?.firstName ?? "").isEmpty {
-            self.tfInfo[0].text = isShow ? "" : "Please enter your first name"
-        }
-        if (self.user?.lastName ?? "").isEmpty {
-            self.tfInfo[1].text = isShow ? "" : "Please enter your last name"
-        }
-        if (self.user?.address ?? "").isEmpty {
-            self.tfInfo[2].text = isShow ? "" : "Please enter your address"
         }
     }
     
@@ -158,25 +146,5 @@ class TransactionInfoViewController: UIViewController {
         })
         self.customBackButton()
         self.navigationItem.rightBarButtonItem = self.editBtnItem
-    }
-}
-
-//MARK: - UITextFieldDelegate
-
-extension TransactionInfoViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        for i in 0..<self.tfInfo.count {
-            if textField == self.tfInfo[i] {
-                self.vwLine[i].backgroundColor = .mainOrange
-            }
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        for i in 0..<self.tfInfo.count {
-            if textField == self.tfInfo[i] {
-                self.vwLine[i].backgroundColor = .borderColor
-            }
-        }
     }
 }
