@@ -50,15 +50,27 @@ class OrderViewController: UIViewController {
     }
     
     func orderViewSetup() {
-        self.imageHeaderSegment.kNavBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
         self.imageHeaderSegment.titleString = ["Waiting For Delivery", "Shipped", "Confirm Received"]
+        self.imageHeaderSegment.getOrderContent = {index in
+            self.getOrderContent(index)
+        }
+        
+        self.imageHeaderSegment.kNavBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
+        self.imageHeaderSegment.tabBarBottomHeight = self.tabBarController?.tabBar.frame.height ?? 0
         
         let segmentView = self.imageHeaderSegment.segmentedView
         let listContainerView = self.imageHeaderSegment.listContainerView
-        segmentView.delegate = self
         
         self.view.addSubview(segmentView)
         self.view.addSubview(listContainerView)
+    }
+    
+    func getOrderContent(_ index: Int) -> JXSegmentedListContainerViewListDelegate {
+        if let vc = UIStoryboard(name: "Order", bundle: nil).instantiateViewController(withIdentifier: "OrderPagingViewController") as? OrderPagingViewController {
+            return vc
+        }
+        
+        return OrderPagingViewController()
     }
     
     func loginViewSetup() {
@@ -77,18 +89,6 @@ class OrderViewController: UIViewController {
         lblEmpty.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         lblEmpty.textColor = .textLightGrey
         lblEmpty.text = "Your order list is empty."
-    }
-}
-
-//MARK: - JXSegmentedViewDelegate, JXSegmentedListContainerViewDataSource
-
-extension OrderViewController: JXSegmentedViewDelegate, JXSegmentedListContainerViewDataSource {
-    func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
-        return self.imageHeaderSegment.segmentedDataSource.titles.count
-    }
-
-    func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
-        return OrderPagingViewController()
     }
 }
 

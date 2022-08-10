@@ -10,9 +10,11 @@ import UIKit
 import JXSegmentedView
 
 class ImageHeaderSegment: UIViewController {
-    
     var titleString: [String] = []
     var kNavBarHeight: CGFloat = 0
+    var tabBarBottomHeight: CGFloat = 0
+    
+    var getOrderContent: ((Int)->JXSegmentedListContainerViewListDelegate)?
     
     //Title
     lazy var segmentedDataSource: JXSegmentedTitleDataSource = {
@@ -37,7 +39,8 @@ class ImageHeaderSegment: UIViewController {
     //Container view
     lazy var listContainerView: JXSegmentedListContainerView = {
         let view = JXSegmentedListContainerView(dataSource: self)
-        view.frame = CGRect(x: 0, y: self.kNavBarHeight + self.topSafeAreaHeight + 40, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - self.kNavBarHeight - 50 - self.topSafeAreaHeight - self.bottomSafeAreaHeight)
+        let frameY = self.kNavBarHeight + self.topSafeAreaHeight + 40
+        view.frame = CGRect(x: 0, y: frameY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - frameY - self.tabBarBottomHeight - self.bottomSafeAreaHeight)
         return view
     }()
     
@@ -48,6 +51,7 @@ class ImageHeaderSegment: UIViewController {
         view.listContainer = self.listContainerView
         view.indicators = [self.sliderView]
         view.backgroundColor = .tabbarBackground
+        view.delegate = self
         return view
     }()
 }
@@ -60,6 +64,6 @@ extension ImageHeaderSegment: JXSegmentedViewDelegate, JXSegmentedListContainerV
     }
 
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
-        return OrderPagingViewController()
+        return self.getOrderContent?(index) ?? OrderPagingViewController()
     }
 }
