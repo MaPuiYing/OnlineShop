@@ -9,6 +9,31 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
+    var topSafeAreaHeight: CGFloat {
+        if #available(iOS 15.0, *) {
+            let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first
+            let topPadding = keyWindow?.safeAreaInsets.top
+            return topPadding ?? 0
+        } else {
+            let window = UIApplication.shared.windows.first
+            let topPadding = window?.safeAreaInsets.top
+            return topPadding ?? 0
+        }
+    }
+    
+    var bottomSafeAreaHeight: CGFloat {
+        if #available(iOS 15.0, *) {
+            let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first
+            let bottomPadding = keyWindow?.safeAreaInsets.bottom
+            return bottomPadding ?? 0
+        } else {
+            let window = UIApplication.shared.windows.first
+            let bottomPadding = window?.safeAreaInsets.bottom
+            return bottomPadding ?? 0
+        }
+    }
+    
     func customBackButton() {
         self.navigationItem.hidesBackButton = true
         self.hideTabbar()

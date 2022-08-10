@@ -74,6 +74,8 @@
 		DA184CE028A106BC008ED11D /* CheckoutItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA184CDF28A106BC008ED11D /* CheckoutItemTableViewCell.swift */; };
 		DA2C908128A2311500A53562 /* CheckoutPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2C908028A2311500A53562 /* CheckoutPriceTableViewCell.swift */; };
 		DA2C908428A28AD300A53562 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2C908328A28AD300A53562 /* OrderModel.swift */; };
+		DA2C908828A2B0F100A53562 /* JXSegmentedView in Frameworks */ = {isa = PBXBuildFile; productRef = DA2C908728A2B0F100A53562 /* JXSegmentedView */; };
+		DA2C908A28A2DFC400A53562 /* OrderPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2C908928A2DFC400A53562 /* OrderPagingViewController.swift */; };
 		DA503B88289CE3BA00376E78 /* item.json in Resources */ = {isa = PBXBuildFile; fileRef = DA503B87289CE3BA00376E78 /* item.json */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +167,7 @@
 		DA184CDF28A106BC008ED11D /* CheckoutItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutItemTableViewCell.swift; sourceTree = "<group>"; };
 		DA2C908028A2311500A53562 /* CheckoutPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutPriceTableViewCell.swift; sourceTree = "<group>"; };
 		DA2C908328A28AD300A53562 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		DA2C908928A2DFC400A53562 /* OrderPagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPagingViewController.swift; sourceTree = "<group>"; };
 		DA503B87289CE3BA00376E78 /* item.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = item.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2C908828A2B0F100A53562 /* JXSegmentedView in Frameworks */,
 				8D9BFA1227DA429D00DBE962 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +304,7 @@
 				DA2C908228A28AC700A53562 /* Model */,
 				8D485A2D27D90441007C5B55 /* Order.storyboard */,
 				8DDF379E27DA031600142E4B /* OrderViewController.swift */,
+				DA2C908928A2DFC400A53562 /* OrderPagingViewController.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -465,6 +470,7 @@
 			name = pigShop;
 			packageProductDependencies = (
 				8D9BFA1127DA429D00DBE962 /* SDWebImage */,
+				DA2C908728A2B0F100A53562 /* JXSegmentedView */,
 			);
 			productName = pigShop;
 			productReference = 8D4859F027D90087007C5B55 /* pigShop.app */;
@@ -540,6 +546,7 @@
 			mainGroup = 8D4859E727D90087007C5B55;
 			packageReferences = (
 				8D9BFA1027DA429D00DBE962 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				DA2C908628A2B0F100A53562 /* XCRemoteSwiftPackageReference "JXSegmentedView" */,
 			);
 			productRefGroup = 8D4859F127D90087007C5B55 /* Products */;
 			projectDirPath = "";
@@ -611,6 +618,7 @@
 				8D31615E27DCF3C0008A54B2 /* ImageButton.swift in Sources */,
 				8D485A2427D90303007C5B55 /* TabBarViewController.swift in Sources */,
 				8D31616027DCF7A8008A54B2 /* ViewButton.swift in Sources */,
+				DA2C908A28A2DFC400A53562 /* OrderPagingViewController.swift in Sources */,
 				DA184CDE28A0F83F008ED11D /* CheckoutPaymentTableViewCell.swift in Sources */,
 				8DDF379C27D9E36A00142E4B /* AccountTableViewCell.swift in Sources */,
 				8D31615227DCD484008A54B2 /* CategoryItemViewController.swift in Sources */,
@@ -992,6 +1000,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		DA2C908628A2B0F100A53562 /* XCRemoteSwiftPackageReference "JXSegmentedView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pujiaxin33/JXSegmentedView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -999,6 +1015,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8D9BFA1027DA429D00DBE962 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		DA2C908728A2B0F100A53562 /* JXSegmentedView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA2C908628A2B0F100A53562 /* XCRemoteSwiftPackageReference "JXSegmentedView" */;
+			productName = JXSegmentedView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
