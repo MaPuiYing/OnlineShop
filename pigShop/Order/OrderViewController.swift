@@ -18,31 +18,13 @@ class OrderViewController: UIViewController {
     
     var userModel = UserModel.shared
     var orderModel = OrderModel.shared
-        
-    //Title
-    lazy var segmentedDataSource: JXSegmentedTitleDataSource = {
-        let ds = JXSegmentedTitleDataSource()
-        ds.titles = ["Waiting For Delivery", "Shipped", "Confirm Received"]
-        ds.titleNormalColor = .textLightGrey
-        ds.titleSelectedColor = .mainOrange
-        ds.titleNormalFont = UIFont.systemFont(ofSize: 15, weight: .medium)
-        ds.titleSelectedFont = UIFont.systemFont(ofSize: 15, weight: .medium)
-        ds.isTitleColorGradientEnabled = true
-        return ds
-    }()
-    
-    //Indicator line
-    lazy var sliderView: JXSegmentedIndicatorLineView = {
-        let view = JXSegmentedIndicatorLineView()
-        view.indicatorColor = .mainOrange
-        view.indicatorHeight = 2
-        return view
-    }()
+    let imageHeaderSegment = ImageHeaderSegment()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Order"
+//        self.navigationController?.navigationBar.isTranslucent = false
         // Do any additional setup after loading the view.
     }
     
@@ -68,21 +50,15 @@ class OrderViewController: UIViewController {
     }
     
     func orderViewSetup() {
-        let kNavBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
-
-        //Container View
-        let containerView = JXSegmentedListContainerView(dataSource: self)
-        containerView.frame = CGRect(x: 0, y: kNavBarHeight + self.topSafeAreaHeight + 40, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - kNavBarHeight - 50 - self.topSafeAreaHeight - self.bottomSafeAreaHeight)
-        self.view.addSubview(containerView)
-
-        //Segment View
-        let segmentView = JXSegmentedView(frame: CGRect(x: 0, y: kNavBarHeight + self.topSafeAreaHeight, width: UIScreen.main.bounds.width, height: 40))
-        segmentView.dataSource = self.segmentedDataSource
-        segmentView.listContainer = containerView
-        segmentView.indicators = [self.sliderView]
+        self.imageHeaderSegment.kNavBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
+        self.imageHeaderSegment.titleString = ["Waiting For Delivery", "Shipped", "Confirm Received"]
+        
+        let segmentView = self.imageHeaderSegment.segmentedView
+        let listContainerView = self.imageHeaderSegment.listContainerView
         segmentView.delegate = self
-        segmentView.backgroundColor = .tabbarBackground
+        
         self.view.addSubview(segmentView)
+        self.view.addSubview(listContainerView)
     }
     
     func loginViewSetup() {
@@ -108,10 +84,11 @@ class OrderViewController: UIViewController {
 
 extension OrderViewController: JXSegmentedViewDelegate, JXSegmentedListContainerViewDataSource {
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
-        return self.segmentedDataSource.titles.count
+        return self.imageHeaderSegment.segmentedDataSource.titles.count
     }
 
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
         return OrderPagingViewController()
     }
 }
+
