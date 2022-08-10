@@ -39,26 +39,6 @@ class OrderViewController: UIViewController {
         return view
     }()
     
-    //Container view
-    lazy var listContainerView: JXSegmentedListContainerView = {
-        let view = JXSegmentedListContainerView(dataSource: self)
-        let kNavBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
-        view.frame = CGRect(x: 0, y: kNavBarHeight + self.topSafeAreaHeight + 40, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - kNavBarHeight - 50 - self.topSafeAreaHeight - self.bottomSafeAreaHeight)
-        return view
-    }()
-    
-    //Segment View
-    lazy var segmentedView: JXSegmentedView = {
-        let kNavBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
-        let view = JXSegmentedView(frame: CGRect(x: 0, y: kNavBarHeight + self.topSafeAreaHeight, width: UIScreen.main.bounds.width, height: 40))
-        view.dataSource = self.segmentedDataSource
-        view.listContainer = self.listContainerView
-        view.indicators = [self.sliderView]
-        view.delegate = self
-        view.backgroundColor = .tabbarBackground
-        return view
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -88,8 +68,21 @@ class OrderViewController: UIViewController {
     }
     
     func orderViewSetup() {
-        self.view.addSubview(self.segmentedView)
-        self.view.addSubview(self.listContainerView)
+        let kNavBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
+
+        //Container View
+        let containerView = JXSegmentedListContainerView(dataSource: self)
+        containerView.frame = CGRect(x: 0, y: kNavBarHeight + self.topSafeAreaHeight + 40, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - kNavBarHeight - 50 - self.topSafeAreaHeight - self.bottomSafeAreaHeight)
+        self.view.addSubview(containerView)
+
+        //Segment View
+        let segmentView = JXSegmentedView(frame: CGRect(x: 0, y: kNavBarHeight + self.topSafeAreaHeight, width: UIScreen.main.bounds.width, height: 40))
+        segmentView.dataSource = self.segmentedDataSource
+        segmentView.listContainer = containerView
+        segmentView.indicators = [self.sliderView]
+        segmentView.delegate = self
+        segmentView.backgroundColor = .tabbarBackground
+        self.view.addSubview(segmentView)
     }
     
     func loginViewSetup() {
@@ -114,20 +107,6 @@ class OrderViewController: UIViewController {
 //MARK: - JXSegmentedViewDelegate, JXSegmentedListContainerViewDataSource
 
 extension OrderViewController: JXSegmentedViewDelegate, JXSegmentedListContainerViewDataSource {
-    
-    func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        
-    }
-    
-    func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
-        
-    }
-    func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int) {
-        
-    }
-
-    func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) {}
-    
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
         return self.segmentedDataSource.titles.count
     }
