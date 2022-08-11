@@ -17,6 +17,7 @@ enum CheckoutSection {
 class CheckoutViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
+    
     var tableSection: [CheckoutSection] = []
     var isOrderFromCart = false
     var aryCart: [Cart] = []
@@ -65,9 +66,9 @@ class CheckoutViewController: UIViewController {
             }
         }) ?? 0
         if let cell = self.table.cellForRow(at: IndexPath(row: transactionIndex, section: 0)) as? CheckoutTransactionTableViewCell {
-            firstName = cell.tfInfo[0].text ?? ""
-            lastName = cell.tfInfo[1].text ?? ""
-            streetAddress = cell.tfInfo[2].text ?? ""
+            firstName = cell.tfFirstName.text ?? ""
+            lastName = cell.tfLastName.text ?? ""
+            streetAddress = cell.tvAddress.text ?? ""
             city = cell.btnCity.currentTitle ?? ""
             isNeedDefault = cell.swhDefault.isOn
         }

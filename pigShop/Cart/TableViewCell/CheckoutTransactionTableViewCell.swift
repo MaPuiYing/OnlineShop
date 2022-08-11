@@ -9,7 +9,10 @@ import UIKit
 
 class CheckoutTransactionTableViewCell: UITableViewCell {
 
-    @IBOutlet var tfInfo: [UITextField]!
+    @IBOutlet weak var tfFirstName: UITextField!
+    @IBOutlet weak var tfLastName: UITextField!
+    @IBOutlet weak var tvAddress: UITextView!
+    @IBOutlet weak var tvPlaceHolder: UILabel!
     @IBOutlet weak var btnCity: UIButton!
     @IBOutlet weak var swhDefault: UISwitch!
     
@@ -29,9 +32,13 @@ class CheckoutTransactionTableViewCell: UITableViewCell {
     }
     
     func initSetup() {
-        self.tfInfo[0].text = self.user?.firstName
-        self.tfInfo[1].text = self.user?.lastName
-        self.tfInfo[2].text = self.user?.address
+        self.tfFirstName.text = self.user?.firstName
+        self.tfLastName.text = self.user?.lastName
+        self.tvAddress.text = self.user?.address
+        
+        self.tvAddress.isEditable = true
+        self.tvAddress.textContainer.lineFragmentPadding = 0
+        self.tvPlaceHolder.isHidden = !self.tvAddress.text.isEmpty
         
         self.setupMenu()
     }
@@ -45,5 +52,23 @@ class CheckoutTransactionTableViewCell: UITableViewCell {
             btnActions.append(action)
         }
         self.btnCity.menu = UIMenu(options: .singleSelection, children: btnActions)
+    }
+}
+
+//MARK: - UITextViewDelegate
+
+extension CheckoutTransactionTableViewCell: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        return newText.count < 70
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.tvPlaceHolder.isHidden = !textView.text.isEmpty
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        self.tvPlaceHolder.isHidden = !textView.text.isEmpty
     }
 }

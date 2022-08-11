@@ -10,7 +10,10 @@ import UIKit
 class TransactionInfoViewController: UIViewController {
     
     @IBOutlet weak var vwBackground: UIView!
-    @IBOutlet var tfInfo: [UITextField]!
+    @IBOutlet weak var tfFirstName: UITextField!
+    @IBOutlet weak var tfLastName: UITextField!
+    @IBOutlet weak var tvAddress: UITextView!
+    @IBOutlet weak var tvPlaceHolder: UILabel!
     
     @IBOutlet weak var btnCity: UIButton!
         
@@ -44,9 +47,13 @@ class TransactionInfoViewController: UIViewController {
     
     func setupContent() {
         self.user = UserModel.shared.currentUser
-        self.tfInfo[0].text = user?.firstName
-        self.tfInfo[1].text = user?.lastName
-        self.tfInfo[2].text = user?.address
+        self.tfFirstName.text = self.user?.firstName
+        self.tfLastName.text = self.user?.lastName
+        
+        
+        self.tvAddress.text = self.user?.address
+        self.tvAddress.textContainer.lineFragmentPadding = 0
+        self.tvPlaceHolder.isHidden = !self.tvAddress.text.isEmpty
         
         self.setupMenu()
     }
@@ -92,9 +99,9 @@ class TransactionInfoViewController: UIViewController {
         
     @objc func saveBtnPressed() {
         if self.isEdited() {
-            let firstName = self.tfInfo[0].text
-            let lastName = self.tfInfo[1].text
-            let address = self.tfInfo[2].text
+            let firstName = self.tfFirstName.text
+            let lastName = self.tfLastName.text
+            let address = self.tvAddress.text
 
             if firstName?.isEmpty == false && !(self.checkNamePattern(firstName)) {
                 self.showAlertMessage("Invalid First Name")
@@ -119,11 +126,13 @@ class TransactionInfoViewController: UIViewController {
     
     func showEditView(_ isShow: Bool) {
         self.btnCity.setImage(isShow ? UIImage(systemName: "chevron.down") : nil, for: .normal)
-        self.tfInfo.forEach({$0.isEnabled = isShow})
+        self.tfFirstName.isEnabled = isShow
+        self.tfLastName.isEnabled = isShow
+        self.tvAddress.isEditable = isShow
         self.btnCity.isEnabled = isShow
             
         if isShow {
-            self.tfInfo.first?.becomeFirstResponder()
+            self.tfFirstName.becomeFirstResponder()
         }
     }
     
@@ -133,7 +142,7 @@ class TransactionInfoViewController: UIViewController {
         let address = self.user?.address ?? ""
         let city = self.user?.city ?? ""
         
-        return (self.tfInfo[0].text != firstName) || (self.tfInfo[1].text != lastName) || (self.tfInfo[2].text != address) || (self.btnCity.currentTitle != city)
+        return (self.tfFirstName.text != firstName) || (self.tfLastName.text != lastName) || (self.tvAddress.text != address) || (self.btnCity.currentTitle != city)
     }
     
     func closeEditAction() {
@@ -142,5 +151,23 @@ class TransactionInfoViewController: UIViewController {
         })
         self.customBackButton()
         self.navigationItem.rightBarButtonItem = self.editBtnItem
+    }
+}
+
+//MARK: - UITextViewDelegate
+
+extension TransactionInfoViewController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        return newText.count < 70
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.tvPlaceHolder.isHidden = !textView.text.isEmpty
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        self.tvPlaceHolder.isHidden = !textView.text.isEmpty
     }
 }
