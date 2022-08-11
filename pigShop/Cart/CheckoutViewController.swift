@@ -100,8 +100,7 @@ class CheckoutViewController: UIViewController {
                     }
                 }
                 
-                theSelf.tabBarController?.tabBar.isHidden = false
-                theSelf.navigationController?.popViewController(animated: true)
+                theSelf.back()
             })
         }
     }

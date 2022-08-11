@@ -37,6 +37,7 @@ class OrderViewController: UIViewController {
 
         if self.userModel.isLogined() == false {
             self.loginViewSetup()
+            self.removeOrderView()
         } else {
             if let userId = self.userModel.getUser()?.id, let order = self.orderModel.getUserOrder(userId), order.count != 0 {
                 self.vwLogin.isHidden = true
@@ -44,6 +45,7 @@ class OrderViewController: UIViewController {
                 self.orderViewSetup()
             } else {
                 self.emptyViewSetup()
+                self.removeOrderView()
             }
         }
     }
@@ -59,9 +61,20 @@ class OrderViewController: UIViewController {
         
         let segmentView = self.imageHeaderSegment.segmentedView
         let listContainerView = self.imageHeaderSegment.listContainerView
+        segmentView.tag = 100
+        listContainerView.tag = 101
         
         self.view.addSubview(segmentView)
         self.view.addSubview(listContainerView)
+    }
+    
+    func removeOrderView() {
+        if let viewWithTag = self.view.viewWithTag(100) {
+            viewWithTag.removeFromSuperview()
+        }
+        if let viewWithTag = self.view.viewWithTag(101) {
+            viewWithTag.removeFromSuperview()
+        }
     }
     
     func getOrderContent(_ index: Int) -> JXSegmentedListContainerViewListDelegate {

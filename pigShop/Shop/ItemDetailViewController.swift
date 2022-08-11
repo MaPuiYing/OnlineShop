@@ -52,7 +52,7 @@ class ItemDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Item Title"
+        self.title = self.itemDetail?.title
         self.customBackButton()
         self.initSetup()
         self.setupContent()
