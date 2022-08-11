@@ -18,7 +18,7 @@ class OrderViewController: UIViewController {
     
     var userModel = UserModel.shared
     var orderModel = OrderModel.shared
-    let imageHeaderSegment = ImageHeaderSegment()
+    let imageHeaderSegment = TitleSegment()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,22 +31,21 @@ class OrderViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.vwLogin.isHidden = true
         self.vwEmpty.isHidden = true
-        self.orderViewSetup()
         
-//        self.userModel = UserModel.shared
-//        self.orderModel = OrderModel.shared
-//
-//        if self.userModel.isLogined() == false {
-//            self.loginViewSetup()
-//        } else {
-//            if let userId = self.userModel.getUser()?.id, let order = self.orderModel.getUserOrder(userId), order.count != 0 {
-//                self.vwLogin.isHidden = true
-//                self.vwEmpty.isHidden = true
-//                self.orderViewSetup()
-//            } else {
-//                self.emptyViewSetup()
-//            }
-//        }
+        self.userModel = UserModel.shared
+        self.orderModel = OrderModel.shared
+
+        if self.userModel.isLogined() == false {
+            self.loginViewSetup()
+        } else {
+            if let userId = self.userModel.getUser()?.id, let order = self.orderModel.getUserOrder(userId), order.count != 0 {
+                self.vwLogin.isHidden = true
+                self.vwEmpty.isHidden = true
+                self.orderViewSetup()
+            } else {
+                self.emptyViewSetup()
+            }
+        }
     }
     
     func orderViewSetup() {
@@ -67,6 +66,7 @@ class OrderViewController: UIViewController {
     
     func getOrderContent(_ index: Int) -> JXSegmentedListContainerViewListDelegate {
         if let vc = UIStoryboard(name: "Order", bundle: nil).instantiateViewController(withIdentifier: "OrderPagingViewController") as? OrderPagingViewController {
+            vc.orderStatus = OrderStatus(rawValue: index) ?? .pendingDelivery
             return vc
         }
         

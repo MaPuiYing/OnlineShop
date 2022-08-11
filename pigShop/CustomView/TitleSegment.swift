@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import JXSegmentedView
 
-class ImageHeaderSegment: UIViewController {
+class TitleSegment: UIViewController {
     var titleString: [String] = []
     var kNavBarHeight: CGFloat = 0
     var tabBarBottomHeight: CGFloat = 0
@@ -40,7 +40,7 @@ class ImageHeaderSegment: UIViewController {
     lazy var listContainerView: JXSegmentedListContainerView = {
         let view = JXSegmentedListContainerView(dataSource: self)
         let frameY = self.kNavBarHeight + self.topSafeAreaHeight + 40
-        view.frame = CGRect(x: 0, y: frameY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - frameY - self.tabBarBottomHeight - self.bottomSafeAreaHeight)
+        view.frame = CGRect(x: 0, y: frameY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - frameY - self.tabBarBottomHeight)
         return view
     }()
     
@@ -58,7 +58,7 @@ class ImageHeaderSegment: UIViewController {
 
 //MARK: - JXSegmentedViewDelegate, JXSegmentedListContainerViewDataSource
 
-extension ImageHeaderSegment: JXSegmentedViewDelegate, JXSegmentedListContainerViewDataSource {
+extension TitleSegment: JXSegmentedViewDelegate, JXSegmentedListContainerViewDataSource {
     func numberOfLists(in listContainerView: JXSegmentedListContainerView) -> Int {
         return self.titleString.count
     }

@@ -9,6 +9,15 @@ import UIKit
 import JXSegmentedView
 
 class OrderPagingViewController: UIViewController {
+    
+    @IBOutlet weak var table: UITableView!
+    
+    var orderStatus: OrderStatus = .pendingDelivery
+    
+    var orderModel = OrderModel.shared
+    var userModel = UserModel.shared
+    
+    var aryOrder: [Order] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,18 +25,65 @@ class OrderPagingViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //Reset the item
+        self.orderModel = OrderModel.shared
+        self.userModel = UserModel.shared
+        self.aryOrder = (orderModel.getUserOrder(self.userModel.getUser()?.id ?? 0) ?? []).filter({
+            $0.status == orderStatus
+        })
+        
+        self.table.reloadData()
     }
-    */
-
 }
+
+extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.aryOrder.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.aryOrder[section].allItem?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem") as? CheckoutItemTableViewCell else {return UITableViewCell()}
+        let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
+        let item = cart?.item
+        
+        cell.imvBanner.sd_setImage(with: URL(string: item?.imageURL ?? ""))
+        cell.lblTitle.text = item?.title
+        if item?.isDiscount == true {
+            cell.setupOriginalPrice(item?.oldPrice?.stringValue)
+        }
+        cell.lblPrice.text = item?.price?.stringValue
+        cell.lblCount.text = "x \(cart?.count ?? 1)"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
+    }
+    
+    //Header
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as! UITableViewHeaderFooterView).contentView.backgroundColor = .tableBackground
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let orderId = self.aryOrder[section].id {
+            return "Order id: \(orderId)"
+        }
+        return ""
+    }
+}
+
+//MARK: - JXSegmentedListContainerViewListDelegate
 
 extension OrderPagingViewController: JXSegmentedListContainerViewListDelegate {
     func listView() -> UIView {
