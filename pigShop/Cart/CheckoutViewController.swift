@@ -145,6 +145,13 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .transactionInfo:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTransaction") as? CheckoutTransactionTableViewCell else {return UITableViewCell()}
+            cell.updateTableHeight = {[weak self] in
+                guard let theSelf = self else {return}
+                UIView.setAnimationsEnabled(false)
+                theSelf.table.beginUpdates()
+                theSelf.table.endUpdates()
+                UIView.setAnimationsEnabled(true)
+            }
             return cell
         case .paymentMethod:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellPayment") as? CheckoutPaymentTableViewCell else {return UITableViewCell()}

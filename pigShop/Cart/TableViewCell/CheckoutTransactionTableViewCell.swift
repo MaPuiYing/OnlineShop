@@ -18,6 +18,7 @@ class CheckoutTransactionTableViewCell: UITableViewCell {
     
     let userModel = UserModel.shared
     var user = UserModel.shared.currentUser
+    var updateTableHeight: (()->Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,6 +67,12 @@ extension CheckoutTransactionTableViewCell: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         self.tvPlaceHolder.isHidden = !textView.text.isEmpty
+        
+        let size = textView.bounds.size
+        let newSize = textView.sizeThatFits(CGSize(width: size.width, height: .greatestFiniteMagnitude))
+        if size.height != newSize.height {
+            self.updateTableHeight?()
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

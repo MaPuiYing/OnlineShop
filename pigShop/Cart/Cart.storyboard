@@ -168,10 +168,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellTransaction" id="tnR-CA-gSE" customClass="CheckoutTransactionTableViewCell" customModule="pigShop" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="103.5" width="414" height="268"/>
+                                        <rect key="frame" x="0.0" y="103.5" width="414" height="265"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tnR-CA-gSE" id="frO-1f-VAG">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="268"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="265"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pDO-fX-pnU">
@@ -324,7 +324,7 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhc-K9-mdR" userLabel="Default View">
-                                                    <rect key="frame" x="0.0" y="215" width="414" height="53"/>
+                                                    <rect key="frame" x="0.0" y="215" width="414" height="50"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROI-rb-lCv">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -334,21 +334,21 @@
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Rwe-7r-LFY">
-                                                            <rect key="frame" x="20" y="11" width="374" height="31"/>
+                                                            <rect key="frame" x="20" y="11" width="374" height="28"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save To Default Information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GT-iU-DBg" userLabel="Save To Default">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="310" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="310" height="28"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                     <color key="textColor" name="textDarkGrey"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5C1-bh-yaz">
-                                                                    <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                                                    <rect key="frame" x="325" y="0.0" width="51" height="28"/>
                                                                 </switch>
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcL-3K-hkB">
-                                                            <rect key="frame" x="0.0" y="52" width="414" height="1"/>
+                                                            <rect key="frame" x="0.0" y="49" width="414" height="1"/>
                                                             <color key="backgroundColor" name="borderColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="1" id="qJ7-mt-bkO"/>
@@ -357,6 +357,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="tabbarBackground"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="2db-p2-J9x"/>
                                                         <constraint firstItem="Rwe-7r-LFY" firstAttribute="top" secondItem="ROI-rb-lCv" secondAttribute="bottom" constant="10" id="AGp-66-ZbX"/>
                                                         <constraint firstAttribute="trailing" secondItem="Rwe-7r-LFY" secondAttribute="trailing" constant="20" id="CNS-Ma-B7E"/>
                                                         <constraint firstAttribute="bottom" secondItem="fcL-3K-hkB" secondAttribute="bottom" id="JUx-FL-iCS"/>
@@ -390,7 +391,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellPayment" id="PuD-c6-2Rc" userLabel="cellPayment" customClass="CheckoutPaymentTableViewCell" customModule="pigShop" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="371.5" width="414" height="190"/>
+                                        <rect key="frame" x="0.0" y="368.5" width="414" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PuD-c6-2Rc" id="hlk-s9-D8p">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="190"/>
@@ -585,7 +586,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellItem" id="CbT-PQ-cWq" customClass="CheckoutItemTableViewCell" customModule="pigShop" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="561.5" width="414" height="110"/>
+                                        <rect key="frame" x="0.0" y="558.5" width="414" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CbT-PQ-cWq" id="hlj-s6-e73">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
@@ -676,7 +677,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellPrice" id="E10-sD-Gi6" customClass="CheckoutPriceTableViewCell" customModule="pigShop" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="671.5" width="414" height="119"/>
+                                        <rect key="frame" x="0.0" y="668.5" width="414" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E10-sD-Gi6" id="Owp-6k-RUZ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="119"/>
