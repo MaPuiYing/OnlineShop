@@ -159,7 +159,7 @@ class ItemDetailViewController: UIViewController {
                 })
             }, failure: { [weak self] in
                 //Failure
-                self?.showAlert(title: "You are limited to store 9 amount for each item. Add it successfully.", hideLeftButton: true, rightTitle: "OK", rightBtnAction: { [weak self] in
+                self?.showAlert(title: "You are limited to store 9 amount for each item.", hideLeftButton: true, rightTitle: "OK", rightBtnAction: { [weak self] in
                     guard let theSelf = self else {return}
                     theSelf.navigationController?.popViewController(animated: true)
                 })
