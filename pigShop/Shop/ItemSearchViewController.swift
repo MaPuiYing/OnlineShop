@@ -94,6 +94,7 @@ class ItemSearchViewController: UIViewController {
     func goToDetailPage(_ row: Int) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
             vc.itemDetail = self.filteredItems[row]
+            vc.isAllowEdit = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -16,7 +16,6 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var lblColumnPrice: UILabel!
     @IBOutlet weak var lblColumnDescription: UILabel!
     @IBOutlet weak var lblColumnCount: UILabel!
-    
     @IBOutlet weak var lblOldPrice: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
@@ -28,8 +27,13 @@ class ItemDetailViewController: UIViewController {
     
     @IBOutlet weak var btnCart: ShopButton!
     @IBOutlet weak var btnBuy: ShopButton!
+    
+    @IBOutlet weak var stepperField: UIView!
+    @IBOutlet weak var btnField: UIView!
 
     var itemDetail: Item?
+    var isAllowEdit = true
+    
     let itemModel = ItemModel.shared
     let cartModel = CartModel.shared
     let userModel = UserModel.shared
@@ -56,6 +60,9 @@ class ItemDetailViewController: UIViewController {
         self.customBackButton()
         self.initSetup()
         self.setupContent()
+        
+        self.stepperField.isHidden = !self.isAllowEdit
+        self.btnField.isHidden = !self.isAllowEdit
     }
     
     override func viewWillAppear(_ animated: Bool) {

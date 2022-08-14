@@ -178,6 +178,7 @@ extension CategoryItemViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
             vc.itemDetail = self.filteredItems[indexPath.row]
+            vc.isAllowEdit = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

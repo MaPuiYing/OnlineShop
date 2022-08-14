@@ -36,6 +36,12 @@ class CheckoutViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.hideTabbar()
+    }
+    
     func tableSetup() {
         self.tableSection.append(.title("Transaction Information"))
         self.tableSection.append(.transactionInfo)
@@ -137,11 +143,13 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = tableSection[indexPath.row]
+        let row = self.tableSection[indexPath.row]
+        
         switch row {
         case .title(let titleString):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTitle") as? CheckoutTitleTableViewCell else {return UITableViewCell()}
             cell.lblTitle.text = titleString
+            cell.selectionStyle = .none
             return cell
         case .transactionInfo:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTransaction") as? CheckoutTransactionTableViewCell else {return UITableViewCell()}
@@ -152,9 +160,11 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
                 theSelf.table.endUpdates()
                 UIView.setAnimationsEnabled(true)
             }
+            cell.selectionStyle = .none
             return cell
         case .paymentMethod:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellPayment") as? CheckoutPaymentTableViewCell else {return UITableViewCell()}
+            cell.selectionStyle = .none
             return cell
         case .itemReview(let cart):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem") as? CheckoutItemTableViewCell else {return UITableViewCell()}
@@ -166,6 +176,7 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
             }
             cell.lblPrice.text = item?.price?.stringValue
             cell.lblCount.text = "x \(cart.count ?? 1)"
+            cell.selectionStyle = .none
             return cell
         case .totalPrice:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellPrice") as? CheckoutPriceTableViewCell else {return UITableViewCell()}
@@ -173,7 +184,20 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
             cell.continueMethod = {[weak self] in
                 self?.continueBtnPressed()
             }
+            cell.selectionStyle = .none
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = self.tableSection[indexPath.row]
+        
+        if case .itemReview(let cart) = row {
+            if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
+                vc.itemDetail = cart.item
+                vc.isAllowEdit = false
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     

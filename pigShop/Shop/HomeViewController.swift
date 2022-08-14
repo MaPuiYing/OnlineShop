@@ -192,6 +192,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else if collectionView == self.clvItem {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
                 vc.itemDetail = self.specialItems[indexPath.row]
+                vc.isAllowEdit = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

@@ -555,6 +555,7 @@
                     <connections>
                         <outlet property="btnBuy" destination="yFJ-Yi-kUv" id="W3N-U8-nYx"/>
                         <outlet property="btnCart" destination="MUD-0x-xSZ" id="ePd-du-wQB"/>
+                        <outlet property="btnField" destination="mkY-wP-QfF" id="NMv-1b-818"/>
                         <outlet property="imvBanner" destination="PWM-OF-VcZ" id="P2M-Nu-Ke6"/>
                         <outlet property="imvBookmarks" destination="QhD-e3-C1H" id="vii-Sa-3yT"/>
                         <outlet property="lbTitle" destination="jgK-Qa-gSG" id="Xv5-yZ-hUu"/>
@@ -565,6 +566,7 @@
                         <outlet property="lblDescription" destination="1Qk-5Y-bux" id="A3Z-iA-pM6"/>
                         <outlet property="lblOldPrice" destination="5Hh-lj-fj0" id="gUF-8s-1ve"/>
                         <outlet property="lblPrice" destination="uE0-2D-9e2" id="US3-hp-GLD"/>
+                        <outlet property="stepperField" destination="f1K-v1-m5a" id="Xxj-Qi-q4O"/>
                         <outlet property="vwMinus" destination="2cY-Xc-MhS" id="ge9-ZF-T0S"/>
                         <outlet property="vwPlus" destination="6KB-ji-c0m" id="KKC-vq-r3F"/>
                         <outlet property="vwStepper" destination="gnl-n0-3xu" id="2hC-3q-5Zu"/>

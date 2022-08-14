@@ -59,8 +59,21 @@ extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource 
         }
         cell.lblPrice.text = item?.price?.stringValue
         cell.lblCount.text = "x \(cart?.count ?? 1)"
+        
+        cell.selectionStyle = .none
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
+            let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
+            vc.itemDetail = cart?.item
+            vc.isAllowEdit = false
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    //Header
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40

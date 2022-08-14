@@ -170,6 +170,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
             vc.itemDetail = self.aryCart[indexPath.row].item
+            vc.isAllowEdit = false
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
