@@ -17,8 +17,8 @@ class CheckoutItemTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.lblOldPrice.isHidden = true
         // Initialization code
+        self.initSetup()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,6 +30,11 @@ class CheckoutItemTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.lblOldPrice.isHidden = true
+    }
+    
+    func initSetup() {
+        self.lblOldPrice.isHidden = true
+        self.imvBanner.layer.cornerRadius = 8
     }
     
     func setupOriginalPrice(_ price: String?) {

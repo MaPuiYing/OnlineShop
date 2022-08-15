@@ -78,6 +78,7 @@
 		DA2C908828A2B0F100A53562 /* JXSegmentedView in Frameworks */ = {isa = PBXBuildFile; productRef = DA2C908728A2B0F100A53562 /* JXSegmentedView */; };
 		DA2C908A28A2DFC400A53562 /* OrderPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2C908928A2DFC400A53562 /* OrderPagingViewController.swift */; };
 		DA503B88289CE3BA00376E78 /* item.json in Resources */ = {isa = PBXBuildFile; fileRef = DA503B87289CE3BA00376E78 /* item.json */; };
+		DA8D811328A96E3E00128345 /* OrderListButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8D811228A96E3E00128345 /* OrderListButtonTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		DA2C908328A28AD300A53562 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		DA2C908928A2DFC400A53562 /* OrderPagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPagingViewController.swift; sourceTree = "<group>"; };
 		DA503B87289CE3BA00376E78 /* item.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = item.json; sourceTree = "<group>"; };
+		DA8D811228A96E3E00128345 /* OrderListButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListButtonTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +306,7 @@
 		8D485A2727D90400007C5B55 /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				DA8D810F28A96E1100128345 /* TableViewCell */,
 				DA2C908228A28AC700A53562 /* Model */,
 				8D485A2D27D90441007C5B55 /* Order.storyboard */,
 				8DDF379E27DA031600142E4B /* OrderViewController.swift */,
@@ -453,6 +456,14 @@
 				DA2C908328A28AD300A53562 /* OrderModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		DA8D810F28A96E1100128345 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DA8D811228A96E3E00128345 /* OrderListButtonTableViewCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -625,6 +636,7 @@
 				DA2C908A28A2DFC400A53562 /* OrderPagingViewController.swift in Sources */,
 				DA184CDE28A0F83F008ED11D /* CheckoutPaymentTableViewCell.swift in Sources */,
 				8DDF379C27D9E36A00142E4B /* AccountTableViewCell.swift in Sources */,
+				DA8D811328A96E3E00128345 /* OrderListButtonTableViewCell.swift in Sources */,
 				8D31615227DCD484008A54B2 /* CategoryItemViewController.swift in Sources */,
 				8D71392B27E83D6900DBC65C /* TransactionInfoViewController.swift in Sources */,
 				8D8A6FD12806E51600746410 /* CheckoutViewController.swift in Sources */,

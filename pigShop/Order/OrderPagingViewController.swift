@@ -44,32 +44,39 @@ extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource 
         return self.aryOrder.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.aryOrder[section].allItem?.count ?? 0
+        let itemCount = self.aryOrder[section].allItem?.count ?? 0
+        return itemCount + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem") as? CheckoutItemTableViewCell else {return UITableViewCell()}
-        let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
-        let item = cart?.item
-        
-        cell.imvBanner.sd_setImage(with: URL(string: item?.imageURL ?? ""))
-        cell.lblTitle.text = item?.title
-        if item?.isDiscount == true {
-            cell.setupOriginalPrice(item?.oldPrice?.stringValue)
+        if let count = self.aryOrder[indexPath.section].allItem?.count, indexPath.row < count {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem") as? CheckoutItemTableViewCell else {return UITableViewCell()}
+            let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
+            let item = cart?.item
+            
+            cell.imvBanner.sd_setImage(with: URL(string: item?.imageURL ?? ""))
+            cell.lblTitle.text = item?.title
+            cell.lblPrice.text = item?.price?.stringValue
+            cell.lblCount.text = "x \(cart?.count ?? 1)"
+            
+            cell.selectionStyle = .none
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellBtn") as? OrderListButtonTableViewCell else {return UITableViewCell()}
+            cell.selectionStyle = .none
+            return cell
         }
-        cell.lblPrice.text = item?.price?.stringValue
-        cell.lblCount.text = "x \(cart?.count ?? 1)"
         
-        cell.selectionStyle = .none
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
-            let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
-            vc.itemDetail = cart?.item
-            vc.isAllowEdit = false
-            self.navigationController?.pushViewController(vc, animated: true)
+        if let count = self.aryOrder[indexPath.section].allItem?.count, indexPath.row < count {
+            if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
+                let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
+                vc.itemDetail = cart?.item
+                vc.isAllowEdit = false
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     
