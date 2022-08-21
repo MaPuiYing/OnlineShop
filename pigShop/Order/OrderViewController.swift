@@ -51,7 +51,7 @@ class OrderViewController: UIViewController {
     }
     
     func orderViewSetup() {
-        self.imageHeaderSegment.titleString = ["Waiting For Delivery", "Shipped", "Confirm Received"]
+        self.imageHeaderSegment.titleString = ["Waiting For Delivery", "Shipped", "Arrived"]
         self.imageHeaderSegment.getOrderContent = {index in
             self.getOrderContent(index)
         }

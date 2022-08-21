@@ -11,6 +11,10 @@ class OrderListButtonTableViewCell: UITableViewCell {
     
     @IBOutlet weak var btnDetail: UIButton!
     @IBOutlet weak var btnLogistics: UIButton!
+    @IBOutlet weak var btnConfirm: UIButton!
+    
+    var showDetail: (()->Void)?
+    var showConfirm: (()->Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,13 +26,16 @@ class OrderListButtonTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
     @IBAction func logisticsBtnPressed() {
         
     }
     
     @IBAction func detailBtnPressed() {
-        
+        self.showDetail?()
+    }
+    
+    @IBAction func confirmBtnPressed() {
+        self.showConfirm?()
     }
 
 }

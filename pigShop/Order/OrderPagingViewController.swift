@@ -27,7 +27,11 @@ class OrderPagingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //Reset the item
+        self.refreshContent()
+        
+    }
+    
+    func refreshContent() {
         self.orderModel = OrderModel.shared
         self.userModel = UserModel.shared
         self.aryOrder = (orderModel.getUserOrder(self.userModel.getUser()?.id ?? 0) ?? []).filter({
@@ -64,6 +68,37 @@ extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellBtn") as? OrderListButtonTableViewCell else {return UITableViewCell()}
             cell.selectionStyle = .none
+            let order = self.aryOrder[indexPath.section]
+            switch order.status {
+            case .pendingDelivery:
+                cell.btnLogistics.isHidden = true
+                cell.btnConfirm.isHidden = true
+                break
+            case .shipped:
+                cell.btnLogistics.isHidden = false
+                cell.btnConfirm.isHidden = true
+                break
+            case .arrived:
+                cell.btnLogistics.isHidden = true
+                cell.btnConfirm.isHidden = false
+                cell.showConfirm = {[weak self] in
+                    self?.showAlert(title: "Confirm received your items?", hideLeftButton: false, leftTitle: "No", rightTitle: "Yes", rightBtnAction: {[weak self] in
+                        self?.orderModel.updateOrderStatus(orderId: order.id ?? 0, newStatus: .history)
+                        self?.refreshContent()
+                    })
+                }
+                break
+            default:
+                break
+            }
+            
+            cell.showDetail = {[weak self] in
+                if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "OrderDetailViewController") as? OrderDetailViewController {
+                    vc.modalPresentationStyle = .fullScreen
+                    vc.order = self?.aryOrder[indexPath.row-1]
+                    self?.tabBarController?.present(vc, animated: true, completion: nil)
+                }
+            }
             return cell
         }
         

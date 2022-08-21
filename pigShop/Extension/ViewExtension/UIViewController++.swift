@@ -103,7 +103,7 @@ extension UIViewController {
     
     func checkAddressPattern(_ text: String?) -> Bool {
         guard let addressCount = text?.count, addressCount > 10, addressCount < 70 else { return false }
-        let pattern = "^[a-zA-Z0-9,/ \n]+$"
+        let pattern = "^[a-zA-Z0-9,./ \n]+$"
         return text?.range(of: pattern, options: .regularExpression) != nil
     }
 }

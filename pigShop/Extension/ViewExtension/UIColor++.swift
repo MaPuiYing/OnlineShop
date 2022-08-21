@@ -33,6 +33,10 @@ extension UIColor {
         return UIColor(named: "darkRed")!
     }
     
+    static var brownBackground: UIColor {
+        return UIColor(named: "brownBackground")!
+    }
+    
     //Button Color
     
     static var btnOrange: UIColor {
