@@ -76,6 +76,15 @@ extension OrderDetailViewController: UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cart = self.order?.allItem?[indexPath.row], let item = cart.item {
+            if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
+                vc.itemDetail = item
+                vc.isAllowEdit = false
+                self.present(vc, animated: true)
+            }
+        }
+    }
     
 }
 
