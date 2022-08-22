@@ -94,7 +94,7 @@ extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource 
             cell.showDetail = {[weak self] in
                 if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "OrderDetailViewController") as? OrderDetailViewController {
                     vc.modalPresentationStyle = .fullScreen
-                    vc.order = self?.aryOrder[indexPath.row-1]
+                    vc.order = self?.aryOrder[indexPath.section]
                     self?.tabBarController?.present(vc, animated: true, completion: nil)
                 }
             }
