@@ -16,7 +16,7 @@ class OrderDetailViewController: UIViewController {
     @IBOutlet weak var vwShippingInfo: UIView!
     
     @IBOutlet weak var lblOrderNo: UILabel!
-    @IBOutlet weak var lblStatus: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblTotalPrice: UILabel!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
@@ -43,7 +43,7 @@ class OrderDetailViewController: UIViewController {
     
     func setupContent() {
         self.lblOrderNo.text = "\(self.order?.id ?? 0)"
-        self.lblStatus.text = self.order?.status?.getText()
+        self.lblDate.text = self.order?.dateTime
         self.lblTotalPrice.text = self.order?.totalPrice?.stringValue
         if let firstName = self.order?.firstName, let lastName = self.order?.lastName {
             self.lblName.text = "\(firstName), \(lastName)"

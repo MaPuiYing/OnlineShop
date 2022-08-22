@@ -22,5 +22,13 @@ class Util {
         let clvHeight = height*rows + rowSpacing
         return clvHeight
     }
+    
+    static func getCurrentDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let now = Date()
+        let dateString = formatter.string(from:now)
+        return dateString
+    }
 }
 

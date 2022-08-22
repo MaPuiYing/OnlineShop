@@ -189,10 +189,10 @@
                                                 </connections>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hth-Zr-mDE" customClass="ViewButton" customModule="pigShop" customModuleProvider="target">
-                                                <rect key="frame" x="147" y="108" width="100" height="50"/>
+                                                <rect key="frame" x="135" y="108" width="124.5" height="50"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2S-Lw-4Hs">
-                                                        <rect key="frame" x="15" y="12" width="70" height="26"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Know More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2S-Lw-4Hs">
+                                                        <rect key="frame" x="15" y="12" width="94.5" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -238,7 +238,7 @@
                                                     <constraint firstAttribute="height" constant="150" id="Rnt-oa-LQ8"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yng-KA-rSK">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, it is empty." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yng-KA-rSK">
                                                 <rect key="frame" x="0.0" y="170" width="354" height="26.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                 <color key="textColor" name="textLightGrey"/>
@@ -275,8 +275,6 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="JNt-Im-vTX" id="KZa-MN-1m4"/>
-                        <outlet property="lbEmpty" destination="yng-KA-rSK" id="VIe-ss-2Wr"/>
-                        <outlet property="lbKnowMore" destination="a2S-Lw-4Hs" id="C6a-si-4aX"/>
                         <outlet property="lcItemHeight" destination="MoM-Qp-INf" id="Wi9-gz-zNG"/>
                         <outlet property="scrollView" destination="l7u-x4-RlR" id="A8V-bf-8xI"/>
                         <outlet property="searchBar" destination="nYt-5u-vhd" id="aaw-K3-pRO"/>

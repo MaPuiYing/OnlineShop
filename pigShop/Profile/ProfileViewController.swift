@@ -174,7 +174,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             case .history:
-                break
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderHistoryViewController") as? OrderHistoryViewController {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         case .question(let items):
             break

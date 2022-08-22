@@ -44,6 +44,7 @@ struct Order {
     var allItem: [Cart]?
     var totalPrice: Double?
     var status: OrderStatus?
+    var dateTime: String?
 }
 
 class OrderModel {
@@ -60,18 +61,18 @@ class OrderModel {
         let item = Item(id: 2, imageURL: "https://media.karousell.com/media/photos/products/2021/3/20/lulu_lulupig__1616207256_0e9b6ccb_progressive.jpg", title: "The light that can let you see the decent view at night", description: "You can turn on the light at night and you will find how beautiful the view is. No hesitation and buy it right now.", price: 400, oldPrice: 500, category: .hot, isDiscount: true, isFavorite: false)
         let cart = Cart(id: nil, item: item, count: 1, isChecked: false)
         
-        let newOrder = Order(id: self.id, userId: 1, firstName: "wd", lastName: "seefsaef", address: "uihrwlycagsrfgseyflashfewcdawfea", city: "Alberta", paymentMethod: .creditCard, allItem: [cart], totalPrice: 400, status: .shipped)
+        let newOrder = Order(id: self.id, userId: 1, firstName: "wd", lastName: "seefsaef", address: "uihrwlycagsrfgseyflashfewcdawfea", city: "Alberta", paymentMethod: .creditCard, allItem: [cart], totalPrice: 400, status: .shipped, dateTime: Util.getCurrentDate())
         self.aryOrder.append(newOrder)
         self.id += 1
         
-        let newOrder2 = Order(id: self.id, userId: 1, firstName: "efea", lastName: "seefsaaef", address: "efashufhaseu\nefishuaof\nefsefsag", city: "Alberta", paymentMethod: .creditCard, allItem: [cart], totalPrice: 400, status: .arrived)
+        let newOrder2 = Order(id: self.id, userId: 1, firstName: "efea", lastName: "seefsaaef", address: "efashufhaseu\nefishuaof\nefsefsag", city: "Alberta", paymentMethod: .creditCard, allItem: [cart], totalPrice: 400, status: .arrived, dateTime: Util.getCurrentDate())
         self.aryOrder.append(newOrder2)
         self.id += 1
     }
     
     //Add
     func addOrder(userId: Int, firstName: String, lastName: String, address: String, city: String, paymentMethod: PaymentMethod, allItem: [Cart], totalPrice: Double) {
-        let newOrder = Order(id: self.id, userId: userId, firstName: firstName, lastName: lastName, address: address, city: city, paymentMethod: paymentMethod, allItem: allItem, totalPrice: totalPrice, status: .pendingDelivery)
+        let newOrder = Order(id: self.id, userId: userId, firstName: firstName, lastName: lastName, address: address, city: city, paymentMethod: paymentMethod, allItem: allItem, totalPrice: totalPrice, status: .pendingDelivery, dateTime: Util.getCurrentDate())
         self.aryOrder.append(newOrder)
         self.id += 1
     }

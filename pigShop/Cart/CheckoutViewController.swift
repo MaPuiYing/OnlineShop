@@ -43,6 +43,7 @@ class CheckoutViewController: UIViewController {
     }
     
     func tableSetup() {
+        self.table.register(UINib(nibName: "CheckoutItemTableViewCell", bundle: nil), forCellReuseIdentifier: "cellItem")
         self.tableSection.append(.title("Transaction Information"))
         self.tableSection.append(.transactionInfo)
         self.tableSection.append(.title("Choose Your Payment Method"))

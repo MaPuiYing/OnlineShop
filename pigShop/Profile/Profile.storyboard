@@ -1145,10 +1145,100 @@
             </objects>
             <point key="canvasLocation" x="3006" y="61"/>
         </scene>
+        <!--Order History View Controller-->
+        <scene sceneID="L09-8Z-bdv">
+            <objects>
+                <viewController storyboardIdentifier="OrderHistoryViewController" id="Sak-od-tPI" customClass="OrderHistoryViewController" customModule="pigShop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kyj-Ez-3nA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o9E-iv-Xwu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search the item name" translatesAutoresizingMaskIntoConstraints="NO" id="Xsy-nJ-naC">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                        <color key="tintColor" name="darkRed"/>
+                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <offsetWrapper key="searchTextPositionAdjustment" horizontal="5" vertical="0.0"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Sak-od-tPI" id="iJV-Ir-Lxg"/>
+                                        </connections>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BrS-FJ-mYx">
+                                        <rect key="frame" x="0.0" y="51" width="414" height="801"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Sak-od-tPI" id="6e7-uc-iJ3"/>
+                                            <outlet property="delegate" destination="Sak-od-tPI" id="GS7-q1-Hqa"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58x-AC-GDt">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6tg-QY-LWD">
+                                        <rect key="frame" x="30" y="328" width="354" height="196.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyPig" translatesAutoresizingMaskIntoConstraints="NO" id="Tma-Bf-dt8">
+                                                <rect key="frame" x="77" y="0.0" width="200" height="150"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Tma-Bf-dt8" secondAttribute="height" multiplier="4:3" id="IpR-LI-MDw"/>
+                                                    <constraint firstAttribute="height" constant="150" id="hwl-LW-H1d"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It is empty." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejs-JM-vYl">
+                                                <rect key="frame" x="0.0" y="170" width="354" height="26.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                <color key="textColor" name="textLightGrey"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ejs-JM-vYl" secondAttribute="trailing" id="38e-bF-4nl"/>
+                                            <constraint firstItem="ejs-JM-vYl" firstAttribute="leading" secondItem="6tg-QY-LWD" secondAttribute="leading" id="mS5-Qw-uQ3"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="tableBackground"/>
+                                <constraints>
+                                    <constraint firstItem="6tg-QY-LWD" firstAttribute="centerY" secondItem="58x-AC-GDt" secondAttribute="centerY" id="TNx-Oh-mdE"/>
+                                    <constraint firstItem="6tg-QY-LWD" firstAttribute="leading" secondItem="58x-AC-GDt" secondAttribute="leading" constant="30" id="aNr-yn-6fQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="6tg-QY-LWD" secondAttribute="trailing" constant="30" id="aTj-0R-R1T"/>
+                                    <constraint firstItem="6tg-QY-LWD" firstAttribute="centerX" secondItem="58x-AC-GDt" secondAttribute="centerX" id="adn-Ly-2vH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6bO-vx-x3U"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="58x-AC-GDt" firstAttribute="leading" secondItem="6bO-vx-x3U" secondAttribute="leading" id="0Ib-E2-ogk"/>
+                            <constraint firstItem="o9E-iv-Xwu" firstAttribute="top" secondItem="6bO-vx-x3U" secondAttribute="top" id="BXg-yi-ijV"/>
+                            <constraint firstAttribute="bottom" secondItem="58x-AC-GDt" secondAttribute="bottom" id="Mmv-as-hu2"/>
+                            <constraint firstItem="o9E-iv-Xwu" firstAttribute="leading" secondItem="6bO-vx-x3U" secondAttribute="leading" id="PeR-SV-mju"/>
+                            <constraint firstAttribute="bottom" secondItem="o9E-iv-Xwu" secondAttribute="bottom" id="XgN-ld-E3v"/>
+                            <constraint firstItem="58x-AC-GDt" firstAttribute="top" secondItem="6bO-vx-x3U" secondAttribute="top" id="nJn-in-GCw"/>
+                            <constraint firstItem="o9E-iv-Xwu" firstAttribute="trailing" secondItem="6bO-vx-x3U" secondAttribute="trailing" id="nf7-wx-lhm"/>
+                            <constraint firstItem="58x-AC-GDt" firstAttribute="trailing" secondItem="6bO-vx-x3U" secondAttribute="trailing" id="ujl-dx-aL1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="Xsy-nJ-naC" id="9fX-qs-Y9a"/>
+                        <outlet property="table" destination="BrS-FJ-mYx" id="XtD-UE-Ozc"/>
+                        <outlet property="vwEmpty" destination="58x-AC-GDt" id="YL7-F5-Kfp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hAq-H4-6gY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1596" y="-623"/>
+        </scene>
     </scenes>
     <resources>
         <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="emptyPig" width="200" height="200"/>
         <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="112"/>
         <image name="lock.circle.fill" catalog="system" width="128" height="121"/>
         <image name="mail.fill" catalog="system" width="128" height="93"/>
@@ -1167,6 +1257,9 @@
         </namedColor>
         <namedColor name="btnOrange">
             <color red="1" green="0.47299998998641968" blue="0.23999999463558197" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="darkRed">
+            <color red="0.5" green="0.048999998718500137" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="tabbarBackground">
             <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

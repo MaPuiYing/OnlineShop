@@ -15,10 +15,8 @@ class CategoryItemViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var vwKnowMore: ViewButton!
-    @IBOutlet weak var lbKnowMore: UILabel!
     
     @IBOutlet weak var vwEmpty: UIView!
-    @IBOutlet weak var lbEmpty: UILabel!
     
     let itemModel = ItemModel.shared
 
@@ -59,9 +57,6 @@ class CategoryItemViewController: UIViewController {
         self.vwKnowMore.backgroundColor = .btnOrange
         self.vwKnowMore.layer.cornerRadius = self.vwKnowMore.bounds.height/2
         self.vwKnowMore.method = {self.updateCellCount()}
-
-        self.lbKnowMore.text = "Know More"
-        self.lbEmpty.text = "Sorry, it is empty."
     }
     
     func refreshPage() {

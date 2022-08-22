@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="TaF-FB-FdH" customClass="OrderListButtonTableViewCell" customModule="pigShop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="461" height="52"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="TaF-FB-FdH" id="bQ9-16-UBl">
+                <rect key="frame" x="0.0" y="0.0" width="461" height="52"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZOG-RD-2oc">
+                        <rect key="frame" x="71" y="10" width="375" height="30"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BU-d8-URj" customClass="ShopButton" customModule="pigShop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="115" height="30"/>
+                                <color key="tintColor" name="textDarkGrey"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="View Logistics">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="13"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="borderSecondary"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logisticsBtnPressed" destination="TaF-FB-FdH" eventType="touchUpInside" id="Xrv-3g-osC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhd-LJ-PDg" customClass="ShopButton" customModule="pigShop" customModuleProvider="target">
+                                <rect key="frame" x="130" y="0.0" width="115" height="30"/>
+                                <color key="backgroundColor" name="btnOrange"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Confirm">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="13"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="mainOrange"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="confirmBtnPressed" destination="TaF-FB-FdH" eventType="touchUpInside" id="nw6-7Z-hB3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QI6-Da-89G" customClass="ShopButton" customModule="pigShop" customModuleProvider="target">
+                                <rect key="frame" x="260" y="0.0" width="115" height="30"/>
+                                <color key="tintColor" name="mainOrange"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Show Detail">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="13"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="mainOrange"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="detailBtnPressed" destination="TaF-FB-FdH" eventType="touchUpInside" id="Ti0-4W-mCi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="3KM-gE-vCK"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="ZOG-RD-2oc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bQ9-16-UBl" secondAttribute="leading" constant="15" id="CrS-O0-EPK"/>
+                    <constraint firstAttribute="trailing" secondItem="ZOG-RD-2oc" secondAttribute="trailing" constant="15" id="Phu-8C-OWv"/>
+                    <constraint firstItem="ZOG-RD-2oc" firstAttribute="top" secondItem="bQ9-16-UBl" secondAttribute="top" constant="10" id="fc6-XM-JcV"/>
+                    <constraint firstAttribute="bottom" secondItem="ZOG-RD-2oc" secondAttribute="bottom" constant="10" id="vV8-K6-V6A"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="8bW-n5-vHP"/>
+            <connections>
+                <outlet property="btnConfirm" destination="Uhd-LJ-PDg" id="KlZ-9Y-Qnn"/>
+                <outlet property="btnDetail" destination="QI6-Da-89G" id="mLV-KT-3Nb"/>
+                <outlet property="btnLogistics" destination="0BU-d8-URj" id="fO5-Cu-5ay"/>
+            </connections>
+            <point key="canvasLocation" x="239.85507246376812" y="95.089285714285708"/>
+        </tableViewCell>
+    </objects>
+    <designables>
+        <designable name="0BU-d8-URj">
+            <size key="intrinsicContentSize" width="115" height="30"/>
+        </designable>
+        <designable name="QI6-Da-89G">
+            <size key="intrinsicContentSize" width="99" height="30"/>
+        </designable>
+        <designable name="Uhd-LJ-PDg">
+            <size key="intrinsicContentSize" width="75" height="30"/>
+        </designable>
+    </designables>
+    <resources>
+        <namedColor name="borderSecondary">
+            <color red="0.80400002002716064" green="0.80400002002716064" blue="0.80400002002716064" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="btnOrange">
+            <color red="1" green="0.47299998998641968" blue="0.23999999463558197" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="mainOrange">
+            <color red="1" green="0.5820000171661377" blue="0.39899998903274536" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="textDarkGrey">
+            <color red="0.27799999713897705" green="0.27799999713897705" blue="0.27799999713897705" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

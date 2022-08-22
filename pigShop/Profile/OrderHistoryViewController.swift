@@ -1,32 +1,36 @@
 //
-//  OrderPagingViewController.swift
+//  OrderHistoryViewController.swift
 //  pigShop
 //
-//  Created by Pui Ying Ma on 10/8/2022.
+//  Created by Pui Ying Ma on 22/8/2022.
 //
 
 import UIKit
-import JXSegmentedView
 
-class OrderPagingViewController: UIViewController {
+class OrderHistoryViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
-    
-    var orderStatus: OrderStatus = .pendingDelivery
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var vwEmpty: UIView!
     
     var orderModel = OrderModel.shared
     var userModel = UserModel.shared
+    
     var aryOrder: [Order] = []
-
+    var filteredOrder: [Order] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Order History"
+        self.customBackButton()
         self.table.register(UINib(nibName: "CheckoutItemTableViewCell", bundle: nil), forCellReuseIdentifier: "cellItem")
         self.table.register(UINib(nibName: "OrderListButtonTableViewCell", bundle: nil), forCellReuseIdentifier: "cellBtn")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.refreshContent()
     }
     
@@ -34,27 +38,40 @@ class OrderPagingViewController: UIViewController {
         self.orderModel = OrderModel.shared
         self.userModel = UserModel.shared
         self.aryOrder = (orderModel.getUserOrder(self.userModel.getUser()?.id ?? 0) ?? []).filter({
-            $0.status == orderStatus
+            $0.status == .history
         })
         
+        let searchText = self.searchBar.text ?? ""
+        if searchText.isEmpty {
+            self.filteredOrder = self.aryOrder
+        } else {
+            self.filteredOrder = self.aryOrder.filter({
+                $0.allItem?.filter({
+                    $0.item?.title?.localizedCaseInsensitiveContains(searchText) == true
+                }).count ?? 0 > 0
+            })
+        }
+        
+        self.vwEmpty.isHidden = !self.aryOrder.isEmpty
         self.table.reloadData()
     }
 }
 
-extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource {
-    
+//MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension OrderHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.aryOrder.count
+        return self.filteredOrder.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let itemCount = self.aryOrder[section].allItem?.count ?? 0
+        let itemCount = self.filteredOrder[section].allItem?.count ?? 0
         return itemCount + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let count = self.aryOrder[indexPath.section].allItem?.count, indexPath.row < count {
+        if let count = self.filteredOrder[indexPath.section].allItem?.count, indexPath.row < count {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem") as? CheckoutItemTableViewCell else {return UITableViewCell()}
-            let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
+            let cart = self.filteredOrder[indexPath.section].allItem?[indexPath.row]
             let item = cart?.item
             
             cell.imvBanner.sd_setImage(with: URL(string: item?.imageURL ?? ""))
@@ -66,35 +83,13 @@ extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource 
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellBtn") as? OrderListButtonTableViewCell else {return UITableViewCell()}
-            cell.selectionStyle = .none
-            let order = self.aryOrder[indexPath.section]
-            switch order.status {
-            case .pendingDelivery:
-                cell.btnLogistics.isHidden = true
-                cell.btnConfirm.isHidden = true
-                break
-            case .shipped:
-                cell.btnLogistics.isHidden = false
-                cell.btnConfirm.isHidden = true
-                break
-            case .arrived:
-                cell.btnLogistics.isHidden = true
-                cell.btnConfirm.isHidden = false
-                cell.showConfirm = {[weak self] in
-                    self?.showAlert(title: "Confirm received your items?", hideLeftButton: false, leftTitle: "No", rightTitle: "Yes", rightBtnAction: {[weak self] in
-                        self?.orderModel.updateOrderStatus(orderId: order.id ?? 0, newStatus: .history)
-                        self?.refreshContent()
-                    })
-                }
-                break
-            default:
-                break
-            }
+            cell.btnLogistics.isHidden = true
+            cell.btnConfirm.isHidden = true
             
             cell.showDetail = {[weak self] in
-                if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "OrderDetailViewController") as? OrderDetailViewController {
+                if let vc = UIStoryboard(name: "Order", bundle: nil).instantiateViewController(withIdentifier: "OrderDetailViewController") as? OrderDetailViewController {
                     vc.modalPresentationStyle = .fullScreen
-                    vc.order = self?.aryOrder[indexPath.row-1]
+                    vc.order = self?.filteredOrder[indexPath.row-1]
                     self?.tabBarController?.present(vc, animated: true, completion: nil)
                 }
             }
@@ -104,9 +99,9 @@ extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let count = self.aryOrder[indexPath.section].allItem?.count, indexPath.row < count {
+        if let count = self.filteredOrder[indexPath.section].allItem?.count, indexPath.row < count {
             if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
-                let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
+                let cart = self.filteredOrder[indexPath.section].allItem?[indexPath.row]
                 vc.itemDetail = cart?.item
                 vc.isAllowEdit = false
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -130,17 +125,43 @@ extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let orderId = self.aryOrder[section].id {
+        if let orderId = self.filteredOrder[section].id {
             return "Order id: \(orderId)"
         }
         return ""
     }
 }
 
-//MARK: - JXSegmentedListContainerViewListDelegate
+//MARK: - UISearchBar Delegate
 
-extension OrderPagingViewController: JXSegmentedListContainerViewListDelegate {
-    func listView() -> UIView {
-        return self.view
+extension OrderHistoryViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            self.filteredOrder = self.aryOrder
+        } else {
+            self.filteredOrder = self.aryOrder.filter({
+                $0.allItem?.filter({
+                    $0.item?.title?.localizedCaseInsensitiveContains(searchText) == true
+                }).count ?? 0 > 0
+            })
+        }
+        
+        self.table.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let searchText = searchBar.text ?? ""
+        
+        if searchText.isEmpty {
+            self.filteredOrder = self.aryOrder
+        } else {
+            self.filteredOrder = self.aryOrder.filter({
+                $0.allItem?.filter({
+                    $0.item?.title?.localizedCaseInsensitiveContains(searchText) == true
+                }).count ?? 0 > 0
+            })
+        }
+        
+        self.table.reloadData()
     }
 }
