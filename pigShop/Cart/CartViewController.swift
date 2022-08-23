@@ -11,10 +11,8 @@ class CartViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var vwEmpty: UIView!
-    @IBOutlet weak var lblEmpty: UILabel!
     
     @IBOutlet weak var vwBottom: UIView!
-    @IBOutlet weak var lblColumnTotal: UILabel!
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var btnCheckout: UIButton!
 
@@ -47,10 +45,6 @@ class CartViewController: UIViewController {
     
     func initSetup() {
         self.vwBottom.addShadow(location: .top, color: .black.withAlphaComponent(0.3))
-        self.lblColumnTotal.font = UIFont.systemFont(ofSize: 13)
-        self.lblColumnTotal.text = "Total"
-        self.lblColumnTotal.textColor = .textLightGrey
-        self.lblTotal.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         
         self.btnCheckout.setTitle("Checkout", for: .normal)
         self.btnCheckout.tintColor = .btnOrange
@@ -67,10 +61,6 @@ class CartViewController: UIViewController {
     func emptySetup() {
         if self.aryCart.isEmpty {
             self.vwEmpty.isHidden = false
-            
-            self.lblEmpty.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-            self.lblEmpty.textColor = .textDarkGrey
-            self.lblEmpty.text = "Welcome to add items to your cart."
         } else {
             self.vwEmpty.isHidden = true
             self.table.reloadData()

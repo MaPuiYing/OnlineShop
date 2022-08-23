@@ -11,10 +11,7 @@ import JXSegmentedView
 class OrderViewController: UIViewController {
     
     @IBOutlet weak var vwLogin: UIView!
-    @IBOutlet weak var lblLogin: UILabel!
-    
     @IBOutlet weak var vwEmpty: UIView!
-    @IBOutlet weak var lblEmpty: UILabel!
     
     var userModel = UserModel.shared
     var orderModel = OrderModel.shared
@@ -87,21 +84,13 @@ class OrderViewController: UIViewController {
     }
     
     func loginViewSetup() {
-        vwLogin.isHidden = false
-        vwEmpty.isHidden = true
-        
-        lblLogin.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        lblLogin.textColor = .textDarkGrey
-        lblLogin.text = "You cannot read it since you have not yet logged in your account."
+        self.vwLogin.isHidden = false
+        self.vwEmpty.isHidden = true
     }
     
     func emptyViewSetup() {
-        vwEmpty.isHidden = false
-        vwLogin.isHidden = true
-        
-        lblEmpty.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        lblEmpty.textColor = .textLightGrey
-        lblEmpty.text = "Your order list is empty."
+        self.vwEmpty.isHidden = false
+        self.vwLogin.isHidden = true
     }
 }
 

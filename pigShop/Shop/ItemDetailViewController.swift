@@ -13,9 +13,6 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var imvBookmarks: ImageButton!
     
-    @IBOutlet weak var lblColumnPrice: UILabel!
-    @IBOutlet weak var lblColumnDescription: UILabel!
-    @IBOutlet weak var lblColumnCount: UILabel!
     @IBOutlet weak var lblOldPrice: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
@@ -24,10 +21,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var vwPlus: ViewButton!
     @IBOutlet weak var vwMinus: ViewButton!
     @IBOutlet weak var lblCount: UILabel!
-    
-    @IBOutlet weak var btnCart: ShopButton!
-    @IBOutlet weak var btnBuy: ShopButton!
-    
+        
     @IBOutlet weak var stepperField: UIView!
     @IBOutlet weak var btnField: UIView!
 
@@ -86,27 +80,9 @@ class ItemDetailViewController: UIViewController {
     func setupView() {
         self.lblOldPrice.isHidden = true
         
-        self.lblColumnPrice.text = "Price: "
-        self.lblColumnDescription.textColor = .textDarkGrey
-        self.lblColumnDescription.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        self.lblColumnDescription.text = "Description: "
-        self.lblColumnCount.textColor = .textDarkGrey
-        self.lblColumnCount.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        self.lblColumnCount.text = "Count: "
-        
-        self.lblPrice.textColor = .textRed
-        self.lblPrice.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        self.lblDescription.textColor = .textDarkGrey
-        self.lblDescription.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        self.lblCount.textColor = .textDarkGrey
-        self.lblCount.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        
         self.vwStepper.layer.cornerRadius = 6
         self.vwStepper.layer.borderWidth = 0.5
         self.vwStepper.layer.borderColor = UIColor.borderColor.cgColor
-        
-        self.btnCart.setTitle("Add to cart", for: .normal)
-        self.btnBuy.setTitle("Buy it now", for: .normal)
     }
     
     func setupContent() {

@@ -51,11 +51,8 @@ class RegisterViewController: UIViewController {
         
         self.btnRegister.layer.masksToBounds = true
         self.btnRegister.layer.cornerRadius = 28
-        self.btnRegister.setTitle("Register", for: .normal)
         
         self.vwWarning.isHidden = true
-        self.lblWarning.font = UIFont.systemFont(ofSize: 14)
-        self.lblWarning.textColor = .red
     }
     
     //MARK: - Method

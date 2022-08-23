@@ -11,7 +11,6 @@ class ItemSearchViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var vwEmpty: UIView!
-    @IBOutlet weak var lblEmpty: UILabel!
     
     let itemModel = ItemModel.shared
     var items: [Item] = []
@@ -25,14 +24,18 @@ class ItemSearchViewController: UIViewController {
         self.title = "Search"
         self.customBackButton()
         
-        self.initSetup()
         self.tableViewSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.hideTabbar()
-        
+        self.initSetup()
+    }
+    
+    //MARK: - Init set up
+    
+    func initSetup() {
         //Refresh Setting
         self.refreshControl.scrollView = self.table
         self.refreshControl.finishAction = { [weak self] in
@@ -42,14 +45,6 @@ class ItemSearchViewController: UIViewController {
             }
         }
         self.refreshPage()
-    }
-    
-    //MARK: - Init set up
-    
-    func initSetup() {
-        self.lblEmpty.textColor = .textLightGrey
-        self.lblEmpty.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        self.lblEmpty.text = "Sorry, it is empty."
     }
     
     func tableViewSetup() {
