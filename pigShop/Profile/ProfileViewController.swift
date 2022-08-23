@@ -130,9 +130,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             case .editInfo:
                 cell.vwSeparator.isHidden = false
                 cell.lblTitle.text = "Transaction Information"
+                cell.imvIcon.image = UIImage(systemName: "square.and.pencil")
             case .history:
                 cell.vwSeparator.isHidden = true
                 cell.lblTitle.text = "Order History"
+                cell.imvIcon.image = UIImage(named: "list_orderHistory")
             }
             return cell
             
@@ -142,8 +144,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             switch items[indexPath.row] {
             case .aboutUs:
                 cell.lblTitle.text = "About Us"
+                cell.imvIcon.image = UIImage(named: "list_aboutUs")
             case .policy:
                 cell.lblTitle.text = "Policy"
+                cell.imvIcon.image = UIImage(named: "list_policy")
             }
             return cell
             
@@ -151,6 +155,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell") as? SettingListTableViewCell else {return UITableViewCell()}
             cell.imvArrow.isHidden = true
             cell.lblTitle.text = "Logout"
+            cell.imvIcon.image = UIImage(named: "list_logout")
             return cell
         }
     }

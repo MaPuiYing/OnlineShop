@@ -33,14 +33,7 @@ class HomeViewController: UIViewController {
         image.append("https://media.karousell.com/media/photos/products/2020/9/22/lulupig_lulu____1600744315_4bd23683_progressive.jpg")
         return image
     }
-    
-    var aryFilter: [String] {
-        var aryString: [String] = []
-        for currentCase in ItemCategory.allCases {
-            aryString.append(currentCase.rawValue)
-        }
-        return aryString
-    }
+    var aryCategory = ItemCategory.allCases
     
     var itemSize: CGSize = .zero
         
@@ -147,7 +140,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.clvCategory {
-            return self.aryFilter.count
+            return self.aryCategory.count
         } else if collectionView == self.clvItem {
             return self.specialItems.count
         }
@@ -158,12 +151,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == self.clvCategory {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategorySelectionCollectionViewCell else {return UICollectionViewCell()}
             cell.setupView()
+            
             if indexPath.row == 0 {
                 cell.setBackground(.btnOrange)
             } else if indexPath.row == 1 {
                 cell.setBackground(.btnPink)
             }
-            cell.lblTitle.text = self.aryFilter[indexPath.row]
+            
+            let category = self.aryCategory[indexPath.row]
+            cell.lblTitle.text = category.rawValue
+            cell.imvIcon.image = UIImage(named: "home_\(category)")
             return cell
         } else if collectionView == self.clvItem {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? ItemCollectionViewCell else {return UICollectionViewCell()}
@@ -186,7 +183,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.clvCategory {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "CategoryItemViewController") as? CategoryItemViewController {
-                vc.category = ItemCategory(rawValue: self.aryFilter[indexPath.row]) ?? .new
+                vc.category = self.aryCategory[indexPath.row]
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         } else if collectionView == self.clvItem {

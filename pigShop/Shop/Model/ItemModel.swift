@@ -14,7 +14,7 @@ enum ItemCategory: String, CaseIterable, Decodable {
     case dress = "Dress"
     case shoe = "Shoe"
     case food = "Food"
-    case item = "Item"
+    case toy = "Toy"
     case others = "Others"
 }
 
