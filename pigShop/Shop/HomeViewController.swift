@@ -16,9 +16,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var clvItem: UICollectionView!
     @IBOutlet weak var lcCategoryHeight: NSLayoutConstraint!
     @IBOutlet weak var lcItemHeight: NSLayoutConstraint!
-    
-    @IBOutlet weak var lbNew: UILabel!
-    @IBOutlet weak var lbSales: UILabel!
     @IBOutlet weak var vwBorder: UIView!
     
     let itemModel = ItemModel.shared
@@ -79,11 +76,7 @@ class HomeViewController: UIViewController {
         self.refreshControl.endRefreshing()
     }
     
-    func initSetup() {
-        let space = "    "
-        self.lbNew.text = space + "Special Items" + space
-        self.lbSales.text = space + "PLEASE TAKING THE CHANCE" + space
-        
+    func initSetup() {        
         self.vwBorder.layer.cornerRadius = 10
         self.vwBorder.layer.borderColor = UIColor.borderSecondary.cgColor
         self.vwBorder.layer.borderWidth = 1

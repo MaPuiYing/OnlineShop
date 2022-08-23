@@ -87,15 +87,15 @@
                                             <constraint firstAttribute="bottom" secondItem="o2G-AH-dgd" secondAttribute="bottom" constant="20" id="hQL-9Z-4pf"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPj-Sl-X80">
-                                        <rect key="frame" x="182" y="372" width="50" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Special Items    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPj-Sl-X80">
+                                        <rect key="frame" x="127.5" y="372" width="159.5" height="24"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <color key="textColor" name="textGrey"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeK-Qv-2xX">
-                                        <rect key="frame" x="194" y="527" width="26.5" height="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    PLEASE TAKING THE CHANCE    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeK-Qv-2xX">
+                                        <rect key="frame" x="122" y="527" width="170" height="12"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" name="textLightGrey"/>
@@ -133,8 +133,6 @@
                     <connections>
                         <outlet property="clvCategory" destination="idc-6t-gVd" id="0yO-oh-bMF"/>
                         <outlet property="clvItem" destination="o2G-AH-dgd" id="Gfr-fO-GUq"/>
-                        <outlet property="lbNew" destination="IPj-Sl-X80" id="zQq-aL-Z5k"/>
-                        <outlet property="lbSales" destination="BeK-Qv-2xX" id="F2i-5V-Er5"/>
                         <outlet property="lcCategoryHeight" destination="p5R-8t-yj8" id="g5a-KT-aTZ"/>
                         <outlet property="lcItemHeight" destination="oBH-O0-bvZ" id="0WQ-Lu-pFs"/>
                         <outlet property="scrollView" destination="F1y-lc-CQ5" id="K1f-BE-QjQ"/>

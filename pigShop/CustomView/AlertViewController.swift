@@ -62,7 +62,7 @@ class AlertViewController: UIViewController {
     
     @IBAction func leftButton(_ sender: Any) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-            self.vwAlert.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+            self.vwAlert.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
         }, completion: {_ in
             self.dismiss(animated: true, completion: nil)
             self.alertContent?.leftBtnAction?()
@@ -71,7 +71,7 @@ class AlertViewController: UIViewController {
     
     @IBAction func rightButton(_ sender: Any) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-            self.vwAlert.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+            self.vwAlert.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
         }, completion: {_ in
             self.dismiss(animated: true, completion: nil)
             self.alertContent?.rightBtnAction?()
