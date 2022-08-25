@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ContinuousActionDelegate {
+    func needContinuousBuyAction(_ isNeedAction: Bool)
+}
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var btnClose: ImageButton!
@@ -22,6 +26,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var lblWarning: UILabel!
     
     var userModel = UserModel.shared
+    var delegate: ContinuousActionDelegate?
+    var needNextAction = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +61,9 @@ class LoginViewController: UIViewController {
             self.lblWarning.text = "Please fill in all the blank."
         } else {
             self.userModel.loginUser(username: self.tfUsername.text, password: self.tfPassword.text, success: { [weak self] in
+                if self?.needNextAction == true {
+                    self?.delegate?.needContinuousBuyAction(true)
+                }
                 self?.dismiss(animated: true, completion: nil)
             }, failure: { [weak self] in
                 self?.vwWarning.isHidden = false

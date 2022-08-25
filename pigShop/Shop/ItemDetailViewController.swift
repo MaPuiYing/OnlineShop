@@ -27,6 +27,7 @@ class ItemDetailViewController: UIViewController {
 
     var itemDetail: Item?
     var isAllowEdit = true
+    var isNeedBuyAction = false
     
     let itemModel = ItemModel.shared
     let cartModel = CartModel.shared
@@ -62,6 +63,11 @@ class ItemDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.hideTabbar()
+        
+        if self.isNeedBuyAction {
+            self.isNeedBuyAction = false
+            self.buyItNowBtnPressed()
+        }
     }
     
     //MARK: - Set up method
@@ -156,6 +162,8 @@ class ItemDetailViewController: UIViewController {
             self.showAlert(title: "Please login your account.", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Login Now", rightBtnAction: { [weak self] in
                 if let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
                     vc.modalPresentationStyle = .fullScreen
+                    vc.delegate = self
+                    vc.needNextAction = true
                     self?.tabBarController?.present(vc, animated: true, completion: nil)
                 }
             })
@@ -171,5 +179,10 @@ class ItemDetailViewController: UIViewController {
             })
         }
     }
+}
 
+extension ItemDetailViewController: ContinuousActionDelegate {
+    func needContinuousBuyAction(_ isNeedAction: Bool) {
+        self.isNeedBuyAction = isNeedAction
+    }
 }
