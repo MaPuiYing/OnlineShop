@@ -24,7 +24,7 @@ class CheckoutViewController: UIViewController {
     var totalPrice: Double = 0
     
     let userModel = UserModel.shared
-    let orderModel = OrderModel.shared
+    let itemModel = ItemModel.shared
     let cartModel = CartModel.shared
 
     override func viewDidLoad() {
@@ -100,7 +100,7 @@ class CheckoutViewController: UIViewController {
             }
             self.showAlert(title: "Confirm to order?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: {[weak self] in
                 guard let theSelf = self else {return}
-                theSelf.orderModel.addOrder(userId: theSelf.userModel.getUser()?.id ?? 0, firstName: firstName, lastName: lastName, address: streetAddress, city: city, paymentMethod: PaymentMethod(rawValue: paymentMethod) ?? .googlePay, allItem: theSelf.aryCart, totalPrice: theSelf.totalPrice)
+                OrderModel.shared.addOrder(userId: theSelf.userModel.getUser()?.id ?? 0, firstName: firstName, lastName: lastName, address: streetAddress, city: city, paymentMethod: PaymentMethod(rawValue: paymentMethod) ?? .googlePay, allItem: theSelf.aryCart, totalPrice: theSelf.totalPrice)
                 
                 if theSelf.isOrderFromCart {
                     for cart in theSelf.aryCart {
@@ -169,7 +169,7 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .itemReview(let cart):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem") as? CheckoutItemTableViewCell else {return UITableViewCell()}
-            let item = cart.item
+            let item = self.itemModel.getItemById(cart.itemID)
             cell.imvBanner.sd_setImage(with: URL(string: item?.imageURL ?? ""))
             cell.lblTitle.text = item?.title
             if item?.isDiscount == true {
@@ -195,7 +195,7 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
         
         if case .itemReview(let cart) = row {
             if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
-                vc.itemDetail = cart.item
+                vc.itemDetail = self.itemModel.getItemById(cart.itemID)
                 vc.isAllowEdit = false
                 self.navigationController?.pushViewController(vc, animated: true)
             }

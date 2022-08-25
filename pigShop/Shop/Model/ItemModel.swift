@@ -67,6 +67,13 @@ class ItemModel {
         return []
     }
     
+    func getItemById(_ id: Int?) -> Item? {
+        let item = self.aryItem.filter({
+            $0.id == id
+        }).first
+        return item
+    }
+    
     func getDiscountItem() -> [Item] {
         let item = self.aryItem.filter({
             $0.isDiscount == true

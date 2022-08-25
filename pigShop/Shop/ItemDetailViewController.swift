@@ -135,7 +135,7 @@ class ItemDetailViewController: UIViewController {
         if (self.cartModel.getCart().count == 10) && (self.cartModel.isDuplicate(item: self.itemDetail)) {
             self.showAlert(title: "Failed to add the item.\nYour cart is full now.", hideLeftButton: true, rightTitle: "OK")
         } else {
-            self.cartModel.addCart(item: self.itemDetail, count: self.currentCount, success: { [weak self] in
+            self.cartModel.addCart(itemID: self.itemDetail?.id, count: self.currentCount, success: { [weak self] in
                 //Success
                 self?.showAlert(title: "Add the item successfully.", hideLeftButton: true, rightTitle: "OK", rightBtnAction: { [weak self] in
                     guard let theSelf = self else {return}
@@ -162,7 +162,7 @@ class ItemDetailViewController: UIViewController {
         } else {
             self.showAlert(title: "Are you sure to buy the item?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Confirm", rightBtnAction: { [weak self] in
                 if let vc = UIStoryboard(name: "Cart", bundle: nil).instantiateViewController(withIdentifier: "CheckoutViewController") as? CheckoutViewController {
-                    vc.aryCart = [Cart(id: nil, item: self?.itemDetail, count: self?.currentCount, isChecked: nil)]
+                    vc.aryCart = [Cart(id: nil, itemID: self?.itemDetail?.id, count: self?.currentCount, isChecked: nil)]
                     let price = Double(self?.itemDetail?.price ?? 0) * Double(self?.currentCount ?? 1)
                     vc.totalPrice = price
                     vc.isOrderFromCart = false

@@ -58,8 +58,7 @@ class OrderModel {
     }
     
     func demoOrder() {
-        let item = Item(id: 2, imageURL: "https://media.karousell.com/media/photos/products/2021/3/20/lulu_lulupig__1616207256_0e9b6ccb_progressive.jpg", title: "The light that can let you see the decent view at night", description: "You can turn on the light at night and you will find how beautiful the view is. No hesitation and buy it right now.", price: 400, oldPrice: 500, category: .hot, isDiscount: true, isFavorite: false)
-        let cart = Cart(id: nil, item: item, count: 1, isChecked: false)
+        let cart = Cart(id: nil, itemID: 2, count: 1, isChecked: false)
         
         let newOrder = Order(id: self.id, userId: 1, firstName: "wd", lastName: "seefsaef", address: "uihrwlycagsrfgseyflashfewcdawfea", city: "Alberta", paymentMethod: .creditCard, allItem: [cart], totalPrice: 400, status: .shipped, dateTime: Util.getCurrentDate())
         self.aryOrder.append(newOrder)

@@ -23,6 +23,7 @@ class OrderDetailViewController: UIViewController {
     @IBOutlet weak var lblCity: UILabel!
     
     var order: Order?
+    let itemModel = ItemModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +68,7 @@ extension OrderDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? OrderItemCollectionViewCell else {return UICollectionViewCell()}
-        if let cart = self.order?.allItem?[indexPath.row], let item = cart.item {
+        if let cart = self.order?.allItem?[indexPath.row], let item = self.itemModel.getItemById(cart.itemID) {
             cell.imvBanner.sd_setImage(with: URL(string: item.imageURL ?? ""))
             cell.lblTitle.text = item.title
             cell.lblPrice.text = item.price?.stringValue
@@ -77,7 +78,7 @@ extension OrderDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cart = self.order?.allItem?[indexPath.row], let item = cart.item {
+        if let cart = self.order?.allItem?[indexPath.row], let item = self.itemModel.getItemById(cart.itemID) {
             if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
                 vc.itemDetail = item
                 vc.isAllowEdit = false

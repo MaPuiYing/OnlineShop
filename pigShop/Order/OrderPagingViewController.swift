@@ -16,6 +16,7 @@ class OrderPagingViewController: UIViewController {
     
     var orderModel = OrderModel.shared
     var userModel = UserModel.shared
+    var itemModel = ItemModel.shared
     var aryOrder: [Order] = []
 
     override func viewDidLoad() {
@@ -33,6 +34,7 @@ class OrderPagingViewController: UIViewController {
     func refreshContent() {
         self.orderModel = OrderModel.shared
         self.userModel = UserModel.shared
+        self.itemModel = ItemModel.shared
         self.aryOrder = (orderModel.getUserOrder(self.userModel.getUser()?.id ?? 0) ?? []).filter({
             $0.status == orderStatus
         })
@@ -55,7 +57,7 @@ extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource 
         if let count = self.aryOrder[indexPath.section].allItem?.count, indexPath.row < count {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem") as? CheckoutItemTableViewCell else {return UITableViewCell()}
             let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
-            let item = cart?.item
+            let item = self.itemModel.getItemById(cart?.itemID)
             
             cell.imvBanner.sd_setImage(with: URL(string: item?.imageURL ?? ""))
             cell.lblTitle.text = item?.title
@@ -107,7 +109,7 @@ extension OrderPagingViewController: UITableViewDelegate, UITableViewDataSource 
         if let count = self.aryOrder[indexPath.section].allItem?.count, indexPath.row < count {
             if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
                 let cart = self.aryOrder[indexPath.section].allItem?[indexPath.row]
-                vc.itemDetail = cart?.item
+                vc.itemDetail = self.itemModel.getItemById(cart?.itemID)
                 vc.isAllowEdit = false
                 self.navigationController?.pushViewController(vc, animated: true)
             }

@@ -15,6 +15,7 @@ class OrderHistoryViewController: UIViewController {
     
     var orderModel = OrderModel.shared
     var userModel = UserModel.shared
+    var itemModel = ItemModel.shared
     
     var aryOrder: [Order] = []
     var filteredOrder: [Order] = []
@@ -37,6 +38,7 @@ class OrderHistoryViewController: UIViewController {
     func refreshContent() {
         self.orderModel = OrderModel.shared
         self.userModel = UserModel.shared
+        self.itemModel = ItemModel.shared
         self.aryOrder = (orderModel.getUserOrder(self.userModel.getUser()?.id ?? 0) ?? []).filter({
             $0.status == .history
         })
@@ -47,7 +49,8 @@ class OrderHistoryViewController: UIViewController {
         } else {
             self.filteredOrder = self.aryOrder.filter({
                 $0.allItem?.filter({
-                    $0.item?.title?.localizedCaseInsensitiveContains(searchText) == true
+                    let item = self.itemModel.getItemById($0.itemID)
+                    return item?.title?.localizedCaseInsensitiveContains(searchText) == true
                 }).count ?? 0 > 0
             })
         }
@@ -72,7 +75,7 @@ extension OrderHistoryViewController: UITableViewDelegate, UITableViewDataSource
         if let count = self.filteredOrder[indexPath.section].allItem?.count, indexPath.row < count {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem") as? CheckoutItemTableViewCell else {return UITableViewCell()}
             let cart = self.filteredOrder[indexPath.section].allItem?[indexPath.row]
-            let item = cart?.item
+            let item = self.itemModel.getItemById(cart?.itemID)
             
             cell.imvBanner.sd_setImage(with: URL(string: item?.imageURL ?? ""))
             cell.lblTitle.text = item?.title
@@ -102,7 +105,7 @@ extension OrderHistoryViewController: UITableViewDelegate, UITableViewDataSource
         if let count = self.filteredOrder[indexPath.section].allItem?.count, indexPath.row < count {
             if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
                 let cart = self.filteredOrder[indexPath.section].allItem?[indexPath.row]
-                vc.itemDetail = cart?.item
+                vc.itemDetail = self.itemModel.getItemById(cart?.itemID)
                 vc.isAllowEdit = false
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -141,7 +144,8 @@ extension OrderHistoryViewController: UISearchBarDelegate {
         } else {
             self.filteredOrder = self.aryOrder.filter({
                 $0.allItem?.filter({
-                    $0.item?.title?.localizedCaseInsensitiveContains(searchText) == true
+                    let item = self.itemModel.getItemById($0.itemID)
+                    return item?.title?.localizedCaseInsensitiveContains(searchText) == true
                 }).count ?? 0 > 0
             })
         }
@@ -157,7 +161,8 @@ extension OrderHistoryViewController: UISearchBarDelegate {
         } else {
             self.filteredOrder = self.aryOrder.filter({
                 $0.allItem?.filter({
-                    $0.item?.title?.localizedCaseInsensitiveContains(searchText) == true
+                    let item = self.itemModel.getItemById($0.itemID)
+                    return item?.title?.localizedCaseInsensitiveContains(searchText) == true
                 }).count ?? 0 > 0
             })
         }

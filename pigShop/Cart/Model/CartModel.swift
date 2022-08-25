@@ -9,7 +9,7 @@ import Foundation
 
 struct Cart {
     let id: Int?
-    var item: Item?
+    var itemID: Int?
     var count: Int?
     var isChecked: Bool?
 }
@@ -29,15 +29,15 @@ class CartModel {
     //MARK: - Get Object
     func isDuplicate(item: Item?) -> Bool {
         let isDuplicate = self.aryCart.filter({
-            $0.item?.id == item?.id
+            $0.itemID == item?.id
         }).isEmpty
         return isDuplicate
     }
     
     //MARK: - Edit Object
-    func addCart(item: Item?, count: Int, success: @escaping (()->Void), failure: @escaping (()->Void)) {
+    func addCart(itemID: Int?, count: Int, success: @escaping (()->Void), failure: @escaping (()->Void)) {
         let duplicateId = self.aryCart.filter({
-            $0.item?.id == item?.id
+            $0.itemID == itemID
         }).first?.id
         
         if let id = duplicateId {
@@ -45,16 +45,16 @@ class CartModel {
             let oldCart = self.aryCart[index]
             let newCount = (oldCart.count ?? 1) + count
             if newCount < 10 {
-                let newCart = Cart(id: oldCart.id, item: oldCart.item, count: newCount, isChecked: true)
+                let newCart = Cart(id: oldCart.id, itemID: oldCart.itemID, count: newCount, isChecked: true)
                 self.aryCart[index] = newCart
                 success()
             } else {
-                let newCart = Cart(id: oldCart.id, item: oldCart.item, count: 9, isChecked: true)
+                let newCart = Cart(id: oldCart.id, itemID: oldCart.itemID, count: 9, isChecked: true)
                 self.aryCart[index] = newCart
                 failure()
             }
         } else {
-            self.aryCart.append(Cart(id: self.id, item: item, count: count, isChecked: true))
+            self.aryCart.append(Cart(id: self.id, itemID: itemID, count: count, isChecked: true))
             self.id += 1
             success()
         }
@@ -75,7 +75,7 @@ class CartModel {
     func updateChecked(id: Int, isChecked: Bool) {
         let index = self.getCartIndex(id)
         let oldCart = self.aryCart[index]
-        let newCart = Cart(id: oldCart.id, item: oldCart.item, count: oldCart.count, isChecked: isChecked)
+        let newCart = Cart(id: oldCart.id, itemID: oldCart.itemID, count: oldCart.count, isChecked: isChecked)
         self.aryCart[index] = newCart
     }
     

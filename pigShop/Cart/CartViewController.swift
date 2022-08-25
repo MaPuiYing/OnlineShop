@@ -17,6 +17,7 @@ class CartViewController: UIViewController {
     @IBOutlet weak var btnCheckout: UIButton!
 
     let cartModel = CartModel.shared
+    let itemModel = ItemModel.shared
     var userModel = UserModel.shared
     
     var aryCart: [Cart] = []
@@ -36,7 +37,7 @@ class CartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.userModel = UserModel.shared
-        self.aryCart = cartModel.aryCart
+        self.aryCart = self.cartModel.aryCart
         self.updateCartContent()
         self.emptySetup()
     }
@@ -96,7 +97,8 @@ class CartViewController: UIViewController {
         var total: Double = 0
         for cart in self.aryCart {
             if cart.isChecked == true {
-                total += (cart.item?.price ?? 0) * Double(cart.count ?? 1)
+                let cartItem = self.itemModel.getItemById(cart.itemID)?.price ?? 0
+                total += (cartItem) * Double(cart.count ?? 1)
             }
         }
         self.totalPrice = total
@@ -113,7 +115,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cartCell", for: indexPath) as? CartItemTableViewCell else {return UITableViewCell()}
         let model = self.aryCart[indexPath.row]
-        let item = model.item
+        let item = self.itemModel.getItemById(model.itemID)
         
         cell.imvBanner.sd_setImage(with: URL(string: item?.imageURL ?? ""), completed: nil)
         cell.lblTitle.text = item?.title
@@ -159,7 +161,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController {
-            vc.itemDetail = self.aryCart[indexPath.row].item
+            vc.itemDetail = self.itemModel.getItemById(self.aryCart[indexPath.row].itemID)
             vc.isAllowEdit = false
             self.navigationController?.pushViewController(vc, animated: true)
         }
