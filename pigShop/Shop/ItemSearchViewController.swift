@@ -18,13 +18,14 @@ class ItemSearchViewController: UIViewController {
     let itemModel = ItemModel.shared
     var items: [Item] = []
     var filteredItems: [Item] = []
-    var minPrice = Double()
-    var maxPrice = Double()
     
     var refreshControl = CustomRefreshControl()
     let searchBar = UISearchBar()
+    
     let minPriceConstant = 1.0
     let maxPriceConstant = 1000.0
+    var minPrice = Double()
+    var maxPrice = Double()
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -157,6 +157,9 @@
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search the item name" translatesAutoresizingMaskIntoConstraints="NO" id="nYt-5u-vhd">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="x05-nh-OHJ"/>
+                                        </constraints>
                                         <color key="tintColor" name="darkRed"/>
                                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <offsetWrapper key="searchTextPositionAdjustment" horizontal="5" vertical="0.0"/>
@@ -230,6 +233,17 @@
                                     <constraint firstAttribute="bottom" secondItem="gwa-MH-JBN" secondAttribute="bottom" constant="20" id="nRy-nw-GXC"/>
                                 </constraints>
                             </scrollView>
+                            <view hidden="YES" alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcj-2T-oku">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ep-P4-WeU" customClass="FilterItemView" customModule="pigShop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="2Xa-q3-djm"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdV-ul-HZb">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
@@ -268,23 +282,33 @@
                         <viewLayoutGuide key="safeArea" id="iDQ-l8-gc3"/>
                         <color key="backgroundColor" name="tabbarBackground"/>
                         <constraints>
+                            <constraint firstItem="7ep-P4-WeU" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="4fH-hk-L8K"/>
                             <constraint firstItem="GdV-ul-HZb" firstAttribute="leading" secondItem="iDQ-l8-gc3" secondAttribute="leading" id="HLT-oW-c9o"/>
                             <constraint firstAttribute="bottom" secondItem="GdV-ul-HZb" secondAttribute="bottom" id="KiD-WP-Fcd"/>
+                            <constraint firstItem="7ep-P4-WeU" firstAttribute="leading" secondItem="DlJ-6h-Gra" secondAttribute="leading" id="LAr-ck-fAH"/>
                             <constraint firstItem="l7u-x4-RlR" firstAttribute="leading" secondItem="iDQ-l8-gc3" secondAttribute="leading" id="LPh-2b-S3a"/>
+                            <constraint firstAttribute="trailing" secondItem="7ep-P4-WeU" secondAttribute="trailing" id="RX8-Kc-l6J"/>
                             <constraint firstItem="l7u-x4-RlR" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="W5C-3f-QD8"/>
+                            <constraint firstItem="qcj-2T-oku" firstAttribute="leading" secondItem="iDQ-l8-gc3" secondAttribute="leading" id="bh1-vQ-UOQ"/>
                             <constraint firstAttribute="bottom" secondItem="l7u-x4-RlR" secondAttribute="bottom" id="dMH-Ic-EvY"/>
                             <constraint firstItem="iDQ-l8-gc3" firstAttribute="trailing" secondItem="l7u-x4-RlR" secondAttribute="trailing" id="dt8-ie-23w"/>
                             <constraint firstItem="iDQ-l8-gc3" firstAttribute="trailing" secondItem="GdV-ul-HZb" secondAttribute="trailing" id="hPZ-Ro-Ub0"/>
+                            <constraint firstItem="qcj-2T-oku" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="qQl-J8-Jdg"/>
+                            <constraint firstAttribute="bottom" secondItem="qcj-2T-oku" secondAttribute="bottom" id="tFd-Q5-jcx"/>
+                            <constraint firstItem="qcj-2T-oku" firstAttribute="trailing" secondItem="iDQ-l8-gc3" secondAttribute="trailing" id="veF-Ex-gtV"/>
                             <constraint firstItem="GdV-ul-HZb" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="zkr-4V-o9d"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btnGetMore" destination="8kh-ou-AOY" id="wYK-24-dZg"/>
                         <outlet property="collectionView" destination="JNt-Im-vTX" id="KZa-MN-1m4"/>
+                        <outlet property="dimView" destination="qcj-2T-oku" id="xfR-wn-yBZ"/>
+                        <outlet property="lcFilterHeight" destination="2Xa-q3-djm" id="x6z-Fj-ena"/>
                         <outlet property="lcItemHeight" destination="MoM-Qp-INf" id="Wi9-gz-zNG"/>
                         <outlet property="scrollView" destination="l7u-x4-RlR" id="A8V-bf-8xI"/>
                         <outlet property="searchBar" destination="nYt-5u-vhd" id="aaw-K3-pRO"/>
                         <outlet property="vwEmpty" destination="GdV-ul-HZb" id="mZR-S3-RAr"/>
+                        <outlet property="vwFilter" destination="7ep-P4-WeU" id="9gV-1y-Use"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlP-Ed-zcX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

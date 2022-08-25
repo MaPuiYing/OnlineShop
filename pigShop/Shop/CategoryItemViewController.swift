@@ -15,6 +15,9 @@ class CategoryItemViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var btnGetMore: ShopButton!
+    @IBOutlet weak var dimView: UIView!
+    @IBOutlet weak var vwFilter: FilterItemView!
+    @IBOutlet weak var lcFilterHeight: NSLayoutConstraint!
     
     @IBOutlet weak var vwEmpty: UIView!
     
@@ -25,6 +28,11 @@ class CategoryItemViewController: UIViewController {
     var category: ItemCategory?
     var items: [Item] = []
     var filteredItems: [Item] = []
+    
+    let minPriceConstant = 1.0
+    let maxPriceConstant = 1000.0
+    var minPrice = Double()
+    var maxPrice = Double()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +50,9 @@ class CategoryItemViewController: UIViewController {
     //MARK: - init Set up
     
     func initSetup() {
+        self.minPrice = self.minPriceConstant
+        self.maxPrice = self.maxPriceConstant
+        
         //Refresh Setting
         self.refreshControl.scrollView = self.scrollView
         self.refreshControl.finishAction = { [weak self] in
@@ -51,6 +62,16 @@ class CategoryItemViewController: UIViewController {
             }
         }
         self.refreshPage()
+        
+        //Filter View
+        self.vwFilter.setupView()
+        self.vwFilter.layer.masksToBounds = true
+        self.vwFilter.sliderPrice.minimumValue = self.minPriceConstant
+        self.vwFilter.sliderPrice.maximumValue = self.maxPriceConstant
+        
+        self.vwFilter.doneFunc = {[weak self] in
+            self?.selectedFilter()
+        }
     }
     
     func refreshPage() {
@@ -60,11 +81,9 @@ class CategoryItemViewController: UIViewController {
     }
     
     func setupData() {
-        if category != nil {
-            self.items = itemModel.getCategoryItem(category)
-        } else {
-            self.items = itemModel.getFavioriteItem()
-        }
+        self.items = (self.category != nil) ? self.itemModel.getCategoryItem(category) : self.itemModel.getFavioriteItem()
+        
+        self.navigationBarSetup()
         
         let searchText = self.searchBar.text ?? ""
         if searchText.isEmpty {
@@ -74,10 +93,12 @@ class CategoryItemViewController: UIViewController {
                 $0.title?.localizedCaseInsensitiveContains(searchText) == true
             })
         }
+        self.filteredItems = self.filteredItems.filter({
+            $0.price ?? self.minPriceConstant >= self.minPrice && $0.price ?? self.maxPriceConstant <= self.maxPrice
+        })
         
         self.collectionView.reloadData()
         self.vwEmpty.isHidden = (self.items.count > 0)
-        self.navigationBarSetup()
     }
     
     func navigationBarSetup() {
@@ -95,15 +116,41 @@ class CategoryItemViewController: UIViewController {
     
     //MARK: - Button Action
     
-    @objc func filterBtnPressed() {
-        NSLog("filter button pressed")
-    }
-    
     @IBAction func updateCellCount() {
         let remainCount = self.filteredItems.count - self.cellCount
         self.cellCount += (remainCount<=10) ? remainCount : 10
         self.btnGetMore.isHidden = (self.cellCount == self.filteredItems.count)
         self.collectionView.reloadData()
+    }
+    
+    @objc func filterBtnPressed() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.lcFilterHeight.constant = 200
+            self.dimView.isHidden = false
+            self.view.layoutIfNeeded()
+            
+            self.collectionView.isUserInteractionEnabled = false
+            
+        }, completion: nil)
+    }
+    
+    func selectedFilter() {
+        let filteredPrice: [CGFloat] = self.vwFilter.sliderPrice.value
+        let firstPrice = filteredPrice.first
+        let lastPrice = filteredPrice.last
+        if firstPrice != self.minPrice || lastPrice != self.maxPrice {
+            self.minPrice = firstPrice ?? self.minPriceConstant
+            self.maxPrice = lastPrice ?? self.maxPriceConstant
+            self.refreshPage()
+        }
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.lcFilterHeight.constant = 0
+            self.dimView.isHidden = true
+            self.view.layoutIfNeeded()
+            
+            self.collectionView.isUserInteractionEnabled = true
+        }, completion: nil)
     }
 }
 
@@ -111,31 +158,11 @@ class CategoryItemViewController: UIViewController {
 
 extension CategoryItemViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            self.filteredItems = self.items
-        } else {
-            self.filteredItems = self.items.filter({
-                $0.title?.localizedCaseInsensitiveContains(searchText) == true
-            })
-        }
-        
-        self.updateCellCount()
-        self.collectionView.reloadData()
+        self.refreshPage()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let searchText = searchBar.text ?? ""
-        
-        if searchText.isEmpty {
-            self.filteredItems = self.items
-        } else {
-            self.filteredItems = self.items.filter({
-                $0.title?.localizedCaseInsensitiveContains(searchText) == true
-            })
-        }
-        
-        self.updateCellCount()
-        self.collectionView.reloadData()
+        self.refreshPage()
     }
 }
 
