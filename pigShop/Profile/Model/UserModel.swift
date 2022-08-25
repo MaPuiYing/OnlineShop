@@ -17,6 +17,7 @@ struct User {
     var lastName: String?
     var address: String?
     var city: String?
+    var icon: Data?
 }
 
 class UserModel {
@@ -54,12 +55,13 @@ class UserModel {
         self.id += 1
     }
     
-    func updateUserInfo(username newUsername: String?, email newEmail: String?, phone newPhone: String?) {
+    func updateUserInfo(username newUsername: String?, email newEmail: String?, phone newPhone: String?, icon newIcon: Data?) {
         let index = self.getCurrentUserIndex()
         var newUser = self.aryUser[index]
         newUser.username = newUsername
         newUser.email = newEmail
         newUser.phoneNo = newPhone
+        newUser.icon = newIcon
         self.aryUser[index] = newUser
         self.currentUser = newUser
     }

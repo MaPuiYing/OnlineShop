@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RSKImageCropper
 
 class UserViewController: UIViewController {
     
@@ -23,6 +24,8 @@ class UserViewController: UIViewController {
     
     let userModel = UserModel.shared
     var user = UserModel.shared.currentUser
+    var imagePicker = UIImagePickerController()
+    var newIcon: Data? = nil
     
     var editBtnItem = UIBarButtonItem()
     var saveBtnItem = UIBarButtonItem()
@@ -44,15 +47,25 @@ class UserViewController: UIViewController {
     func initSetup() {
         self.showEditView(false)
         self.setupContent()
+        
+        self.imvCamera.method = {[weak self] in self?.cameraBtnPressed()}
     }
     
     func setupContent() {
         self.user = UserModel.shared.currentUser
         
-        self.tfUserID.text = "\(user?.id ?? 0)"
-        self.tfUsername.text = user?.username
-        self.tfEmail.text = user?.email
-        self.tfPhone.text = user?.phoneNo
+        self.tfUserID.text = "\(self.user?.id ?? 0)"
+        self.tfUsername.text = self.user?.username
+        self.tfEmail.text = self.user?.email
+        self.tfPhone.text = self.user?.phoneNo
+        
+        if let userIcon = self.user?.icon {
+            self.imvIcon.image = UIImage(data: userIcon)
+            self.newIcon = userIcon
+        } else {
+            self.imvIcon.image = UIImage(systemName: "person.circle.fill")
+            self.newIcon = nil
+        }
     }
     
     func navigationBarSetup() {
@@ -103,7 +116,7 @@ class UserViewController: UIViewController {
                 self.showAlertMessage("Phone number allows 8 digits only.")
             } else {
                 self.showAlert(title: "Are you sure to save your editing?", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "OK", rightBtnAction: { [weak self] in
-                    self?.userModel.updateUserInfo(username: username, email: email, phone: phone)
+                    self?.userModel.updateUserInfo(username: username, email: email, phone: phone, icon: self?.newIcon)
                     self?.initSetup()
                     self?.closeEditAction()
                 })
@@ -111,7 +124,16 @@ class UserViewController: UIViewController {
         } else {
             self.closeEditAction()
         }
-        
+    }
+    
+    func cameraBtnPressed() {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            self.imagePicker.delegate = self
+            self.imagePicker.sourceType = .photoLibrary
+            self.imagePicker.allowsEditing = false
+
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
     }
     
     //MARK: - Method
@@ -120,6 +142,7 @@ class UserViewController: UIViewController {
         self.vwLineUsername.isHidden = !isShow
         self.vwLineEmail.isHidden = !isShow
         self.vwLinePhone.isHidden = !isShow
+        self.imvCamera.isHidden = !isShow
         
         self.tfUserID.isEnabled = false
         self.tfUsername.isEnabled = isShow
@@ -132,7 +155,7 @@ class UserViewController: UIViewController {
     }
     
     func isEdited() -> Bool {
-        return (self.tfUsername.text != self.user?.username) || (self.tfEmail.text != self.user?.email) || (self.tfPhone.text != self.user?.phoneNo)
+        return (self.tfUsername.text != self.user?.username) || (self.tfEmail.text != self.user?.email) || (self.tfPhone.text != self.user?.phoneNo) || (self.newIcon != self.user?.icon)
     }
     
     func closeEditAction() {
@@ -143,6 +166,9 @@ class UserViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = self.editBtnItem
     }
 }
+
+
+//MARK: - UITextFieldDelegate
 
 extension UserViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -169,5 +195,49 @@ extension UserViewController: UITextFieldDelegate {
         default:
             break
         }
+    }
+}
+
+//MARK: - UIImagePickerControllerDelegate, RSKImageCropViewControllerDelegate
+
+extension UserViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate, RSKImageCropViewControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        
+        picker.dismiss(animated: true, completion: {
+            var imageCropVC : RSKImageCropViewController!
+            imageCropVC = RSKImageCropViewController(image: image, cropMode: .circle)
+            imageCropVC.delegate = self
+            imageCropVC.applyMaskToCroppedImage = true
+            imageCropVC.avoidEmptySpaceAroundImage = true
+            self.navigationController?.pushViewController(imageCropVC, animated: true)
+        })
+    }
+    
+    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect, rotationAngle: CGFloat) {
+        guard let imageURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("TempImage.png") else {
+            return
+        }
+
+        let pngData = croppedImage.pngData();
+        do {
+            try pngData?.write(to: imageURL);
+            self.newIcon = pngData
+        } catch {}
+
+        self.imvIcon.image = croppedImage
+        
+        self.navigationController?.popViewController(animated: true)
     }
 }

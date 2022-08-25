@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "rskimagecropper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ruslanskorb/RSKImageCropper",
+      "state" : {
+        "revision" : "0cbf9cbb77b6763c80eb4d44673395acf5a8d93c",
+        "version" : "4.0.0"
+      }
+    },
+    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",

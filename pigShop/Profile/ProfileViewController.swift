@@ -114,7 +114,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.vwUser.isHidden = false
                 cell.vwGuest.isHidden = true
                 
-                cell.lblUserName.text = userModel.getUser()?.username
+                cell.lblUserName.text = self.userModel.getUser()?.username
+                if let userIcon = self.userModel.getUser()?.icon {
+                    cell.imvIcon.image = UIImage(data: userIcon)
+                } else {
+                    cell.imvIcon.image = UIImage(systemName: "person.circle.fill")
+                }
             } else {
                 cell.selectionStyle = .none
                 cell.vwGuest.isHidden = false

@@ -80,6 +80,7 @@
 		DA36029828B654E30061A65D /* FilterItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA36029728B654E30061A65D /* FilterItemView.xib */; };
 		DA36029A28B654F80061A65D /* FilterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36029928B654F80061A65D /* FilterItemView.swift */; };
 		DA3602A028B672A00061A65D /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = DA36029F28B672A00061A65D /* MultiSlider */; };
+		DA3602A328B7B4C70061A65D /* RSKImageCropper in Frameworks */ = {isa = PBXBuildFile; productRef = DA3602A228B7B4C70061A65D /* RSKImageCropper */; };
 		DA4DD92728AD015100E8A66F /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD92628AD015100E8A66F /* OrderDetailViewController.swift */; };
 		DA4DD92B28AD0F5600E8A66F /* OrderItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD92928AD0F5600E8A66F /* OrderItemCollectionViewCell.swift */; };
 		DA4DD92C28AD0F5600E8A66F /* OrderItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4DD92A28AD0F5600E8A66F /* OrderItemCollectionViewCell.xib */; };
@@ -198,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA2C908828A2B0F100A53562 /* JXSegmentedView in Frameworks */,
+				DA3602A328B7B4C70061A65D /* RSKImageCropper in Frameworks */,
 				DA3602A028B672A00061A65D /* MultiSlider in Frameworks */,
 				8D9BFA1227DA429D00DBE962 /* SDWebImage in Frameworks */,
 			);
@@ -520,6 +522,7 @@
 				8D9BFA1127DA429D00DBE962 /* SDWebImage */,
 				DA2C908728A2B0F100A53562 /* JXSegmentedView */,
 				DA36029F28B672A00061A65D /* MultiSlider */,
+				DA3602A228B7B4C70061A65D /* RSKImageCropper */,
 			);
 			productName = pigShop;
 			productReference = 8D4859F027D90087007C5B55 /* pigShop.app */;
@@ -597,6 +600,7 @@
 				8D9BFA1027DA429D00DBE962 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				DA2C908628A2B0F100A53562 /* XCRemoteSwiftPackageReference "JXSegmentedView" */,
 				DA36029E28B672A00061A65D /* XCRemoteSwiftPackageReference "MultiSlider" */,
+				DA3602A128B7B4C70061A65D /* XCRemoteSwiftPackageReference "RSKImageCropper" */,
 			);
 			productRefGroup = 8D4859F127D90087007C5B55 /* Products */;
 			projectDirPath = "";
@@ -1076,6 +1080,14 @@
 				kind = branch;
 			};
 		};
+		DA3602A128B7B4C70061A65D /* XCRemoteSwiftPackageReference "RSKImageCropper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ruslanskorb/RSKImageCropper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1093,6 +1105,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DA36029E28B672A00061A65D /* XCRemoteSwiftPackageReference "MultiSlider" */;
 			productName = MultiSlider;
+		};
+		DA3602A228B7B4C70061A65D /* RSKImageCropper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA3602A128B7B4C70061A65D /* XCRemoteSwiftPackageReference "RSKImageCropper" */;
+			productName = RSKImageCropper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
