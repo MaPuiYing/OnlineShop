@@ -165,8 +165,8 @@
                                             <outlet property="delegate" destination="yj1-SN-mi0" id="Zbf-oV-gB9"/>
                                         </connections>
                                     </searchBar>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-MH-JBN">
-                                        <rect key="frame" x="10" y="57" width="394" height="158"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-MH-JBN">
+                                        <rect key="frame" x="10" y="57" width="394" height="150"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JNt-Im-vTX">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
@@ -186,24 +186,31 @@
                                                     <outlet property="delegate" destination="yj1-SN-mi0" id="Ub0-tu-8sM"/>
                                                 </connections>
                                             </collectionView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hth-Zr-mDE" customClass="ViewButton" customModule="pigShop" customModuleProvider="target">
-                                                <rect key="frame" x="135" y="108" width="124.5" height="50"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Know More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2S-Lw-4Hs">
-                                                        <rect key="frame" x="15" y="12" width="94.5" height="26"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kh-ou-AOY" customClass="ShopButton" customModule="pigShop" customModuleProvider="target">
+                                                <rect key="frame" x="152" y="120" width="90" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="a2S-Lw-4Hs" secondAttribute="bottom" constant="12" id="6Xq-iR-4m3"/>
-                                                    <constraint firstAttribute="trailing" secondItem="a2S-Lw-4Hs" secondAttribute="trailing" constant="15" id="HMu-Ka-fQe"/>
-                                                    <constraint firstItem="a2S-Lw-4Hs" firstAttribute="top" secondItem="Hth-Zr-mDE" secondAttribute="top" constant="12" id="vY6-ex-Gs9"/>
-                                                    <constraint firstItem="a2S-Lw-4Hs" firstAttribute="leading" secondItem="Hth-Zr-mDE" secondAttribute="leading" constant="15" id="vyY-Em-FmT"/>
+                                                    <constraint firstAttribute="height" constant="30" id="1XJ-Po-qh2"/>
                                                 </constraints>
-                                            </view>
+                                                <color key="tintColor" name="btnOrange"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Get More">
+                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="btnOrange"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="updateCellCount" destination="yj1-SN-mi0" eventType="touchUpInside" id="mYf-6h-g5F"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="JNt-Im-vTX" secondAttribute="trailing" id="BRu-Vj-DjT"/>
@@ -272,12 +279,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnGetMore" destination="8kh-ou-AOY" id="wYK-24-dZg"/>
                         <outlet property="collectionView" destination="JNt-Im-vTX" id="KZa-MN-1m4"/>
                         <outlet property="lcItemHeight" destination="MoM-Qp-INf" id="Wi9-gz-zNG"/>
                         <outlet property="scrollView" destination="l7u-x4-RlR" id="A8V-bf-8xI"/>
                         <outlet property="searchBar" destination="nYt-5u-vhd" id="aaw-K3-pRO"/>
                         <outlet property="vwEmpty" destination="GdV-ul-HZb" id="mZR-S3-RAr"/>
-                        <outlet property="vwKnowMore" destination="Hth-Zr-mDE" id="B6k-7U-Zva"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlP-Ed-zcX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

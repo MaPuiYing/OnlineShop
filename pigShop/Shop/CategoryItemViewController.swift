@@ -14,7 +14,7 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var lcItemHeight: NSLayoutConstraint!
     
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var vwKnowMore: ViewButton!
+    @IBOutlet weak var btnGetMore: ShopButton!
     
     @IBOutlet weak var vwEmpty: UIView!
     
@@ -30,15 +30,18 @@ class CategoryItemViewController: UIViewController {
         super.viewDidLoad()
         self.title = self.category?.rawValue ?? "Bookmark"
         self.customBackButton()
-        
-        self.initSetup()
         self.collectionViewSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.hideTabbar()
-        
+        self.initSetup()
+    }
+    
+    //MARK: - init Set up
+    
+    func initSetup() {
         //Refresh Setting
         self.refreshControl.scrollView = self.scrollView
         self.refreshControl.finishAction = { [weak self] in
@@ -48,15 +51,6 @@ class CategoryItemViewController: UIViewController {
             }
         }
         self.refreshPage()
-    }
-    
-    //MARK: - init Set up
-    
-    func initSetup() {
-        self.view.layoutIfNeeded()
-        self.vwKnowMore.backgroundColor = .btnOrange
-        self.vwKnowMore.layer.cornerRadius = self.vwKnowMore.bounds.height/2
-        self.vwKnowMore.method = {self.updateCellCount()}
     }
     
     func refreshPage() {
@@ -105,10 +99,10 @@ class CategoryItemViewController: UIViewController {
         NSLog("filter button pressed")
     }
     
-    func updateCellCount() {
+    @IBAction func updateCellCount() {
         let remainCount = self.filteredItems.count - self.cellCount
         self.cellCount += (remainCount<=10) ? remainCount : 10
-        self.vwKnowMore.isHidden = (self.cellCount == self.filteredItems.count)
+        self.btnGetMore.isHidden = (self.cellCount == self.filteredItems.count)
         self.collectionView.reloadData()
     }
 }
