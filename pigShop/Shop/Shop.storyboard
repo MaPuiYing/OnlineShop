@@ -583,6 +583,17 @@
                                     <outlet property="delegate" destination="OBW-3c-ZTL" id="bXj-Pg-kV0"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2e-MG-bRq">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bA-vN-Fw6" customClass="FilterItemView" customModule="pigShop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="KeT-gU-Jdn"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nft-50-B75">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
@@ -625,15 +636,25 @@
                             <constraint firstItem="wM2-ZT-64Q" firstAttribute="trailing" secondItem="R1u-zb-Mxe" secondAttribute="trailing" id="7cT-jO-qHl"/>
                             <constraint firstAttribute="bottom" secondItem="wM2-ZT-64Q" secondAttribute="bottom" id="BSv-iL-yvF"/>
                             <constraint firstItem="wM2-ZT-64Q" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="Dd9-85-U7z"/>
+                            <constraint firstAttribute="bottom" secondItem="Y2e-MG-bRq" secondAttribute="bottom" id="Dq5-kA-LzD"/>
+                            <constraint firstItem="7bA-vN-Fw6" firstAttribute="trailing" secondItem="R1u-zb-Mxe" secondAttribute="trailing" id="Gen-ca-p5r"/>
+                            <constraint firstItem="Y2e-MG-bRq" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="JXr-kS-GrP"/>
                             <constraint firstItem="Nft-50-B75" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="OsF-0g-zV3"/>
                             <constraint firstItem="Nft-50-B75" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="PPZ-F4-m90"/>
+                            <constraint firstItem="Y2e-MG-bRq" firstAttribute="top" secondItem="7bA-vN-Fw6" secondAttribute="bottom" id="cja-gt-9Ix"/>
                             <constraint firstAttribute="bottom" secondItem="Nft-50-B75" secondAttribute="bottom" id="e3k-ja-oUF"/>
+                            <constraint firstItem="7bA-vN-Fw6" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="fgW-XX-aYg"/>
+                            <constraint firstItem="7bA-vN-Fw6" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="fmM-mq-p3I"/>
                             <constraint firstItem="wM2-ZT-64Q" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="j4l-rR-g1S"/>
+                            <constraint firstItem="R1u-zb-Mxe" firstAttribute="trailing" secondItem="Y2e-MG-bRq" secondAttribute="trailing" id="zDd-Md-yRD"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dimView" destination="Y2e-MG-bRq" id="0fa-hK-RQq"/>
+                        <outlet property="lcFilterHeight" destination="KeT-gU-Jdn" id="xXT-rz-dy7"/>
                         <outlet property="table" destination="wM2-ZT-64Q" id="wjF-mJ-nya"/>
                         <outlet property="vwEmpty" destination="Nft-50-B75" id="KZr-0i-Q1y"/>
+                        <outlet property="vwFilter" destination="7bA-vN-Fw6" id="GEm-QE-MVq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWC-Rc-d3r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

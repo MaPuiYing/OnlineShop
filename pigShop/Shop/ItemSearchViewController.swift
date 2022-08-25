@@ -11,19 +11,26 @@ class ItemSearchViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var vwEmpty: UIView!
+    @IBOutlet weak var vwFilter: FilterItemView!
+    @IBOutlet weak var lcFilterHeight: NSLayoutConstraint!
+    @IBOutlet weak var dimView: UIView!
     
     let itemModel = ItemModel.shared
     var items: [Item] = []
     var filteredItems: [Item] = []
+    var minPrice = Double()
+    var maxPrice = Double()
     
     var refreshControl = CustomRefreshControl()
     let searchBar = UISearchBar()
+    let minPriceConstant = 1.0
+    let maxPriceConstant = 1000.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Search"
-        self.customBackButton()
         
+        self.customBackButton()
         self.tableViewSetup()
     }
     
@@ -36,6 +43,9 @@ class ItemSearchViewController: UIViewController {
     //MARK: - Init set up
     
     func initSetup() {
+        self.minPrice = self.minPriceConstant
+        self.maxPrice = self.maxPriceConstant
+        
         //Refresh Setting
         self.refreshControl.scrollView = self.table
         self.refreshControl.finishAction = { [weak self] in
@@ -45,6 +55,17 @@ class ItemSearchViewController: UIViewController {
             }
         }
         self.refreshPage()
+        
+        //Filter View
+        self.vwFilter.setupView()
+        self.vwFilter.layer.masksToBounds = true
+        self.vwFilter.sliderPrice.minimumValue = self.minPriceConstant
+        self.vwFilter.sliderPrice.maximumValue = self.maxPriceConstant
+        
+        self.vwFilter.doneFunc = {[weak self] in
+            self?.selectedFilter()
+        }
+        
     }
     
     func tableViewSetup() {
@@ -61,16 +82,14 @@ class ItemSearchViewController: UIViewController {
     func navigationBarSetup() {
         guard self.items.count > 0 else {return}
             
-        let filter = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"),style: .plain, target: self, action: #selector(filterBtnPressed))
+        let filter = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"),style: .plain, target: self, action: #selector(self.filterBtnPressed))
         filter.tintColor = .textDarkGrey
             
         self.navigationItem.rightBarButtonItem = filter
     }
     
     func refreshPage() {
-        self.items = itemModel.getAllItem()
-        self.table.reloadData()
-        
+        self.items = self.itemModel.getAllItem()
         self.navigationBarSetup()
         
         let searchText = searchBar.text ?? ""
@@ -81,7 +100,13 @@ class ItemSearchViewController: UIViewController {
                 $0.title?.localizedCaseInsensitiveContains(searchText) == true
             })
         }
+        self.filteredItems = self.filteredItems.filter({
+            $0.price ?? self.minPriceConstant >= self.minPrice && $0.price ?? self.maxPriceConstant <= self.maxPrice
+        })
+        
         self.vwEmpty.isHidden = (self.items.count > 0)
+        
+        self.table.reloadData()
     }
     
     //MARK: - Button action
@@ -95,7 +120,29 @@ class ItemSearchViewController: UIViewController {
     }
     
     @objc func filterBtnPressed() {
-        NSLog("filter")
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.lcFilterHeight.constant = 200
+            self.dimView.isHidden = false
+            self.view.layoutIfNeeded()
+            
+            self.table.isUserInteractionEnabled = false
+            
+        }, completion: nil)
+    }
+    
+    func selectedFilter() {
+        let filteredPrice: [CGFloat] = self.vwFilter.sliderPrice.value
+        self.minPrice = filteredPrice.first ?? self.minPriceConstant
+        self.maxPrice = filteredPrice.last ?? self.maxPriceConstant
+        self.refreshPage()
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.lcFilterHeight.constant = 0
+            self.dimView.isHidden = true
+            self.view.layoutIfNeeded()
+            
+            self.table.isUserInteractionEnabled = true
+        }, completion: nil)
     }
 }
 
@@ -103,27 +150,11 @@ class ItemSearchViewController: UIViewController {
 
 extension ItemSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            self.filteredItems = self.items
-        } else {
-            self.filteredItems = self.items.filter({
-                $0.title?.localizedCaseInsensitiveContains(searchText) == true
-            })
-        }
-        self.table.reloadData()
+        self.refreshPage()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let searchText = searchBar.text ?? ""
-        
-        if searchText.isEmpty {
-            self.filteredItems = self.items
-        } else {
-            self.filteredItems = self.items.filter({
-                $0.title?.localizedCaseInsensitiveContains(searchText) == true
-            })
-        }
-        self.table.reloadData()
+        self.refreshPage()
     }
 }
 
