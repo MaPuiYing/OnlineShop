@@ -29,7 +29,16 @@ class AlertViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .black.withAlphaComponent(0.7)
         self.initSetup()
-        // Do any additional setup after loading the view.
+        
+        self.vwAlert.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+            self.vwAlert.transform = CGAffineTransform.identity
+        }, completion: nil)
     }
     
     func initSetup() {
@@ -52,12 +61,20 @@ class AlertViewController: UIViewController {
     }
     
     @IBAction func leftButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        self.alertContent?.leftBtnAction?()
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+            self.vwAlert.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
+        }, completion: {_ in
+            self.dismiss(animated: true, completion: nil)
+            self.alertContent?.leftBtnAction?()
+        })
     }
     
     @IBAction func rightButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        self.alertContent?.rightBtnAction?()
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+            self.vwAlert.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
+        }, completion: {_ in
+            self.dismiss(animated: true, completion: nil)
+            self.alertContent?.rightBtnAction?()
+        })
     }
 }
