@@ -71,6 +71,8 @@ class ItemSearchViewController: UIViewController {
     
     func tableViewSetup() {
         self.table.register(UINib(nibName: "ItemSearchTableViewCell", bundle: nil), forCellReuseIdentifier: "searchCell")
+        self.table.contentInset.bottom = 20
+        
         self.searchBar.delegate = self
         self.searchBar.searchBarStyle = .minimal
         self.searchBar.tintColor = .darkRed
