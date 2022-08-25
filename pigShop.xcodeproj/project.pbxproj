@@ -77,6 +77,9 @@
 		DA2C908428A28AD300A53562 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2C908328A28AD300A53562 /* OrderModel.swift */; };
 		DA2C908828A2B0F100A53562 /* JXSegmentedView in Frameworks */ = {isa = PBXBuildFile; productRef = DA2C908728A2B0F100A53562 /* JXSegmentedView */; };
 		DA2C908A28A2DFC400A53562 /* OrderPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2C908928A2DFC400A53562 /* OrderPagingViewController.swift */; };
+		DA36029828B654E30061A65D /* FilterItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA36029728B654E30061A65D /* FilterItemView.xib */; };
+		DA36029A28B654F80061A65D /* FilterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36029928B654F80061A65D /* FilterItemView.swift */; };
+		DA3602A028B672A00061A65D /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = DA36029F28B672A00061A65D /* MultiSlider */; };
 		DA4DD92728AD015100E8A66F /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD92628AD015100E8A66F /* OrderDetailViewController.swift */; };
 		DA4DD92B28AD0F5600E8A66F /* OrderItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD92928AD0F5600E8A66F /* OrderItemCollectionViewCell.swift */; };
 		DA4DD92C28AD0F5600E8A66F /* OrderItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4DD92A28AD0F5600E8A66F /* OrderItemCollectionViewCell.xib */; };
@@ -177,6 +180,8 @@
 		DA2C908028A2311500A53562 /* CheckoutPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutPriceTableViewCell.swift; sourceTree = "<group>"; };
 		DA2C908328A28AD300A53562 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		DA2C908928A2DFC400A53562 /* OrderPagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPagingViewController.swift; sourceTree = "<group>"; };
+		DA36029728B654E30061A65D /* FilterItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterItemView.xib; sourceTree = "<group>"; };
+		DA36029928B654F80061A65D /* FilterItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItemView.swift; sourceTree = "<group>"; };
 		DA4DD92628AD015100E8A66F /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		DA4DD92928AD0F5600E8A66F /* OrderItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA4DD92A28AD0F5600E8A66F /* OrderItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderItemCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -193,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA2C908828A2B0F100A53562 /* JXSegmentedView in Frameworks */,
+				DA3602A028B672A00061A65D /* MultiSlider in Frameworks */,
 				8D9BFA1227DA429D00DBE962 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +448,8 @@
 			children = (
 				8D6F72CA27DAF70F00714245 /* RecommendView.swift */,
 				8D6F72CC27DAF72400714245 /* RecommendView.xib */,
+				DA36029928B654F80061A65D /* FilterItemView.swift */,
+				DA36029728B654E30061A65D /* FilterItemView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -511,6 +519,7 @@
 			packageProductDependencies = (
 				8D9BFA1127DA429D00DBE962 /* SDWebImage */,
 				DA2C908728A2B0F100A53562 /* JXSegmentedView */,
+				DA36029F28B672A00061A65D /* MultiSlider */,
 			);
 			productName = pigShop;
 			productReference = 8D4859F027D90087007C5B55 /* pigShop.app */;
@@ -587,6 +596,7 @@
 			packageReferences = (
 				8D9BFA1027DA429D00DBE962 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				DA2C908628A2B0F100A53562 /* XCRemoteSwiftPackageReference "JXSegmentedView" */,
+				DA36029E28B672A00061A65D /* XCRemoteSwiftPackageReference "MultiSlider" */,
 			);
 			productRefGroup = 8D4859F127D90087007C5B55 /* Products */;
 			projectDirPath = "";
@@ -617,6 +627,7 @@
 				8D485A2C27D9042C007C5B55 /* Cart.storyboard in Resources */,
 				8D6F72D327DB06DD00714245 /* CategorySelectionCollectionViewCell.xib in Resources */,
 				8D6F72CD27DAF72400714245 /* RecommendView.xib in Resources */,
+				DA36029828B654E30061A65D /* FilterItemView.xib in Resources */,
 				8D980A5727DE447100718E50 /* ItemSearchTableViewCell.xib in Resources */,
 				8D70A68727DF3CC200A176C0 /* CartItemTableViewCell.xib in Resources */,
 				8D4859FB27D90087007C5B55 /* Main.storyboard in Resources */,
@@ -678,6 +689,7 @@
 				DA2C908128A2311500A53562 /* CheckoutPriceTableViewCell.swift in Sources */,
 				8D70A67C27DF271500A176C0 /* AlertViewController.swift in Sources */,
 				8D6F72DD27DB9D5200714245 /* UILabel++.swift in Sources */,
+				DA36029A28B654F80061A65D /* FilterItemView.swift in Sources */,
 				DA4DD92728AD015100E8A66F /* OrderDetailViewController.swift in Sources */,
 				8D7E862627DDCFED00118874 /* Double++.swift in Sources */,
 				8D7E221627E0788C000EA144 /* UserModel.swift in Sources */,
@@ -1056,6 +1068,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		DA36029E28B672A00061A65D /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yonat/MultiSlider";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1068,6 +1088,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DA2C908628A2B0F100A53562 /* XCRemoteSwiftPackageReference "JXSegmentedView" */;
 			productName = JXSegmentedView;
+		};
+		DA36029F28B672A00061A65D /* MultiSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA36029E28B672A00061A65D /* XCRemoteSwiftPackageReference "MultiSlider" */;
+			productName = MultiSlider;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

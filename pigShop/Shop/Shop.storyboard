@@ -157,6 +157,9 @@
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search the item name" translatesAutoresizingMaskIntoConstraints="NO" id="nYt-5u-vhd">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="x05-nh-OHJ"/>
+                                        </constraints>
                                         <color key="tintColor" name="darkRed"/>
                                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <offsetWrapper key="searchTextPositionAdjustment" horizontal="5" vertical="0.0"/>
@@ -165,8 +168,8 @@
                                             <outlet property="delegate" destination="yj1-SN-mi0" id="Zbf-oV-gB9"/>
                                         </connections>
                                     </searchBar>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-MH-JBN">
-                                        <rect key="frame" x="10" y="57" width="394" height="158"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-MH-JBN">
+                                        <rect key="frame" x="10" y="57" width="394" height="150"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JNt-Im-vTX">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
@@ -186,24 +189,31 @@
                                                     <outlet property="delegate" destination="yj1-SN-mi0" id="Ub0-tu-8sM"/>
                                                 </connections>
                                             </collectionView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hth-Zr-mDE" customClass="ViewButton" customModule="pigShop" customModuleProvider="target">
-                                                <rect key="frame" x="135" y="108" width="124.5" height="50"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Know More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2S-Lw-4Hs">
-                                                        <rect key="frame" x="15" y="12" width="94.5" height="26"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kh-ou-AOY" customClass="ShopButton" customModule="pigShop" customModuleProvider="target">
+                                                <rect key="frame" x="152" y="120" width="90" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="a2S-Lw-4Hs" secondAttribute="bottom" constant="12" id="6Xq-iR-4m3"/>
-                                                    <constraint firstAttribute="trailing" secondItem="a2S-Lw-4Hs" secondAttribute="trailing" constant="15" id="HMu-Ka-fQe"/>
-                                                    <constraint firstItem="a2S-Lw-4Hs" firstAttribute="top" secondItem="Hth-Zr-mDE" secondAttribute="top" constant="12" id="vY6-ex-Gs9"/>
-                                                    <constraint firstItem="a2S-Lw-4Hs" firstAttribute="leading" secondItem="Hth-Zr-mDE" secondAttribute="leading" constant="15" id="vyY-Em-FmT"/>
+                                                    <constraint firstAttribute="height" constant="30" id="1XJ-Po-qh2"/>
                                                 </constraints>
-                                            </view>
+                                                <color key="tintColor" name="btnOrange"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Get More">
+                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="btnOrange"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="updateCellCount" destination="yj1-SN-mi0" eventType="touchUpInside" id="mYf-6h-g5F"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="JNt-Im-vTX" secondAttribute="trailing" id="BRu-Vj-DjT"/>
@@ -223,6 +233,17 @@
                                     <constraint firstAttribute="bottom" secondItem="gwa-MH-JBN" secondAttribute="bottom" constant="20" id="nRy-nw-GXC"/>
                                 </constraints>
                             </scrollView>
+                            <view hidden="YES" alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcj-2T-oku">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ep-P4-WeU" customClass="FilterItemView" customModule="pigShop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="2Xa-q3-djm"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdV-ul-HZb">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
@@ -261,23 +282,33 @@
                         <viewLayoutGuide key="safeArea" id="iDQ-l8-gc3"/>
                         <color key="backgroundColor" name="tabbarBackground"/>
                         <constraints>
+                            <constraint firstItem="7ep-P4-WeU" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="4fH-hk-L8K"/>
                             <constraint firstItem="GdV-ul-HZb" firstAttribute="leading" secondItem="iDQ-l8-gc3" secondAttribute="leading" id="HLT-oW-c9o"/>
                             <constraint firstAttribute="bottom" secondItem="GdV-ul-HZb" secondAttribute="bottom" id="KiD-WP-Fcd"/>
+                            <constraint firstItem="7ep-P4-WeU" firstAttribute="leading" secondItem="DlJ-6h-Gra" secondAttribute="leading" id="LAr-ck-fAH"/>
                             <constraint firstItem="l7u-x4-RlR" firstAttribute="leading" secondItem="iDQ-l8-gc3" secondAttribute="leading" id="LPh-2b-S3a"/>
+                            <constraint firstAttribute="trailing" secondItem="7ep-P4-WeU" secondAttribute="trailing" id="RX8-Kc-l6J"/>
                             <constraint firstItem="l7u-x4-RlR" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="W5C-3f-QD8"/>
+                            <constraint firstItem="qcj-2T-oku" firstAttribute="leading" secondItem="iDQ-l8-gc3" secondAttribute="leading" id="bh1-vQ-UOQ"/>
                             <constraint firstAttribute="bottom" secondItem="l7u-x4-RlR" secondAttribute="bottom" id="dMH-Ic-EvY"/>
                             <constraint firstItem="iDQ-l8-gc3" firstAttribute="trailing" secondItem="l7u-x4-RlR" secondAttribute="trailing" id="dt8-ie-23w"/>
                             <constraint firstItem="iDQ-l8-gc3" firstAttribute="trailing" secondItem="GdV-ul-HZb" secondAttribute="trailing" id="hPZ-Ro-Ub0"/>
+                            <constraint firstItem="qcj-2T-oku" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="qQl-J8-Jdg"/>
+                            <constraint firstAttribute="bottom" secondItem="qcj-2T-oku" secondAttribute="bottom" id="tFd-Q5-jcx"/>
+                            <constraint firstItem="qcj-2T-oku" firstAttribute="trailing" secondItem="iDQ-l8-gc3" secondAttribute="trailing" id="veF-Ex-gtV"/>
                             <constraint firstItem="GdV-ul-HZb" firstAttribute="top" secondItem="iDQ-l8-gc3" secondAttribute="top" id="zkr-4V-o9d"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnGetMore" destination="8kh-ou-AOY" id="wYK-24-dZg"/>
                         <outlet property="collectionView" destination="JNt-Im-vTX" id="KZa-MN-1m4"/>
+                        <outlet property="dimView" destination="qcj-2T-oku" id="xfR-wn-yBZ"/>
+                        <outlet property="lcFilterHeight" destination="2Xa-q3-djm" id="x6z-Fj-ena"/>
                         <outlet property="lcItemHeight" destination="MoM-Qp-INf" id="Wi9-gz-zNG"/>
                         <outlet property="scrollView" destination="l7u-x4-RlR" id="A8V-bf-8xI"/>
                         <outlet property="searchBar" destination="nYt-5u-vhd" id="aaw-K3-pRO"/>
                         <outlet property="vwEmpty" destination="GdV-ul-HZb" id="mZR-S3-RAr"/>
-                        <outlet property="vwKnowMore" destination="Hth-Zr-mDE" id="B6k-7U-Zva"/>
+                        <outlet property="vwFilter" destination="7ep-P4-WeU" id="9gV-1y-Use"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlP-Ed-zcX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -583,6 +614,17 @@
                                     <outlet property="delegate" destination="OBW-3c-ZTL" id="bXj-Pg-kV0"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2e-MG-bRq">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bA-vN-Fw6" customClass="FilterItemView" customModule="pigShop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="KeT-gU-Jdn"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nft-50-B75">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
@@ -625,15 +667,25 @@
                             <constraint firstItem="wM2-ZT-64Q" firstAttribute="trailing" secondItem="R1u-zb-Mxe" secondAttribute="trailing" id="7cT-jO-qHl"/>
                             <constraint firstAttribute="bottom" secondItem="wM2-ZT-64Q" secondAttribute="bottom" id="BSv-iL-yvF"/>
                             <constraint firstItem="wM2-ZT-64Q" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="Dd9-85-U7z"/>
+                            <constraint firstAttribute="bottom" secondItem="Y2e-MG-bRq" secondAttribute="bottom" id="Dq5-kA-LzD"/>
+                            <constraint firstItem="7bA-vN-Fw6" firstAttribute="trailing" secondItem="R1u-zb-Mxe" secondAttribute="trailing" id="Gen-ca-p5r"/>
+                            <constraint firstItem="Y2e-MG-bRq" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="JXr-kS-GrP"/>
                             <constraint firstItem="Nft-50-B75" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="OsF-0g-zV3"/>
                             <constraint firstItem="Nft-50-B75" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="PPZ-F4-m90"/>
+                            <constraint firstItem="Y2e-MG-bRq" firstAttribute="top" secondItem="7bA-vN-Fw6" secondAttribute="bottom" id="cja-gt-9Ix"/>
                             <constraint firstAttribute="bottom" secondItem="Nft-50-B75" secondAttribute="bottom" id="e3k-ja-oUF"/>
+                            <constraint firstItem="7bA-vN-Fw6" firstAttribute="leading" secondItem="R1u-zb-Mxe" secondAttribute="leading" id="fgW-XX-aYg"/>
+                            <constraint firstItem="7bA-vN-Fw6" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="fmM-mq-p3I"/>
                             <constraint firstItem="wM2-ZT-64Q" firstAttribute="top" secondItem="R1u-zb-Mxe" secondAttribute="top" id="j4l-rR-g1S"/>
+                            <constraint firstItem="R1u-zb-Mxe" firstAttribute="trailing" secondItem="Y2e-MG-bRq" secondAttribute="trailing" id="zDd-Md-yRD"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dimView" destination="Y2e-MG-bRq" id="0fa-hK-RQq"/>
+                        <outlet property="lcFilterHeight" destination="KeT-gU-Jdn" id="xXT-rz-dy7"/>
                         <outlet property="table" destination="wM2-ZT-64Q" id="wjF-mJ-nya"/>
                         <outlet property="vwEmpty" destination="Nft-50-B75" id="KZr-0i-Q1y"/>
+                        <outlet property="vwFilter" destination="7bA-vN-Fw6" id="GEm-QE-MVq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWC-Rc-d3r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
