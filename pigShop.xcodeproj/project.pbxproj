@@ -81,6 +81,7 @@
 		DA36029A28B654F80061A65D /* FilterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36029928B654F80061A65D /* FilterItemView.swift */; };
 		DA3602A028B672A00061A65D /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = DA36029F28B672A00061A65D /* MultiSlider */; };
 		DA3602A328B7B4C70061A65D /* RSKImageCropper in Frameworks */ = {isa = PBXBuildFile; productRef = DA3602A228B7B4C70061A65D /* RSKImageCropper */; };
+		DA3602A528B7C71D0061A65D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3602A428B7C71D0061A65D /* PhotoViewController.swift */; };
 		DA4DD92728AD015100E8A66F /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD92628AD015100E8A66F /* OrderDetailViewController.swift */; };
 		DA4DD92B28AD0F5600E8A66F /* OrderItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD92928AD0F5600E8A66F /* OrderItemCollectionViewCell.swift */; };
 		DA4DD92C28AD0F5600E8A66F /* OrderItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA4DD92A28AD0F5600E8A66F /* OrderItemCollectionViewCell.xib */; };
@@ -183,6 +184,7 @@
 		DA2C908928A2DFC400A53562 /* OrderPagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPagingViewController.swift; sourceTree = "<group>"; };
 		DA36029728B654E30061A65D /* FilterItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterItemView.xib; sourceTree = "<group>"; };
 		DA36029928B654F80061A65D /* FilterItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItemView.swift; sourceTree = "<group>"; };
+		DA3602A428B7C71D0061A65D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		DA4DD92628AD015100E8A66F /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		DA4DD92928AD0F5600E8A66F /* OrderItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA4DD92A28AD0F5600E8A66F /* OrderItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderItemCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				8D31615127DCD484008A54B2 /* CategoryItemViewController.swift */,
 				8D31616127DD0C05008A54B2 /* ItemDetailViewController.swift */,
 				8D980A5127DE42C000718E50 /* ItemSearchViewController.swift */,
+				DA3602A428B7C71D0061A65D /* PhotoViewController.swift */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				8D6F72CF27DAFA6900714245 /* UIView++.swift in Sources */,
 				8D6F72D527DB4F9400714245 /* Util.swift in Sources */,
 				8D70A68627DF3CC200A176C0 /* CartItemTableViewCell.swift in Sources */,
+				DA3602A528B7C71D0061A65D /* PhotoViewController.swift in Sources */,
 				8D9BFA0627DA3A1900DBE962 /* HomeViewController.swift in Sources */,
 				DA4DD92B28AD0F5600E8A66F /* OrderItemCollectionViewCell.swift in Sources */,
 				8D31616227DD0C05008A54B2 /* ItemDetailViewController.swift in Sources */,

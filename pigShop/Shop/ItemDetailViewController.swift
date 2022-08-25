@@ -9,7 +9,7 @@ import UIKit
 
 class ItemDetailViewController: UIViewController {
     
-    @IBOutlet weak var imvBanner: UIImageView!
+    @IBOutlet weak var imvBanner: ImageButton!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var imvBookmarks: ImageButton!
     
@@ -88,6 +88,14 @@ class ItemDetailViewController: UIViewController {
     func setupContent() {
         guard let item = self.itemDetail else {return}
         self.imvBanner.sd_setImage(with: URL(string: item.imageURL ?? ""), completed: nil)
+        self.imvBanner.method = {[weak self] in
+            if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as? PhotoViewController {
+                vc.imageURL = item.imageURL ?? ""
+                vc.modalPresentationStyle = .overFullScreen
+                self?.present(vc, animated: true)
+            }
+        }
+        
         self.lbTitle.text = item.title
         if item.isDiscount == true {
             self.setupOriginalPrice(item.oldPrice?.stringValue)
