@@ -45,7 +45,7 @@ class RecommendView: UIView {
     //MARK: - Timer setup
     
     func startTimer() {
-        let timer = Timer.init(timeInterval: 2, target: self, selector: #selector(autoNextPage), userInfo: nil, repeats: true)
+        let timer = Timer.init(timeInterval: 3, target: self, selector: #selector(autoNextPage), userInfo: nil, repeats: true)
         RunLoop.main.add(timer, forMode: .common)
      
         self.timer = timer
