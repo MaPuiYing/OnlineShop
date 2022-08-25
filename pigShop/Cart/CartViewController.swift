@@ -26,6 +26,7 @@ class CartViewController: UIViewController {
             self.lblTotal.text = self.totalPrice.stringValue
         }
     }
+    var isNeedBuyAction = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,11 @@ class CartViewController: UIViewController {
         self.aryCart = self.cartModel.aryCart
         self.updateCartContent()
         self.emptySetup()
+        
+        if self.isNeedBuyAction {
+            self.isNeedBuyAction = false
+            self.checkoutBtnPressed()
+        }
     }
     
     //MARK: - Init set up
@@ -74,6 +80,8 @@ class CartViewController: UIViewController {
             self.showAlert(title: "Please login your account.", hideLeftButton: false, leftTitle: "Cancel", rightTitle: "Login Now", rightBtnAction: { [weak self] in
                 if let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
                     vc.modalPresentationStyle = .fullScreen
+                    vc.needNextAction = true
+                    vc.delegate = self
                     self?.tabBarController?.present(vc, animated: true, completion: nil)
                 }
             })
@@ -104,6 +112,15 @@ class CartViewController: UIViewController {
         self.totalPrice = total
     }
 }
+
+//MARK: - ContinuousActionDelegate
+
+extension CartViewController: ContinuousActionDelegate {
+    func needNextAction(_ isNeedAction: Bool) {
+        self.isNeedBuyAction = isNeedAction
+    }
+}
+
 
 //MARK: - UITableView Delegate & Data Source
 

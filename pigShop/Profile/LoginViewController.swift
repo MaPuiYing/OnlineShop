@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ContinuousActionDelegate {
-    func needContinuousBuyAction(_ isNeedAction: Bool)
+    func needNextAction(_ isNeedAction: Bool)
 }
 
 class LoginViewController: UIViewController {
@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
         } else {
             self.userModel.loginUser(username: self.tfUsername.text, password: self.tfPassword.text, success: { [weak self] in
                 if self?.needNextAction == true {
-                    self?.delegate?.needContinuousBuyAction(true)
+                    self?.delegate?.needNextAction(true)
                 }
                 self?.dismiss(animated: true, completion: nil)
             }, failure: { [weak self] in

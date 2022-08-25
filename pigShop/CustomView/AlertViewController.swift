@@ -30,13 +30,13 @@ class AlertViewController: UIViewController {
         self.view.backgroundColor = .black.withAlphaComponent(0.7)
         self.initSetup()
         
-        self.vwAlert.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        self.vwAlert.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
             self.vwAlert.transform = CGAffineTransform.identity
         }, completion: nil)
     }
@@ -61,8 +61,9 @@ class AlertViewController: UIViewController {
     }
     
     @IBAction func leftButton(_ sender: Any) {
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-            self.vwAlert.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
+        UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
+            self.vwAlert.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            self.vwAlert.alpha = 0
         }, completion: {_ in
             self.dismiss(animated: true, completion: nil)
             self.alertContent?.leftBtnAction?()
@@ -70,8 +71,9 @@ class AlertViewController: UIViewController {
     }
     
     @IBAction func rightButton(_ sender: Any) {
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-            self.vwAlert.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
+        UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
+            self.vwAlert.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            self.vwAlert.alpha = 0
         }, completion: {_ in
             self.dismiss(animated: true, completion: nil)
             self.alertContent?.rightBtnAction?()

@@ -181,8 +181,10 @@ class ItemDetailViewController: UIViewController {
     }
 }
 
+//MARK: - ContinuousActionDelegate
+
 extension ItemDetailViewController: ContinuousActionDelegate {
-    func needContinuousBuyAction(_ isNeedAction: Bool) {
+    func needNextAction(_ isNeedAction: Bool) {
         self.isNeedBuyAction = isNeedAction
     }
 }
