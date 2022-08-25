@@ -20,13 +20,14 @@ class CartModel {
     var aryCart: [Cart] = []
     var id: Int = 1
     
-    //MARK: - Get Item
+    //MARK: - Get Cart
     
     func getCart() -> [Cart] {
         return self.aryCart
     }
     
     //MARK: - Get Object
+    
     func isDuplicate(item: Item?) -> Bool {
         let isDuplicate = self.aryCart.filter({
             $0.itemID == item?.id
@@ -35,6 +36,7 @@ class CartModel {
     }
     
     //MARK: - Edit Object
+    
     func addCart(itemID: Int?, count: Int, success: @escaping (()->Void), failure: @escaping (()->Void)) {
         let duplicateId = self.aryCart.filter({
             $0.itemID == itemID

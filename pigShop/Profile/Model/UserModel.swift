@@ -33,7 +33,7 @@ class UserModel {
         self.addUser(username: "admin", password: "admin", email: "admin@pigpigShop.com", phoneNo: "98761234")
     }
     
-    //MARK: - Get Item
+    //MARK: - Get User Info
     
     func isLogined() -> Bool? {
         return self.currentUser != nil
@@ -47,7 +47,7 @@ class UserModel {
         return self.aryUser
     }
     
-    //MARK: - Edit Item
+    //MARK: - Edit User
     
     func addUser(username: String?, password: String?, email: String?, phoneNo: String?) {
         let newUser = User(id: self.id, username: username, password: password, email: email, phoneNo: phoneNo, firstName: nil, lastName: nil, address: nil, city: "Alberta")

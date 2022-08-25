@@ -69,14 +69,16 @@ class OrderModel {
         self.id += 1
     }
     
-    //Add
+    //MARK: - Add Order
+    
     func addOrder(userId: Int, firstName: String, lastName: String, address: String, city: String, paymentMethod: PaymentMethod, allItem: [Cart], totalPrice: Double) {
         let newOrder = Order(id: self.id, userId: userId, firstName: firstName, lastName: lastName, address: address, city: city, paymentMethod: paymentMethod, allItem: allItem, totalPrice: totalPrice, status: .pendingDelivery, dateTime: Util.getCurrentDate())
         self.aryOrder.append(newOrder)
         self.id += 1
     }
     
-    //Get
+    //MARK: - Get Order
+    
     func getUserOrder(_ userId: Int) -> [Order]? {
         return self.aryOrder.filter({
             $0.userId == userId
@@ -89,7 +91,8 @@ class OrderModel {
         }).first?.status)?.rawValue ?? 0) ?? .pendingDelivery
     }
     
-    //Update
+    //MARK: - Update Order
+    
     func updateOrderStatus(orderId: Int, newStatus: OrderStatus) {
         if let row = self.aryOrder.firstIndex(where: {$0.id == orderId}) {
             var newOrder = self.aryOrder[row]
